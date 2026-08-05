@@ -1,6 +1,11 @@
 defmodule LimbusRealtime.Realtime.Room do
   use GenServer
 
+  @components %{
+    chat: LimbusRealtime.Realtime.Components.Chat.Component,
+    quiz: LimbusRealtime.Realtime.Components.Quiz.Component
+  }
+
   ## ---------- Client API ----------
 
   def start_link(opts) do
@@ -40,11 +45,16 @@ defmodule LimbusRealtime.Realtime.Room do
   def init(room_id) do
     state = %{
       id: room_id,
-      type: :chat,
+      empty_window:
+        :timer.minutes(
+          case room_id do
+            "global:lobby" -> 30
+            _ -> 5
+          end
+        ),
+      shutdown_timer: nil,
       connections: %{},
-      components: %{
-        chat: LimbusRealtime.Realtime.Components.Chat.Component.initial_state()
-      }
+      components: %{}
     }
 
     {:ok, state}
@@ -53,12 +63,32 @@ defmodule LimbusRealtime.Realtime.Room do
   @impl true
   def handle_call({:join, connection}, _from, state) do
     connections = Map.put(state.connections, connection.id, connection)
-    {:reply, :ok, %{state | connections: connections}}
+
+    if state.shutdown_timer do
+      Process.cancel_timer(state.shutdown_timer)
+    end
+
+    {:reply, :ok, %{state | connections: connections, shutdown_timer: nil}}
   end
 
   @impl true
   def handle_call({:leave, connection_id}, _from, state) do
     connections = Map.delete(state.connections, connection_id)
+
+    state =
+      if map_size(connections) == 0 do
+        timer =
+          Process.send_after(
+            self(),
+            :shutdown_if_empty,
+            state.empty_window
+          )
+
+        %{state | shutdown_timer: timer}
+      else
+        state
+      end
+
     {:reply, :ok, %{state | connections: connections}}
   end
 
@@ -80,8 +110,16 @@ defmodule LimbusRealtime.Realtime.Room do
           end
 
         if is_valid do
-          component_state = Map.fetch!(state.components, component)
-          component_module = component_module(component)
+          component_state =
+            case Map.get(state.components, component) do
+              nil ->
+                @components[component].initial_state()
+
+              component_state ->
+                component_state
+            end
+
+          component_module = @components[component]
 
           case apply(component_module, action, [payload, connection, component_state]) do
             {:ok, new_component_state, effects} ->
@@ -109,6 +147,15 @@ defmodule LimbusRealtime.Realtime.Room do
     end
   end
 
+  @impl true
+  def handle_info(:shutdown_if_empty, state) do
+    if map_size(state.connections) == 0 do
+      {:stop, :normal, state}
+    else
+      {:noreply, %{state | shutdown_timer: nil}}
+    end
+  end
+
   ## ---------- Registry ----------
 
   defp via(room_id) do
@@ -125,10 +172,6 @@ defmodule LimbusRealtime.Realtime.Room do
       [] ->
         {:error, :room_not_found}
     end
-  end
-
-  defp component_module(:chat) do
-    LimbusRealtime.Realtime.Components.Chat.Component
   end
 
   defp fetch_rate_limits(component, action) do
