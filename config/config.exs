@@ -15,7 +15,7 @@ config :limbus_realtime, LimbusRealtimeWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: LimbusRealtimeWeb.ErrorHTML, json: LimbusRealtimeWeb.ErrorJSON],
+    formats: [json: LimbusRealtimeWeb.ErrorJSON],
     layout: false
   ],
   pubsub_server: LimbusRealtime.PubSub,
