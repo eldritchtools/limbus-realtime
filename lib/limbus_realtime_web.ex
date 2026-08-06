@@ -19,6 +19,12 @@ defmodule LimbusRealtimeWeb do
 
   def static_paths, do: ~w(assets fonts images favicon.ico robots.txt)
 
+  def html do
+    quote do
+      use Phoenix.Component
+    end
+  end
+
   def router do
     quote do
       use Phoenix.Router, helpers: false
