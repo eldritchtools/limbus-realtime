@@ -1,6 +1,6 @@
 defmodule LimbusRealtime.Realtime.Components.Chat.State do
   @history_limit 50
-  @history_window_minutes 30
+  @history_window_minutes 60
 
   defstruct history: [],
             participants: %{},
