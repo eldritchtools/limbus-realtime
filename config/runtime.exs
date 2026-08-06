@@ -68,11 +68,6 @@ if config_env() == :prod do
     ],
     secret_key_base: secret_key_base
 
-  config :limbus_realtime,
-    allowed_origins:
-      System.get_env("ALLOWED_ORIGINS", "https://limbus.eldritchtools.com")
-      |> String.split(",", trim: true)
-
   # ## SSL Support
   #
   # To get SSL working, you will need to add the `https` key
