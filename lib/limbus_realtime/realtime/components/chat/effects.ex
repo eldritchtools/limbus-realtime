@@ -11,16 +11,27 @@ defmodule LimbusRealtime.Realtime.Components.Chat.Effects do
   end
 
   def execute({:send_history, history}, socket, _room_state, component_state) do
-    Channel.push(socket, "history", %{history: history, user_count: map_size(component_state.participants)})
+    Channel.push(socket, "history", %{
+      history: history,
+      user_count: map_size(component_state.participants)
+    })
   end
 
-  def execute({:broadcast_system, type, data}, socket, _room_state, component_state) do
+  def execute({:broadcast_presence, type, data}, socket, _room_state, component_state) do
     case type do
       :joined ->
-        Channel.broadcast!(socket, "system", %{type: :joined, participant: data.participant, user_count: map_size(component_state.participants)})
+        Channel.broadcast!(socket, "presence", %{
+          type: :joined,
+          display_name: data.display_name,
+          user_count: map_size(component_state.participants)
+        })
 
       :left ->
-        Channel.broadcast!(socket, "system", %{type: :left, participant: data.participant, user_count: map_size(component_state.participants)})
+        Channel.broadcast!(socket, "presence", %{
+          type: :left,
+          display_name: data.display_name,
+          user_count: map_size(component_state.participants)
+        })
     end
   end
 end

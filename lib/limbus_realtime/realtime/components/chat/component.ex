@@ -8,8 +8,7 @@ defmodule LimbusRealtime.Realtime.Components.Chat.Component do
   def initialize(payload, _connection, state) do
     case validate_user(payload.user) do
       {:ok, user} ->
-        now = DateTime.utc_now()
-        state = %{state | history: prune_history(state.history, now)}
+        state = %{state | history: state.history}
 
         {state, effects} = add_connection(state, user)
         {:ok, state, [{:send_history, state.history} | effects]}
@@ -45,7 +44,7 @@ defmodule LimbusRealtime.Realtime.Components.Chat.Component do
             connection_count: 1
           }
 
-          {participant, [{:broadcast_system, :joined, %{participant: participant}}]}
+          {participant, [{:broadcast_presence, :joined, %{display_name: participant.display_name}}]}
 
         participant ->
           {
@@ -90,7 +89,7 @@ defmodule LimbusRealtime.Realtime.Components.Chat.Component do
             1 ->
               {
                 Map.delete(state.participants, participant.id),
-                [{:broadcast_system, :left, %{participant: participant}}]
+                [{:broadcast_presence, :left, %{display_name: participant.display_name}}]
               }
 
             _ ->
@@ -121,7 +120,7 @@ defmodule LimbusRealtime.Realtime.Components.Chat.Component do
       now = DateTime.utc_now()
 
       message = build_message(text, payload.user, now)
-      state = add_message(state, message, now)
+      state = add_message(state, message)
 
       {:ok, state, [{:broadcast_message, message}]}
     else
@@ -130,22 +129,13 @@ defmodule LimbusRealtime.Realtime.Components.Chat.Component do
     end
   end
 
-  defp add_message(state, message, now) do
+  defp add_message(state, message) do
     history =
       state.history
-      |> prune_history(now)
       |> Kernel.++([message])
       |> Enum.take(-State.history_limit())
 
     %{state | history: history}
-  end
-
-  defp prune_history(history, now) do
-    cutoff = DateTime.add(now, -State.history_window_minutes() * 60, :second)
-
-    Enum.filter(history, fn message ->
-      DateTime.compare(message.sent_at, cutoff) != :lt
-    end)
   end
 
   defp build_message(text, user, now) do
