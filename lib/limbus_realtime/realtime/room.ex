@@ -43,15 +43,16 @@ defmodule LimbusRealtime.Realtime.Room do
 
   @impl true
   def init(room_id) do
+    [type, _id] = String.split(room_id, ":", parts: 2)
+
     state = %{
       id: room_id,
+      type: type,
       empty_window:
-        :timer.minutes(
-          case room_id do
-            "global:lobby" -> 30
-            _ -> 5
-          end
-        ),
+        case room_id do
+          "global:lobby" -> -1
+          _ -> :timer.minutes(5)
+        end,
       shutdown_timer: nil,
       connections: %{},
       components: %{}
@@ -76,7 +77,7 @@ defmodule LimbusRealtime.Realtime.Room do
     connections = Map.delete(state.connections, connection_id)
 
     state =
-      if map_size(connections) == 0 do
+      if map_size(connections) == 0 and state.empty_window > 0 do
         timer =
           Process.send_after(
             self(),

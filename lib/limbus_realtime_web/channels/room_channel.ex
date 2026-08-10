@@ -6,15 +6,38 @@ defmodule LimbusRealtimeWeb.RoomChannel do
 
   @impl true
   def join("room:" <> room_id, _payload, socket) do
-    {:ok, _} = Rooms.ensure_room(room_id)
+    [type, id] = String.split(room_id, ":", parts: 2)
 
-    :ok = Room.join(room_id, socket.assigns.connection)
+    room_id =
+      case {type, id} do
+        {"global", "lobby"} ->
+          {:ok, _} = Rooms.ensure_room(room_id)
+          room_id
 
-    socket =
-      socket
-      |> assign(:room_id, room_id)
+        {type, "new"} ->
+          {:ok, id} = Rooms.create_room(type)
+          id
 
-    {:ok, socket}
+        {_type, _id} ->
+          case Rooms.check_room(room_id) do
+            :ok -> room_id
+            :error -> nil
+          end
+      end
+
+    case room_id do
+      nil ->
+        {:error, %{reason: "room_not_found"}}
+
+      _ ->
+        :ok = Room.join(room_id, socket.assigns.connection)
+
+        socket =
+          socket
+          |> assign(:room_id, room_id)
+
+        {:ok, %{room_id: room_id}, socket}
+    end
   end
 
   @impl true
@@ -30,11 +53,17 @@ defmodule LimbusRealtimeWeb.RoomChannel do
 
   @impl true
   def terminate(_reason, socket) do
-    Room.leave(
-      socket.assigns.room_id,
-      socket.assigns.connection.id
-    )
+    case Map.get(socket.assigns, :room_id) do
+      nil ->
+        :ok
 
-    :ok
+      room_id ->
+        Room.leave(
+          room_id,
+          socket.assigns.connection.id
+        )
+
+        :ok
+    end
   end
 end

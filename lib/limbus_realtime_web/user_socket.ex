@@ -3,6 +3,7 @@ defmodule LimbusRealtimeWeb.UserSocket do
 
   channel "room:*", LimbusRealtimeWeb.RoomChannel
   channel "chat:*", LimbusRealtimeWeb.ChatChannel
+  channel "quiz:*", LimbusRealtimeWeb.QuizChannel
 
   @impl true
   def connect(_params, socket, _connect_info) do
