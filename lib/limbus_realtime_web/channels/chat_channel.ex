@@ -11,7 +11,8 @@ defmodule LimbusRealtimeWeb.ChatChannel do
     user = %{
       connection_id: socket.assigns.connection.id,
       participant_id: "#{payload["client_id"]}:#{name}",
-      display_name: name
+      display_name: name,
+      is_developer: LimbusRealtimeWeb.SpecialUsers.is_developer(payload["client_id"])
     }
 
     socket =

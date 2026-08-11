@@ -44,7 +44,8 @@ defmodule LimbusRealtime.Realtime.Components.Chat.Component do
             connection_count: 1
           }
 
-          {participant, [{:broadcast_presence, :joined, %{display_name: participant.display_name}}]}
+          {participant,
+           [{:broadcast_presence, :joined, %{display_name: participant.display_name}}]}
 
         participant ->
           {
@@ -139,13 +140,19 @@ defmodule LimbusRealtime.Realtime.Components.Chat.Component do
   end
 
   defp build_message(text, user, now) do
-    %{
+    message = %{
       id: Base.encode16(:crypto.strong_rand_bytes(16), case: :lower),
       text: text,
       display_name: user.display_name,
       participant_id: user.participant_id,
       sent_at: now
     }
+
+    if user.is_developer do
+      Map.put(message, :is_developer, true)
+    else
+      message
+    end
   end
 
   defp validate_message(%{"text" => text}) when is_binary(text) do
