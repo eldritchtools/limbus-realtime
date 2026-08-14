@@ -9,7 +9,7 @@ defmodule LimbusRealtimeWeb.AllowedOrigins do
       :prod ->
         [
           "https://limbus.eldritchtools.com",
-          "https://deploy-preview-98--limbus-company-tools.netlify.app"
+          "https://deploy-preview-99--limbus-company-tools.netlify.app"
         ]
 
       :test ->
