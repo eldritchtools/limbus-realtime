@@ -3,7 +3,8 @@ defmodule LimbusRealtime.Realtime.Room do
 
   @components %{
     chat: LimbusRealtime.Realtime.Components.Chat.Component,
-    quiz: LimbusRealtime.Realtime.Components.Quiz.Component
+    quiz: LimbusRealtime.Realtime.Components.Quiz.Component,
+    clash_battle: LimbusRealtime.Realtime.Components.ClashBattle.Component
   }
 
   ## ---------- Client API ----------
