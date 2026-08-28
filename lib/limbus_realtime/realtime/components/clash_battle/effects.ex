@@ -9,6 +9,17 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
     Channel.push(socket, "state", build_snapshot(component_state, participant_id))
   end
 
+  def execute(:broadcast_state, _socket, _room_state, state) do
+    Enum.each(state.participants, fn {_client_id, participant} ->
+      if participant.connected do
+        send(
+          participant.channel_pid,
+          {:push_state, build_snapshot(state, participant.id)}
+        )
+      end
+    end)
+  end
+
   def execute({:broadcast_joined, display_name}, socket, _room_state, _component_state) do
     Channel.broadcast_from!(socket, "joined", %{display_name: display_name})
   end
@@ -57,17 +68,6 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
         send(
           participant.channel_pid,
           {:push_message, "draft_pick", payload}
-        )
-      end
-    end)
-  end
-
-  def execute(:broadcast_draft_complete, _socket, _room_state, state) do
-    Enum.each(state.participants, fn {_client_id, participant} ->
-      if participant.connected do
-        send(
-          participant.channel_pid,
-          {:push_state, build_snapshot(state, participant.id)}
         )
       end
     end)
@@ -145,7 +145,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           phase: state.phase,
           player_id: participant.player_id,
           is_host: client_id == state.host_client_id,
-          participants: build_participants(state)
+          participants: build_participants(state),
+          skill_counts: participant.skill_counts
         }
 
       :round_select ->
@@ -156,7 +157,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           participants: build_participants(state),
           current_round: state.current_round,
           round_number: state.round_number,
-          skill_counts: participant.skill_counts
+          skill_counts: participant.skill_counts,
+          settings: %{rounds: state.settings["rounds"]}
         }
 
       :round_reveal ->
@@ -167,7 +169,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           participants: build_participants(state),
           current_round: state.current_round,
           round_number: state.round_number,
-          skill_counts: participant.skill_counts
+          skill_counts: participant.skill_counts,
+          results: state.results,
+          settings: %{rounds: state.settings["rounds"]}
         }
 
       :finished ->

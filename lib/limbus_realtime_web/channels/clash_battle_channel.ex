@@ -9,10 +9,10 @@ defmodule LimbusRealtimeWeb.ClashBattleChannel do
     "change_settings" => :change_settings,
     "start_draft" => :start_draft,
     "pick_identity" => :pick_identity,
-    # "start_game" => :start_game,
-    # "next_round" => :next_round,
-    # "end_game" => :end_game,
-    # "return_to_setup" => :return_to_setup
+    "start_game" => :start_game,
+    "select_skill" => :select_skill,
+    "next_round" => :next_round,
+    "return_to_setup" => :return_to_setup
   }
 
   @impl true

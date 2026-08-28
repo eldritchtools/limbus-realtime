@@ -38,7 +38,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Generator do
   end
 
   defp generate_statuses(settings) do
-    count = random(settings.num_status[0], settings.num_status[1])
+    count = random(Enum.at(settings["num_status"], 0), Enum.at(settings["num_status"], 1))
 
     @statuses
     |> Enum.shuffle()
@@ -46,8 +46,16 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Generator do
     |> Map.new(fn status ->
       {status,
        %{
-         potency: random_low(settings.status_potency[0], settings.status_potency[1]),
-         count: random_low(settings.status_count[0], settings.status_count[1])
+         potency:
+           random_low(
+             Enum.at(settings["status_potency"], 0),
+             Enum.at(settings["status_potency"], 1)
+           ),
+         count:
+           random_low(
+             Enum.at(settings["status_count"], 0),
+             Enum.at(settings["status_count"], 1)
+           )
        }}
     end)
   end
@@ -55,9 +63,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Generator do
   defp generate_side(settings) do
     %{
       statuses: generate_statuses(settings),
-      hp: random_high(settings.hp[0], settings.hp[1]),
-      speed: random_mid(settings.speed[0], settings.speed[1]),
-      sp: random(settings.sp[0], settings.sp[1])
+      hp: random_high(Enum.at(settings["hp"], 0), Enum.at(settings["hp"], 1)),
+      speed: random_mid(Enum.at(settings["speed"], 0), Enum.at(settings["speed"], 1)),
+      sp: random(Enum.at(settings["sp"], 0), Enum.at(settings["sp"], 1))
     }
   end
 

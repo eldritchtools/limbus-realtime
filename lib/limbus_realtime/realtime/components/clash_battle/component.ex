@@ -35,7 +35,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
             score: 0,
             identities: [],
             connected: true,
-            channel_pid: user.channel_pid
+            channel_pid: user.channel_pid,
+            skill_counts: []
           }
 
           state =
@@ -150,7 +151,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
       if state.draft_index >= length(state.draft_order) do
         state = finish_draft(state)
 
-        {:ok, state, [:broadcast_draft_complete]}
+        {:ok, state, [:broadcast_state]}
       else
         {:ok, state, [{:broadcast_draft_pick, identity_id, draft_index}]}
       end
@@ -163,20 +164,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
   def start_game(payload, _connection, state) do
     with :ok <- check_host(payload, state),
          :ok <- check_phase(:draft_complete, state) do
-      participants =
-        Map.new(state.participants, fn {client_id, participant} ->
-          skill_counts =
-            Map.new(participant.identities, fn identity_id ->
-              {identity_id, [3, 2, 1]}
-            end)
-
-          {client_id, %{participant | skill_counts: skill_counts, score: 0}}
-        end)
-
       state = %{
         state
         | phase: :round_select,
-          participants: participants,
           round_number: 1,
           current_round: Generator.generate_round(state.settings),
           submissions: %{},
@@ -258,6 +248,11 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
         {client_id, %{participant | score: participant.score + results[client_id].points}}
       end)
 
+    results =
+      Map.new(results, fn {client_id, result} ->
+        {state.participants[client_id].player_id, Map.merge(result, state.submissions[client_id])}
+      end)
+
     %{state | phase: :round_reveal, participants: participants, results: results}
   end
 
@@ -281,6 +276,43 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     else
       {:error, reason} ->
         {:error, reason}
+    end
+  end
+
+  def return_to_setup(payload, _connection, state) do
+    with :ok <- check_host(payload, state),
+         :ok <- check_phase(:finished, state) do
+      participants =
+        Map.new(state.participants, fn {client_id, participant} ->
+          {client_id,
+           %{
+             participant
+             | player_id: nil,
+               score: 0,
+               identities: [],
+               connected: participant.connected
+           }}
+        end)
+
+      state = %{
+        state
+        | phase: :setup,
+          participants: participants,
+          host_client_id: state.host_client_id,
+          settings: state.settings,
+          draft_order: [],
+          draft_index: 0,
+          picked_identities: MapSet.new(),
+          identity_data: %{},
+          round_number: 0,
+          current_round: nil,
+          submissions: %{},
+          results: %{}
+      }
+
+      {:ok, state, [:broadcast_state]}
+    else
+      {:error, reason} -> {:error, reason}
     end
   end
 
@@ -323,9 +355,20 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
       |> Map.values()
       |> Enum.flat_map(& &1.identities)
 
+    participants =
+      Map.new(state.participants, fn {client_id, participant} ->
+        skill_counts =
+          Map.new(participant.identities, fn identity_id ->
+            {identity_id, [3, 2, 1]}
+          end)
+
+        {client_id, %{participant | skill_counts: skill_counts, score: 0}}
+      end)
+
     %{
       state
       | phase: :draft_complete,
+        participants: participants,
         draft_order: [],
         draft_index: 0,
         round_number: 0,

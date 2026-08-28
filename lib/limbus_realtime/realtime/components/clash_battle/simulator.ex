@@ -22,16 +22,16 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
 
   defp calculate_skill_clash(skill, self, target) do
     modifiers =
-      skill.conditionals
+      (skill["conditionals"] || [])
       |> Enum.map(&evaluate_conditional(&1, self, target))
 
-    base = skill.base + modifier_sum(modifiers, "base")
-    coin = skill.coin + modifier_sum(modifiers, "coin")
+    base = skill["base"] + modifier_sum(modifiers, "base")
+    coin = skill["coin"] + modifier_sum(modifiers, "coin")
     clash = modifier_sum(modifiers, "clash")
 
-    coins = Enum.map(1..skill.coins, fn _ -> :rand.uniform(100) <= 50 + self.sp end)
+    coins = Enum.map(1..skill["coins"], fn _ -> :rand.uniform(100) <= 50 + self.sp end)
 
-    clash_value = base + clash + Enum.count(coins, & &1) * coin
+    clash_value = base + clash + div(skill["levelCorrection"], 3) + Enum.count(coins, & &1) * coin
     {clash_value, coins}
   end
 
@@ -47,7 +47,14 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
       Enum.sum(
         Enum.map(conditional["status"], fn status ->
           side = if status["owner"] == "self", do: self, else: target
-          side.statuses[status["status"]][String.downcase(status["type"])] || 0
+
+          field =
+            case status["type"] do
+              "Potency" -> :potency
+              "Count" -> :count
+            end
+
+          side.statuses[status["status"]][field] || 0
         end)
       )
 
@@ -131,7 +138,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
   end
 
   defp evaluate_conditional(%{"type" => "rupture-15-3"} = conditional, _self, target) do
-    rupture = target.statuses["Rupture"]
+    rupture = Map.get(target.statuses, "Rupture", %{potency: 0, count: 0})
 
     value =
       if rupture.potency >= 15 and rupture.count >= 3 do
