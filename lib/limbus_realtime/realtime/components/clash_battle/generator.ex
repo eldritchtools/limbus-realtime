@@ -1,13 +1,5 @@
 defmodule LimbusRealtime.Realtime.Components.ClashBattle.Generator do
-  @statuses [
-    "Burn",
-    "Bleed",
-    "Tremor",
-    "Rupture",
-    "Sinking",
-    "Poise",
-    "Charge"
-  ]
+  alias LimbusRealtime.Realtime.Components.ClashBattle.StatusData
 
   defp random(min, max) do
     Enum.random(min..max)
@@ -26,11 +18,11 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Generator do
   end
 
   defp random_low(min, max) do
-    random_skewed(min, max, 2, :low)
+    random_skewed(min, max, 3, :low)
   end
 
   defp random_high(min, max) do
-    random_skewed(min, max, 2, :high)
+    random_skewed(min, max, 3, :high)
   end
 
   defp random_mid(min, max) do
@@ -40,24 +32,43 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Generator do
   defp generate_statuses(settings) do
     count = random(Enum.at(settings["num_status"], 0), Enum.at(settings["num_status"], 1))
 
-    @statuses
-    |> Enum.shuffle()
-    |> Enum.take(count)
-    |> Map.new(fn status ->
-      {status,
-       %{
-         potency:
-           random_low(
-             Enum.at(settings["status_potency"], 0),
-             Enum.at(settings["status_potency"], 1)
-           ),
-         count:
-           random_low(
-             Enum.at(settings["status_count"], 0),
-             Enum.at(settings["status_count"], 1)
-           )
-       }}
+    statuses =
+      StatusData.all()
+      |> Enum.filter(fn {_, data} -> data["set"] == "primary" end)
+      |> Enum.shuffle()
+      |> Enum.take(count)
+
+    statuses =
+      if :rand.uniform() <= settings["secondary_status_chance"] do
+        case StatusData.all()
+             |> Enum.filter(fn {_, data} -> data["set"] == "secondary" end)
+             |> Enum.random() do
+          {status, data} ->
+            [{status, data} | statuses]
+        end
+      else
+        statuses
+      end
+
+    Map.new(statuses, fn {status, data} ->
+      {status, generate_status(data)}
     end)
+  end
+
+  defp generate_status(data) do
+    data
+    |> Enum.filter(fn {key, _} -> key in ["potency", "count"] end)
+    |> Map.new(fn {key, config} ->
+      {key, generate_value(config)}
+    end)
+  end
+
+  defp generate_value(%{"gen" => "low", "min" => min, "max" => max}) do
+    random_low(min, max)
+  end
+
+  defp generate_value(%{"gen" => "mid", "min" => min, "max" => max}) do
+    random_mid(min, max)
   end
 
   defp generate_side(settings) do

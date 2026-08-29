@@ -1,4 +1,6 @@
 defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
+  alias LimbusRealtime.Realtime.Components.ClashBattle.StatusData
+
   def simulate_round(round, submissions, identity_data) do
     results =
       Map.new(submissions, fn {client_id, %{identity_id: identity_id, skill: skill}} ->
@@ -64,10 +66,10 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
 
   defp evaluate_conditional(%{"type" => "negative-statuses"} = conditional, _self, target) do
     count =
-      Enum.count(
-        ["Burn", "Bleed", "Tremor", "Rupture", "Sinking"],
-        &Map.has_key?(target.statuses, &1)
-      )
+      StatusData.all()
+      |> Enum.count(fn {status, data} ->
+        data.type == "negative" and Map.has_key?(target.statuses, status)
+      end)
 
     value =
       min(
@@ -90,6 +92,18 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
       conditional["target"],
       min(
         trunc(missing_hp / (conditional["per"] * 100)) * conditional["value"],
+        conditional["max"]
+      )
+    }
+  end
+
+  defp evaluate_conditional(%{"type" => "have-hp"} = conditional, self, target) do
+    side = if conditional["owner"] == "self", do: self, else: target
+
+    {
+      conditional["target"],
+      min(
+        trunc(side.hp / (conditional["per"] * 100)) * conditional["value"],
         conditional["max"]
       )
     }
@@ -138,7 +152,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
   end
 
   defp evaluate_conditional(%{"type" => "rupture-15-3"} = conditional, _self, target) do
-    rupture = Map.get(target.statuses, "Rupture", %{potency: 0, count: 0})
+    rupture = Map.get(target.statuses, "Burst", %{potency: 0, count: 0})
 
     value =
       if rupture.potency >= 15 and rupture.count >= 3 do
@@ -148,5 +162,38 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
       end
 
     {conditional["target"], value}
+  end
+
+  defp evaluate_conditional(%{"type" => "charge-consume-hp"} = conditional, self, _target) do
+    charge = self.statuses["Charge"] || %{"count" => 0}
+    charge_count = Map.get(charge, "count", 0)
+
+    missing_count = max(conditional["targetCount"] - charge_count, 0)
+    required_hp = missing_count * conditional["hpPerCount"]
+    valid = charge_count >= conditional["minCount"] and self.hp >= required_hp
+
+    {conditional["target"], if(valid, do: conditional["value"], else: 0)}
+  end
+
+  defp evaluate_conditional(%{"type" => "charge-check-potency"} = conditional, self, _target) do
+    charge = self.statuses["Charge"] || %{"potency" => 0, "count" => 0}
+    charge_potency = Map.get(charge, "potency", 0)
+    charge_count = Map.get(charge, "count", 0)
+
+    valid =
+      charge_count >= conditional["targetCount"] ||
+      (charge_count >= conditional["minCount"] && charge_potency >= conditional["minPotency"])
+
+    {conditional["target"], if(valid, do: conditional["value"], else: 0)}
+  end
+
+  defp evaluate_conditional(%{"type" => "sp-fixed"} = conditional, self, _target) do
+    valid =
+      case conditional["mode"] do
+        "higher" -> self.sp > conditional["sp"]
+        "lower" -> self.sp < conditional["sp"]
+      end
+
+    {conditional["target"], if(valid, do: conditional["value"], else: 0)}
   end
 end
