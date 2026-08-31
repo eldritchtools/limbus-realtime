@@ -176,9 +176,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
   end
 
   defp evaluate_conditional(%{"type" => "charge-check-potency"} = conditional, self, _target) do
-    charge = self.statuses["Charge"] || %{"potency" => 0, "count" => 0}
-    charge_potency = Map.get(charge, "potency", 0)
-    charge_count = Map.get(charge, "count", 0)
+    charge = self.statuses["Charge"] || %{potency: 0, count: 0}
+    charge_potency = Map.get(charge, :potency, 0)
+    charge_count = Map.get(charge, :count, 0)
 
     valid =
       charge_count >= conditional["targetCount"] ||

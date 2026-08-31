@@ -59,7 +59,13 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Generator do
     data
     |> Enum.filter(fn {key, _} -> key in ["potency", "count"] end)
     |> Map.new(fn {key, config} ->
-      {key, generate_value(config)}
+      field =
+        case key do
+          "potency" -> :potency
+          "count" -> :count
+        end
+
+      {field, generate_value(config)}
     end)
   end
 

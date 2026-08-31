@@ -137,7 +137,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           player_id: participant.player_id,
           is_host: client_id == state.host_client_id,
           participants: build_participants(state),
-          draft_order: current_draft_order(state)
+          draft_order: current_draft_order(state),
+          settings: %{rounds: state.settings["rounds"]}
         }
 
       :draft_complete ->
@@ -146,7 +147,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           player_id: participant.player_id,
           is_host: client_id == state.host_client_id,
           participants: build_participants(state),
-          skill_counts: participant.skill_counts
+          skill_counts: participant.skill_counts,
+          settings: %{rounds: state.settings["rounds"]}
         }
 
       :round_select ->
