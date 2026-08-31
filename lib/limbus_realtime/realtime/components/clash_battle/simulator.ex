@@ -86,7 +86,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
 
   defp evaluate_conditional(%{"type" => "missing-hp"} = conditional, self, target) do
     side = if conditional["owner"] == "self", do: self, else: target
-    missing_hp = 1 - side.hp
+    missing_hp = 100 - side.hp
 
     {
       conditional["target"],
