@@ -40,6 +40,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           {:push_message, "draft_started",
            %{
              player_id: participant.player_id,
+             draft_points: participant.draft_points,
              draft_order: current_draft_order(state),
              participants: build_participants(state)
            }}
@@ -63,8 +64,17 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
       draft_order: current_draft_order(state)
     }
 
+    next_player_id = Enum.at(payload.draft_order, 0)
+
     Enum.each(state.participants, fn {_client_id, participant} ->
       if participant.connected do
+        payload =
+          if participant.player_id == next_player_id do
+            Map.put(payload, :draft_points, participant.draft_points)
+          else
+            payload
+          end
+
         send(
           participant.channel_pid,
           {:push_message, "draft_pick", payload}
@@ -135,6 +145,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
         %{
           phase: state.phase,
           player_id: participant.player_id,
+          draft_points: participant.draft_points,
           is_host: client_id == state.host_client_id,
           participants: build_participants(state),
           draft_order: current_draft_order(state),

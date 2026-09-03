@@ -23,7 +23,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
           connected: boolean(),
           channel_pid: pid(),
           identities: [String.t()],
-          skill_counts: %{String.t() => [non_neg_integer()]} | nil
+          skill_counts: %{String.t() => [non_neg_integer()]} | nil,
+          draft_points: non_neg_integer()
         }
 
   @type t :: %__MODULE__{

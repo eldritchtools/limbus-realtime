@@ -36,7 +36,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
             identities: [],
             connected: true,
             channel_pid: user.channel_pid,
-            skill_counts: []
+            skill_counts: [],
+            draft_points: 0
           }
 
           state =
@@ -93,7 +94,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
         |> Enum.with_index(1)
         |> Map.new(fn {client_id, player_id} ->
           participant = Map.fetch!(state.participants, client_id)
-          {client_id, %{participant | player_id: player_id, identities: [], score: 0}}
+
+          {client_id,
+           %{participant | player_id: player_id, identities: [], score: 0, draft_points: 0}}
         end)
 
       player_ids =
@@ -107,15 +110,17 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
           state.settings["draft_order"]
         )
 
-      state = %{
-        state
-        | phase: :draft,
-          participants: participants,
-          draft_order: draft_order,
-          draft_index: 0,
-          picked_identities: MapSet.new(),
-          identity_data: %{}
-      }
+      state =
+        %{
+          state
+          | phase: :draft,
+            participants: participants,
+            draft_order: draft_order,
+            draft_index: 0,
+            picked_identities: MapSet.new(),
+            identity_data: %{}
+        }
+        |> add_draft_points(0)
 
       {:ok, state, [:broadcast_draft_started]}
     else
@@ -127,7 +132,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
   def pick_identity(payload, _connection, state) do
     with :ok <- check_phase(:draft, state),
          :ok <- check_draft_turn(payload, state),
-         :ok <- check_identity(payload["identity_id"], state) do
+         {:ok, cost} <- check_identity(payload["identity_id"], payload.user.client_id, state) do
       client_id = payload.user.client_id
       identity_id = payload["identity_id"]
       draft_index = state.draft_index
@@ -137,8 +142,12 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
       participants =
         put_in(
           state.participants,
-          [client_id, :identities],
-          participant.identities ++ [identity_id]
+          [client_id],
+          %{
+            participant
+            | identities: participant.identities ++ [identity_id],
+              draft_points: participant.draft_points - cost
+          }
         )
 
       state = %{
@@ -153,11 +162,36 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
         {:ok, state, [:broadcast_state]}
       else
+        state = state |> add_draft_points(draft_index + 1)
         {:ok, state, [{:broadcast_draft_pick, identity_id, draft_index}]}
       end
     else
       {:error, reason} ->
         {:error, reason}
+    end
+  end
+
+  defp add_draft_points(state, draft_index) do
+    points = state.settings["points_per_draft"]
+
+    if points do
+      player_id = Enum.at(state.draft_order, draft_index)
+
+      {client_id, participant} =
+        Enum.find(state.participants, fn {_client_id, participant} ->
+          participant.player_id == player_id
+        end)
+
+      participants =
+        Map.put(
+          state.participants,
+          client_id,
+          %{participant | draft_points: participant.draft_points + points}
+        )
+
+      %{state | participants: participants}
+    else
+      state
     end
   end
 
@@ -417,7 +451,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     |> List.flatten()
   end
 
-  defp check_identity(identity_id, state) do
+  defp check_identity(identity_id, client_id, state) do
     cond do
       not is_binary(identity_id) ->
         {:error, "invalid_identity"}
@@ -429,7 +463,19 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
         {:error, "invalid_identity"}
 
       true ->
-        :ok
+        points = state.participants[client_id].draft_points
+
+        if state.settings["points_per_draft"] != 0 do
+          identity = ClashingData.get([identity_id])[identity_id]
+
+          if points >= identity["points"] do
+            {:ok, identity["points"]}
+          else
+            {:error, "not_enough_points"}
+          end
+        else
+          {:ok, 0}
+        end
     end
   end
 
