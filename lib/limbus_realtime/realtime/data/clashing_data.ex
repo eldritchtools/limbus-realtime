@@ -1,4 +1,12 @@
 defmodule LimbusRealtime.Realtime.Data.ClashingData do
+  # @data_path :limbus_realtime
+  #           |> :code.priv_dir()
+  #           |> Path.join("data/clashing_data.json")
+
+  # @clashing_data @data_path
+  #           |> File.read!()
+  #           |> Jason.decode!()
+
   use GenServer
 
   @refresh_interval :timer.hours(24)
@@ -94,6 +102,7 @@ defmodule LimbusRealtime.Realtime.Data.ClashingData do
   end
 
   defp fetch_data do
+    # {:ok, @clashing_data}
     url = "https://limbus-assets.eldritchtools.com/data/clashing_data.json"
 
     case Req.get(url) do

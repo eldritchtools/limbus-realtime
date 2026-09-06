@@ -34,21 +34,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Generator do
 
     statuses =
       StatusData.all()
-      |> Enum.filter(fn {_, data} -> data["set"] == "primary" end)
       |> Enum.shuffle()
       |> Enum.take(count)
-
-    statuses =
-      if :rand.uniform() <= settings["secondary_status_chance"] do
-        case StatusData.all()
-             |> Enum.filter(fn {_, data} -> data["set"] == "secondary" end)
-             |> Enum.random() do
-          {status, data} ->
-            [{status, data} | statuses]
-        end
-      else
-        statuses
-      end
 
     Map.new(statuses, fn {status, data} ->
       {status, generate_status(data)}
@@ -89,7 +76,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Generator do
   def generate_round(settings) do
     %{
       self: generate_side(settings),
-      target: generate_side(settings)
+      target: generate_side(settings),
+      unique_statuses_tier: random(0, 3)
     }
   end
 end
