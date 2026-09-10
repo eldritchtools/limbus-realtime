@@ -83,11 +83,20 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
     end)
   end
 
-  def execute(:broadcast_round, socket, _room_state, state) do
-    Channel.broadcast!(socket, "round", %{
-      round_number: state.round_number,
-      round: state.current_round
-    })
+  def execute(:broadcast_round, _socket, _room_state, state) do
+    Enum.each(state.participants, fn {_client_id, participant} ->
+      if participant.connected do
+        send(
+          participant.channel_pid,
+          {:push_message, "round",
+           %{
+             round_number: state.round_number,
+             round: state.current_round,
+             skill_counts: participant.skill_counts
+           }}
+        )
+      end
+    end)
   end
 
   def execute({:broadcast_skill_chosen, identity_id, skill}, socket, _room_state, state) do

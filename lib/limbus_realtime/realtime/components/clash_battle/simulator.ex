@@ -3,9 +3,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
 
   def simulate_round(round, submissions, identity_data) do
     results =
-      Map.new(submissions, fn {client_id, %{identity_id: identity_id, skill: skill}} ->
+      Map.new(submissions, fn {client_id, %{identity_id: identity_id, skill: _skill, resolved_skill: resolved_skill}} ->
         identity = identity_data |> Map.fetch!(identity_id)
-        skill_data = identity |> Map.fetch!(to_string(skill))
+        skill_data = identity |> Map.fetch!(to_string(resolved_skill))
         status_data = identity |> Map.get("statuses", [])
 
         {clash_value, coins} = calculate_skill_clash(skill_data, round, status_data)
@@ -155,7 +155,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
     count =
       StatusData.all()
       |> Enum.count(fn {status, data} ->
-        data.type == "negative" and Map.has_key?(target.statuses, status)
+        data["type"] == "negative" and Map.has_key?(target.statuses, status)
       end)
 
     value =
@@ -316,5 +316,25 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
       end
 
     {conditional["target"], if(valid, do: conditional["value"], else: 0)}
+  end
+
+  defp evaluate_conditional(%{"type" => "sp-rate"} = conditional, self, target, _unique_statuses) do
+    side = if conditional["owner"] == "self", do: self, else: target
+    sp = side.sp
+    per = conditional["per"]
+
+    value =
+      cond do
+        per > 0 and sp > 0 ->
+          div(sp, per) * conditional["value"]
+
+        per < 0 and sp < 0 ->
+          div(-sp, -per) * conditional["value"]
+
+        true ->
+          0
+      end
+
+    {conditional["target"], value}
   end
 end

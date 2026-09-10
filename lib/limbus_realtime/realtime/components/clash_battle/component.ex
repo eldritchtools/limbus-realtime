@@ -2,6 +2,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
   alias LimbusRealtime.Realtime.Components.ClashBattle.State
   alias LimbusRealtime.Realtime.Components.ClashBattle.Generator
   alias LimbusRealtime.Realtime.Components.ClashBattle.Simulator
+  alias LimbusRealtime.Realtime.Components.ClashBattle.Modifiers
   alias LimbusRealtime.Realtime.Data.ClashingData
 
   @max_players 8
@@ -197,15 +198,16 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
   def start_game(payload, _connection, state) do
     with :ok <- check_host(payload, state),
-         :ok <- check_phase(:draft_complete, state) do
+        :ok <- check_phase(:draft_complete, state) do
       state = %{
         state
         | phase: :round_select,
           round_number: 1,
-          current_round: Generator.generate_round(state.settings),
           submissions: %{},
           results: %{}
       }
+
+      state = start_round(state)
 
       {:ok, state, [:broadcast_round]}
     else
@@ -221,11 +223,18 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     with :ok <- check_phase(:round_select, state),
          :ok <- check_participant(payload, state),
          false <- Map.has_key?(state.submissions, client_id),
-         {:ok, participant} <-
-           consume_skill(state.participants[client_id], identity_id, skill) do
+         {:ok, participant, resolved_skill} <-
+           resolve_and_consume_skill(
+             state.participants[client_id],
+             identity_id,
+             skill,
+             state.current_round,
+             state.identity_data
+           ) do
       submission = %{
         identity_id: identity_id,
-        skill: skill
+        skill: skill,
+        resolved_skill: resolved_skill
       }
 
       state = put_in(state.participants[client_id], participant)
@@ -246,7 +255,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     end
   end
 
-  defp consume_skill(participant, identity_id, skill) do
+  defp resolve_and_consume_skill(participant, identity_id, skill, round, identity_data) do
     case participant.skill_counts[identity_id] do
       nil ->
         {:error, "invalid_identity"}
@@ -255,6 +264,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
         index = skill - 1
 
         if Enum.at(counts, index, 0) > 0 do
+          identity = Map.fetch!(identity_data, identity_id)
+          resolved_skill = Modifiers.resolve_skill(identity, skill, round)
+
           counts = List.update_at(counts, index, &(&1 - 1))
 
           participant = %{
@@ -262,7 +274,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
             | skill_counts: Map.put(participant.skill_counts, identity_id, counts)
           }
 
-          {:ok, participant}
+          {:ok, participant, resolved_skill}
         else
           {:error, "skill_unavailable"}
         end
@@ -292,18 +304,19 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
   def next_round(payload, _connection, state) do
     with :ok <- check_host(payload, state),
-         :ok <- check_phase(:round_reveal, state) do
+        :ok <- check_phase(:round_reveal, state) do
       if state.round_number >= state.settings["rounds"] do
         {:ok, %{state | phase: :finished}, [:broadcast_game_finished]}
       else
         state = %{
           state
           | phase: :round_select,
-            current_round: Generator.generate_round(state.settings),
             submissions: %{},
             results: %{},
             round_number: state.round_number + 1
         }
+
+        state = start_round(state)
 
         {:ok, state, [:broadcast_round]}
       end
@@ -311,6 +324,14 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
       {:error, reason} ->
         {:error, reason}
     end
+  end
+
+  defp start_round(state) do
+    round = Generator.generate_round(state.settings)
+
+    state
+    |> Map.put(:current_round, round)
+    |> Modifiers.apply_round_start(state.round_number)
   end
 
   def return_to_setup(payload, _connection, state) do
@@ -393,7 +414,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
       Map.new(state.participants, fn {client_id, participant} ->
         skill_counts =
           Map.new(participant.identities, fn identity_id ->
-            {identity_id, [3, 2, 1]}
+            {identity_id, [3, 2, 1, 0]}
           end)
 
         {client_id, %{participant | skill_counts: skill_counts, score: 0}}

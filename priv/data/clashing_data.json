@@ -1194,6 +1194,82 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "gluttony",
+      "base": 5,
+      "coin": 3,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 1,
+          "mode": "higher",
+          "mul": 1,
+          "per": 1,
+          "target": "base",
+          "type": "spd-diff",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 5,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Burst",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Vibration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 5,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "BreakthroughHorse",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 2
+        },
+        {
+          "target": "offense-level",
+          "type": "always",
+          "value": 3
+        }
+      ],
+      "iconId": "1011405",
+      "levelCorrection": 4,
+      "name": "Obsidian Stormrider's Crescent Decapitator [黑風馬脚月斬]",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced at 5 {st:BreakthroughHorse}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "BreakthroughHorse",
+          "type": "status",
+          "value": 5
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 8,
     "statuses": [
       {
@@ -1346,6 +1422,73 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "wrath",
+      "base": 3,
+      "coin": 3,
+      "coins": 9,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Breath",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "target": "clash",
+          "type": "always",
+          "value": 3
+        },
+        {
+          "max": 3,
+          "per": 3,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "BlessingOfIndexPrescriptAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1011505",
+      "levelCorrection": 5,
+      "name": "Furioso-Replica",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced at 9 {st:StackYisangSpecialSkill}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "StackYisangSpecialSkill",
+          "type": "status",
+          "value": 9
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 9,
     "statuses": [
       {
@@ -1568,6 +1711,97 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "envy",
+      "base": 5,
+      "coin": 3,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Burst",
+              "type": "Potency"
+            },
+            {
+              "owner": "unique",
+              "status": "DimensionRift",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 15,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 15,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 2
+        },
+        {
+          "max": 1,
+          "per": 1,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "FourDimensionYisang",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1011605",
+      "levelCorrection": 5,
+      "name": "Four-dimensional Refraction Time Series Severance",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced at 15+ {st:Charge} Count.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "self",
+          "status": "Charge",
+          "statusType": "Count",
+          "type": "status",
+          "value": 15
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 10,
     "statuses": [
       {
@@ -2332,6 +2566,63 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "wrath",
+      "base": 5,
+      "coin": 4,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 10,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "self",
+              "status": "Combustion",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 3,
+          "owner": "self",
+          "per": 0.3,
+          "target": "coin",
+          "type": "missing-hp",
+          "value": 1
+        }
+      ],
+      "iconId": "1021105",
+      "levelCorrection": 5,
+      "name": "A.B.S Max Attunement 【Degraded Corrosion】",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced at 30+ {st:Combustion}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "self",
+          "status": "Combustion",
+          "statusType": "Potency",
+          "type": "status",
+          "value": 30
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 7
   },
   "10212": {
@@ -2440,6 +2731,57 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "gluttony",
+      "base": 5,
+      "coin": 4,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 2,
+          "mode": "higher",
+          "per": 2,
+          "target": "coin",
+          "type": "spd-diff",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 10,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Burst",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1021205",
+      "levelCorrection": 4,
+      "name": "Ascendant Heishou - Mao Technique: Cloudsplitting Manifestation",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced at 10+ {st:EnhanceZilu}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "EnhanceZilu",
+          "type": "status",
+          "value": 10
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 6,
     "statuses": [
       {
@@ -2778,6 +3120,61 @@
       "rank": 1,
       "type": "identity"
     },
+    "1-2": {
+      "affinity": "gluttony",
+      "base": 3,
+      "coin": 4,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 1,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "FasciaPersonality",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 4,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "FasciaPersonality",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1021505",
+      "levelCorrection": 3,
+      "name": "Butcher - Ribs",
+      "rank": 1,
+      "type": "identity"
+    },
     "2": {
       "affinity": "envy",
       "base": 4,
@@ -2854,6 +3251,75 @@
       "rank": 2,
       "type": "identity"
     },
+    "2-2": {
+      "affinity": "envy",
+      "base": 4,
+      "coin": 4,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 4,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 10,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 1,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "FasciaPersonality",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 4,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "FasciaPersonality",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1021506",
+      "levelCorrection": 4,
+      "name": "Time for Your Meal, Fascia",
+      "rank": 2,
+      "type": "identity"
+    },
     "3": {
       "affinity": "lust",
       "base": 4,
@@ -2923,6 +3389,117 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "lust",
+      "base": 4,
+      "coin": 3,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 10,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 2
+        },
+        {
+          "max": 1,
+          "per": 1,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "FasciaPersonality",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 4,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "FasciaPersonality",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1021507",
+      "levelCorrection": 5,
+      "name": "Liberation of the Repressed Flesh",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "All skills replaced with {st:FasciaPersonality}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "FasciaPersonality",
+          "type": "status",
+          "value": 1
+        },
+        "effect": {
+          "key": "1-2",
+          "slot": 1,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "FasciaPersonality",
+          "type": "status",
+          "value": 1
+        },
+        "effect": {
+          "key": "2-2",
+          "slot": 2,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "FasciaPersonality",
+          "type": "status",
+          "value": 1
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 10,
     "statuses": [
       {
@@ -3075,6 +3652,78 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "wrath",
+      "base": 5,
+      "coin": 4,
+      "coins": 3,
+      "conditionals": [
+        {
+          "target": "clash",
+          "type": "always",
+          "value": 3
+        },
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Vibration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 4,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Vibration",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 2
+        }
+      ],
+      "iconId": "1021606",
+      "levelCorrection": 5,
+      "name": "Eject - High Noon",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced at 30 {st:StigmaWorkshopCelloCaseOne}",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "StigmaWorkshopCelloCaseOne",
+          "type": "status",
+          "value": 30
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 9,
     "statuses": [
       {
@@ -3830,6 +4479,47 @@
       "rank": 1,
       "type": "identity"
     },
+    "1-2": {
+      "affinity": "sloth",
+      "base": 4,
+      "coin": 3,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 3,
+          "per": 10,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "BloodArmorPersonalityFirst",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1031005",
+      "levelCorrection": 3,
+      "name": "Variant Sancho Hardblood Arts 6 - Whip",
+      "rank": 1,
+      "type": "identity"
+    },
     "2": {
       "affinity": "wrath",
       "base": 4,
@@ -3868,6 +4558,47 @@
       "iconId": "1031002",
       "levelCorrection": 3,
       "name": "Let All Blossom Free",
+      "rank": 2,
+      "type": "identity"
+    },
+    "2-2": {
+      "affinity": "wrath",
+      "base": 4,
+      "coin": 3,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 3,
+          "per": 10,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "BloodArmorPersonalityFirst",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1031006",
+      "levelCorrection": 3,
+      "name": "Variant Sancho Hardblood Arts 8 - Split Apart",
       "rank": 2,
       "type": "identity"
     },
@@ -3926,6 +4657,103 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "lust",
+      "base": 5,
+      "coin": 5,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 5,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 10,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "BloodArmorPersonalityFirst",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 3,
+          "per": 10,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "BloodArmorPersonalityFirst",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1031007",
+      "levelCorrection": 5,
+      "name": "Ascendant Sancho Hardblood Arts - La Sangre",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "All skills replaced at 15+ {st:BloodArmorPersonalityFirst}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "BloodArmorPersonalityFirst",
+          "type": "status",
+          "value": 15
+        },
+        "effect": {
+          "key": "1-2",
+          "slot": 1,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "BloodArmorPersonalityFirst",
+          "type": "status",
+          "value": 15
+        },
+        "effect": {
+          "key": "2-2",
+          "slot": 2,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "BloodArmorPersonalityFirst",
+          "type": "status",
+          "value": 15
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 9,
     "statuses": [
       {
@@ -4142,6 +4970,47 @@
       "rank": 1,
       "type": "identity"
     },
+    "1-2": {
+      "affinity": "wrath",
+      "base": 12,
+      "coin": -4,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 1,
+          "per": 5,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 2,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1031205",
+      "levelCorrection": 3,
+      "name": "Where are... the villains...?",
+      "rank": 1,
+      "type": "identity"
+    },
     "2": {
       "affinity": "envy",
       "base": 6,
@@ -4166,6 +5035,33 @@
       "iconId": "1031202",
       "levelCorrection": 2,
       "name": "With Love! Hyah!",
+      "rank": 2,
+      "type": "identity"
+    },
+    "2-2": {
+      "affinity": "envy",
+      "base": 15,
+      "coin": -6,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 1,
+          "per": 6,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1031206",
+      "levelCorrection": 4,
+      "name": "Get out of my head...",
       "rank": 2,
       "type": "identity"
     },
@@ -4210,6 +5106,86 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "envy",
+      "base": 20,
+      "coin": -6,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 4,
+          "per": 5,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 3,
+          "per": 1,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "HystericGauge",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1031207",
+      "levelCorrection": 5,
+      "name": "Reversed Beats / Reversed Arcana Slave",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "All skills replaced when below 0 sp.",
+    "modifiers": [
+      {
+        "condition": {
+          "mode": "lower",
+          "type": "sp",
+          "value": 0
+        },
+        "effect": {
+          "key": "1-2",
+          "slot": 1,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "mode": "lower",
+          "type": "sp",
+          "value": 0
+        },
+        "effect": {
+          "key": "2-2",
+          "slot": 2,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "mode": "lower",
+          "type": "sp",
+          "value": 0
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 8,
     "statuses": [
       {
@@ -4369,6 +5345,52 @@
       "rank": 1,
       "type": "identity"
     },
+    "1-2": {
+      "affinity": "lust",
+      "base": 4,
+      "coin": 4,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Breath",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 3,
+          "per": 3,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "BlessingOfIndexPrescriptAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1031405",
+      "levelCorrection": 3,
+      "name": "Let These Hands be the Proxy with Which...",
+      "rank": 1,
+      "type": "identity"
+    },
     "2": {
       "affinity": "pride",
       "base": 4,
@@ -4412,6 +5434,52 @@
       "iconId": "1031402",
       "levelCorrection": 3,
       "name": "B-be Thee Silent",
+      "rank": 2,
+      "type": "identity"
+    },
+    "2-2": {
+      "affinity": "pride",
+      "base": 5,
+      "coin": 4,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Breath",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 3,
+          "per": 3,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "BlessingOfIndexPrescriptAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1031406",
+      "levelCorrection": 4,
+      "name": "Procuration: Engrave",
       "rank": 2,
       "type": "identity"
     },
@@ -4461,6 +5529,91 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "gloom",
+      "base": 5,
+      "coin": 3,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Breath",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 3,
+          "per": 3,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "BlessingOfIndexPrescriptAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1031407",
+      "levelCorrection": 5,
+      "name": "Procuration: Annihilate",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "All skills replaced at 25+ sp.",
+    "modifiers": [
+      {
+        "condition": {
+          "mode": "higher",
+          "type": "sp",
+          "value": 24
+        },
+        "effect": {
+          "key": "1-2",
+          "slot": 1,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "mode": "higher",
+          "type": "sp",
+          "value": 24
+        },
+        "effect": {
+          "key": "2-2",
+          "slot": 2,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "mode": "higher",
+          "type": "sp",
+          "value": 24
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 9,
     "statuses": [
       {
@@ -5259,6 +6412,63 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "lust",
+      "base": 5,
+      "coin": 4,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 4,
+          "per": 5,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "RedEyeFirst",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 4,
+          "per": 5,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "PenanceFirst",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1041005",
+      "levelCorrection": 5,
+      "name": "Serious Skullbuster",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced at 15+ {st:RedEyeFirst} and 15+ {st:PenanceFirst}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "RedEyeFirst",
+          "type": "status",
+          "value": 15
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 8,
     "statuses": [
       {
@@ -5524,47 +6734,67 @@
       "rank": 3,
       "type": "identity"
     },
-    "4": {
-      "affinity": "pride",
-      "base": 4,
-      "coin": 7,
-      "coins": 2,
+    "3-2": {
+      "affinity": "lust",
+      "base": 14,
+      "coin": 14,
+      "coins": 1,
       "conditionals": [
         {
-          "max": 2,
-          "per": 5,
+          "max": 4,
+          "per": 4,
           "status": [
             {
-              "owner": "self",
-              "status": "Breath",
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Vibration",
               "type": "Potency"
             }
           ],
           "target": "coin",
           "type": "status",
           "value": 1
-        },
-        {
-          "max": 2,
-          "per": 3,
-          "status": [
-            {
-              "owner": "self",
-              "status": "Breath",
-              "type": "Count"
-            }
-          ],
-          "target": "base",
-          "type": "status",
-          "value": 1
         }
       ],
-      "iconId": "1011303",
+      "iconId": "1041203",
       "levelCorrection": 5,
-      "name": "I Shall Fire / Anytime",
-      "rank": 4,
+      "name": "Cascading Gaze of Awe Underneath Contempt",
+      "rank": 3,
       "type": "identity"
     },
+    "modifierDesc": "S3 replaced at 7 {st:GazeRyoshu} or 1+ {st:ContemptRyoshu}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "GazeRyoshu",
+          "type": "status",
+          "value": 7
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "ContemptRyoshu",
+          "type": "status",
+          "value": 1
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 7,
     "statuses": [
       {
@@ -6026,6 +7256,30 @@
       "rank": 3,
       "type": "identity"
     },
+    "4": {
+      "affinity": "wrath",
+      "base": 16,
+      "coin": 1,
+      "coins": 2,
+      "iconId": "1041507",
+      "levelCorrection": 5,
+      "name": "Rend Space - Echoshear [空間斬 - 殘]",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "Gains a bonus skill use every 6 rounds.",
+    "modifiers": [
+      {
+        "condition": {
+          "type": "rounds",
+          "value": 6
+        },
+        "effect": {
+          "slot": 4,
+          "type": "add-skill-use"
+        }
+      }
+    ],
     "points": 10,
     "statuses": [
       {
@@ -7147,15 +8401,72 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "wrath",
+      "base": 3,
+      "coin": 3,
+      "coins": 5,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 8,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Vibration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1051205",
+      "levelCorrection": 6,
+      "name": "Savage Tigerslayer's Perfected Flurry of Blades [超絕猛虎殺擊亂斬]",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced with {st:BulletPropellantSpecialAlly}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "BulletPropellantSpecialAlly",
+          "type": "status",
+          "value": 1
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 8,
     "statuses": [
       {
         "id": "BulletPropellantSpecialAlly",
         "values": [
           0,
-          1,
-          2,
+          0,
+          0,
           3
+        ]
+      },
+      {
+        "id": "BulletPropellantAlly",
+        "values": [
+          0,
+          1,
+          3,
+          0
         ]
       }
     ]
@@ -7354,6 +8665,77 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "lust",
+      "base": 4,
+      "coin": 3,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 8,
+          "per": 3,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 2
+        },
+        {
+          "max": 2,
+          "per": 3,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "BloodArmorMeursault",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 2
+        },
+        {
+          "max": 1,
+          "per": 1,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "FocusOnActing",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1051305",
+      "levelCorrection": 5,
+      "name": "Ouvertüre",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced at 5+ {st:BloodArmorMeursault}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "BloodArmorMeursault",
+          "type": "status",
+          "value": 5
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 9,
     "statuses": [
       {
@@ -8943,6 +10325,88 @@
       "rank": 3,
       "type": "identity"
     },
+    "4": {
+      "affinity": "lust",
+      "base": 3,
+      "coin": 4,
+      "coins": 5,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 10,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 2
+        },
+        {
+          "max": 1,
+          "per": 1,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "TibiaPersonality",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 4,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "TibiaPersonality",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 5,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "TibiaPersonality",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1061406",
+      "levelCorrection": 5,
+      "name": "Closing Time - Installation Art no. 1: Your Flesh and Bones as the Gallery's Seats",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "Gains a bonus skill use on the 5th round.",
+    "modifiers": [
+      {
+        "condition": {
+          "type": "rounds-once",
+          "value": 5
+        },
+        "effect": {
+          "slot": 4,
+          "type": "add-skill-use"
+        }
+      }
+    ],
     "points": 10,
     "statuses": [
       {
@@ -9682,7 +11146,7 @@
         {
           "mode": "lower",
           "owner": "self",
-          "sp": -15,
+          "sp": -14,
           "target": "base",
           "type": "sp-fixed",
           "value": 3
@@ -9690,7 +11154,7 @@
         {
           "mode": "lower",
           "owner": "self",
-          "sp": -25,
+          "sp": -24,
           "target": "base",
           "type": "sp-fixed",
           "value": 2
@@ -10203,6 +11667,77 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "gloom",
+      "base": 31,
+      "coin": -13,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 4,
+          "per": 5,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 3,
+          "per": 1,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "NightPathfinding",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 3
+        },
+        {
+          "max": 2,
+          "per": 5,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "Coffin",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1071005",
+      "levelCorrection": 5,
+      "name": "Lament, Mourn, and Despair",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced with 1+ {st:NightPathfinding}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "NightPathfinding",
+          "type": "status",
+          "value": 1
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 10,
     "statuses": [
       {
@@ -10259,6 +11794,33 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "pride",
+      "base": 15,
+      "coin": 18,
+      "coins": 1,
+      "iconId": "1071105",
+      "levelCorrection": 6,
+      "name": "AL-HV Pulverisation Round",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced with 1+ {st:Bullet_LogicAtelier}",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "Bullet_LogicAtelier",
+          "type": "status",
+          "value": 1
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 10,
     "statuses": [
       {
@@ -10675,6 +12237,62 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "wrath",
+      "base": 5,
+      "coin": 3,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Burst",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 3,
+          "owner": "self",
+          "per": 0.2,
+          "target": "clash",
+          "type": "missing-hp",
+          "value": 1
+        }
+      ],
+      "iconId": "1071405",
+      "levelCorrection": 5,
+      "name": "Rooster's Rampaging Blades Under the Ensanguined Heaven [血天下鷄舞亂刀]",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced at 20+ {st:ChickenFightlust}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "ChickenFightlust",
+          "type": "status",
+          "value": 20
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 7,
     "statuses": [
       {
@@ -10869,6 +12487,79 @@
       "rank": 3,
       "type": "identity"
     },
+    "4": {
+      "affinity": "envy",
+      "base": 16,
+      "coin": 10,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 5,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 3,
+          "per": 1,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "RetaliationBook",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 3
+        },
+        {
+          "max": 6,
+          "per": 5,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "VengeanceBookHeathcliff",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1071505",
+      "levelCorrection": 6,
+      "name": "COMPLETE AND TOTAL EXTERMINATION!!",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "Gains a bonus skill use every 4 rounds.",
+    "modifiers": [
+      {
+        "condition": {
+          "type": "rounds",
+          "value": 4
+        },
+        "effect": {
+          "slot": 4,
+          "type": "add-skill-use"
+        }
+      }
+    ],
     "points": 10,
     "statuses": [
       {
@@ -11030,6 +12721,68 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "wrath",
+      "base": 5,
+      "coin": 3,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Vibration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 4,
+          "per": 1,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "DuelEdgeAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1071606",
+      "levelCorrection": 5,
+      "name": "Sezionatura di Cervo",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced at 5 {st:DuelEdgeAlly}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "DuelEdgeAlly",
+          "type": "status",
+          "value": 5
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 9,
     "statuses": [
       {
@@ -13291,6 +15044,49 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "lust",
+      "base": 4,
+      "coin": 5,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 1,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1091105",
+      "levelCorrection": 5,
+      "name": "Ascendant Don Quixote Hardblood Arts - The Finale",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced at 25+ {st:BloomingThornsRodionFirst}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "BloomingThornsRodionFirst",
+          "type": "status",
+          "value": 25
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 5,
     "statuses": [
       {
@@ -13423,11 +15219,68 @@
           "target": "coin",
           "type": "status",
           "value": 1
+        },
+        {
+          "owner": "self",
+          "per": 24,
+          "target": "clash",
+          "type": "sp-rate",
+          "value": 1
+        },
+        {
+          "mode": "higher",
+          "owner": "self",
+          "sp": 39,
+          "target": "clash",
+          "type": "sp-fixed",
+          "value": 1
         }
       ],
       "iconId": "1091301",
       "levelCorrection": 1,
       "name": "The Knight's Sanctuary",
+      "rank": 1,
+      "type": "identity"
+    },
+    "1-2": {
+      "affinity": "gloom",
+      "base": 10,
+      "coin": -4,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 3,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "owner": "self",
+          "per": -8,
+          "target": "offense-level",
+          "type": "sp-rate",
+          "value": 1
+        },
+        {
+          "mode": "lower",
+          "owner": "self",
+          "sp": -39,
+          "target": "base",
+          "type": "sp-fixed",
+          "value": 1
+        }
+      ],
+      "iconId": "1091305",
+      "levelCorrection": 3,
+      "name": "Faded Faith",
       "rank": 1,
       "type": "identity"
     },
@@ -13450,11 +15303,68 @@
           "target": "coin",
           "type": "status",
           "value": 1
+        },
+        {
+          "owner": "self",
+          "per": 16,
+          "target": "clash",
+          "type": "sp-rate",
+          "value": 1
+        },
+        {
+          "mode": "higher",
+          "owner": "self",
+          "sp": 39,
+          "target": "clash",
+          "type": "sp-fixed",
+          "value": 1
         }
       ],
       "iconId": "1091302",
       "levelCorrection": 2,
       "name": "With the Power of Justice",
+      "rank": 2,
+      "type": "identity"
+    },
+    "2-2": {
+      "affinity": "envy",
+      "base": 16,
+      "coin": -4,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 3,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "owner": "self",
+          "per": -8,
+          "target": "offense-level",
+          "type": "sp-rate",
+          "value": 1
+        },
+        {
+          "mode": "lower",
+          "owner": "self",
+          "sp": -39,
+          "target": "base",
+          "type": "sp-fixed",
+          "value": 1
+        }
+      ],
+      "iconId": "1091306",
+      "levelCorrection": 4,
+      "name": "With the Tear-sharpened Sword",
       "rank": 2,
       "type": "identity"
     },
@@ -13491,6 +15401,21 @@
           "target": "base",
           "type": "status",
           "value": 1
+        },
+        {
+          "owner": "self",
+          "per": 8,
+          "target": "clash",
+          "type": "sp-rate",
+          "value": 1
+        },
+        {
+          "mode": "higher",
+          "owner": "self",
+          "sp": 39,
+          "target": "clash",
+          "type": "sp-fixed",
+          "value": 1
         }
       ],
       "iconId": "1091303",
@@ -13499,7 +15424,102 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7
+    "3-2": {
+      "affinity": "pride",
+      "base": 20,
+      "coin": -5,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 4,
+          "per": 3,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 4,
+          "per": 5,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "owner": "self",
+          "per": -8,
+          "target": "offense-level",
+          "type": "sp-rate",
+          "value": 1
+        },
+        {
+          "mode": "lower",
+          "owner": "self",
+          "sp": -39,
+          "target": "base",
+          "type": "sp-fixed",
+          "value": 1
+        }
+      ],
+      "iconId": "1091307",
+      "levelCorrection": 5,
+      "name": "Arcana: Tear and Pierce",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "All skills replaced when below 0 sp.",
+    "modifiers": [
+      {
+        "condition": {
+          "mode": "lower",
+          "type": "sp",
+          "value": 0
+        },
+        "effect": {
+          "key": "1-2",
+          "slot": 1,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "mode": "lower",
+          "type": "sp",
+          "value": 0
+        },
+        "effect": {
+          "key": "2-2",
+          "slot": 2,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "mode": "lower",
+          "type": "sp",
+          "value": 0
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
+    "points": 9
   },
   "10914": {
     "1": {
@@ -13724,6 +15744,52 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "lust",
+      "base": 5,
+      "coin": 3,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1091505",
+      "levelCorrection": 4,
+      "name": "Burst Forth the Pulsing Crimson under Your Skin",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced when target has 3+ negative effects.",
+    "modifiers": [
+      {
+        "condition": {
+          "type": "negative-effects",
+          "value": 3
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 9
   },
   "10916": {
@@ -13819,6 +15885,38 @@
       "rank": 2,
       "type": "identity"
     },
+    "2-2": {
+      "affinity": "sloth",
+      "base": 4,
+      "coin": 4,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Vibration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1091606",
+      "levelCorrection": 3,
+      "name": "Sezionatura di Cervo",
+      "rank": 2,
+      "type": "identity"
+    },
     "3": {
       "affinity": "wrath",
       "base": 4,
@@ -13865,6 +15963,78 @@
       "rank": 3,
       "type": "identity"
     },
+    "4": {
+      "affinity": "wrath",
+      "base": 5,
+      "coin": 3,
+      "coins": 5,
+      "conditionals": [
+        {
+          "max": 1,
+          "per": 1,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "AccelBullet",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 5,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Vibration",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1091607",
+      "levelCorrection": 5,
+      "name": "Disposal",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S2 replaced when no {st:AccelBullet}. Gains a bonus skill use every 6 rounds.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "AccelBullet",
+          "type": "status-missing",
+          "value": ""
+        },
+        "effect": {
+          "key": "2-2",
+          "slot": 2,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "type": "rounds",
+          "value": 6
+        },
+        "effect": {
+          "slot": 4,
+          "type": "add-skill-use"
+        }
+      }
+    ],
     "points": 7,
     "statuses": [
       {
@@ -14469,6 +16639,72 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "wrath",
+      "base": 13,
+      "coin": 15,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 8,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 2
+        },
+        {
+          "mode": "higher",
+          "owner": "self",
+          "sp": 19,
+          "target": "coin",
+          "type": "sp-fixed",
+          "value": 1
+        },
+        {
+          "mode": "higher",
+          "owner": "self",
+          "sp": 39,
+          "target": "coin",
+          "type": "sp-fixed",
+          "value": 1
+        },
+        {
+          "mode": "higher",
+          "owner": "self",
+          "sp": 44,
+          "target": "coin",
+          "type": "sp-fixed",
+          "value": 1
+        }
+      ],
+      "iconId": "1100905",
+      "levelCorrection": 5,
+      "name": "Blazing Strike",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced at 40+ sp.",
+    "modifiers": [
+      {
+        "condition": {
+          "mode": "higher",
+          "type": "sp",
+          "value": 39
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 6
   },
   "11010": {
@@ -16721,6 +18957,66 @@
       "rank": 1,
       "type": "identity"
     },
+    "1-2": {
+      "affinity": "envy",
+      "base": 3,
+      "coin": 4,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 5,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "ReinforcedTattooSpiderOutis",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 5,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "DaughterEducationSpiderOutis",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1111505",
+      "levelCorrection": 3,
+      "name": "I'll Gut You Like a Fish",
+      "rank": 1,
+      "type": "identity"
+    },
     "2": {
       "affinity": "envy",
       "base": 4,
@@ -16778,6 +19074,66 @@
       "iconId": "1111502",
       "levelCorrection": 3,
       "name": "Don't Let Somethin' Like This Break You!",
+      "rank": 2,
+      "type": "identity"
+    },
+    "2-2": {
+      "affinity": "envy",
+      "base": 3,
+      "coin": 3,
+      "coins": 5,
+      "conditionals": [
+        {
+          "max": 1,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 5,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "ReinforcedTattooSpiderOutis",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 5,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "DaughterEducationSpiderOutis",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1111506",
+      "levelCorrection": 4,
+      "name": "Gut Stab [Lævateinn]",
       "rank": 2,
       "type": "identity"
     },
@@ -16841,6 +19197,108 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "envy",
+      "base": 4,
+      "coin": 3,
+      "coins": 5,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 5,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "ReinforcedTattooSpiderOutis",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 5,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "DaughterEducationSpiderOutis",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1111507",
+      "levelCorrection": 5,
+      "name": "Complete and Total Extermination [Lævateinn]",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "All skills replaced with {st:MiddleFatherSwordFourOutis}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "MiddleFatherSwordFourOutis",
+          "type": "status",
+          "value": 1
+        },
+        "effect": {
+          "key": "1-2",
+          "slot": 1,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "MiddleFatherSwordFourOutis",
+          "type": "status",
+          "value": 1
+        },
+        "effect": {
+          "key": "2-2",
+          "slot": 2,
+          "type": "replace"
+        }
+      },
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "MiddleFatherSwordFourOutis",
+          "type": "status",
+          "value": 1
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 9,
     "statuses": [
       {
@@ -16871,7 +19329,7 @@
         ]
       },
       {
-        "id": "MiddleFatherSwordFour",
+        "id": "MiddleFatherSwordFourOutis",
         "values": [
           0,
           0,
@@ -17848,25 +20306,6 @@
       "conditionals": [
         {
           "max": 4,
-          "per": 8,
-          "status": [
-            {
-              "owner": "self",
-              "status": "Breath",
-              "type": "Potency"
-            },
-            {
-              "owner": "target",
-              "status": "Burst",
-              "type": "Potency"
-            }
-          ],
-          "target": "coin",
-          "type": "status",
-          "value": 1
-        },
-        {
-          "max": 4,
           "maxCond": 6,
           "per": 8,
           "perCond": 5,
@@ -17895,7 +20334,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 8,
+    "points": 7,
     "statuses": [
       {
         "id": "SnakeStance",
@@ -18005,6 +20444,54 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "pride",
+      "base": 4,
+      "coin": 3,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Vibration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1121306",
+      "levelCorrection": 4,
+      "name": "The Night's Awl",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced with {st:CriHurtNightStiletto}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "CriHurtNightStiletto",
+          "type": "status",
+          "value": 1
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 6,
     "statuses": [
       {
@@ -18335,6 +20822,78 @@
       "rank": 3,
       "type": "identity"
     },
+    "3-2": {
+      "affinity": "envy",
+      "base": 5,
+      "coin": 5,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 1,
+          "per": 5,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 10,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 10,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 2
+        }
+      ],
+      "iconId": "1121505",
+      "levelCorrection": 4,
+      "name": "Maximum Output - Ultra High-voltage Current Discharge",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifierDesc": "S3 replaced with 3+ {st:Charge}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "self",
+          "status": "Charge",
+          "statusType": "Potency",
+          "type": "status",
+          "value": 3
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 8
   },
   "11216": {
@@ -18448,6 +21007,22 @@
       "rank": 3,
       "type": "identity"
     },
+    "modifierDesc": "S3 replaced at 30 {st:StigmaWorkshopHandStep1}.",
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "StigmaWorkshopHandStep1",
+          "type": "status",
+          "value": 30
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
     "points": 7,
     "statuses": [
       {
