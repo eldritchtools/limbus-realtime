@@ -1,11 +1,11 @@
 defmodule LimbusRealtime.Realtime.Data.ClashingData do
-  @data_path :limbus_realtime
-            |> :code.priv_dir()
-            |> Path.join("data/clashing_data.json")
+  # @data_path :limbus_realtime
+  #           |> :code.priv_dir()
+  #           |> Path.join("data/clashing_data.json")
 
-  @clashing_data @data_path
-            |> File.read!()
-            |> Jason.decode!()
+  # @clashing_data @data_path
+  #           |> File.read!()
+  #           |> Jason.decode!()
 
   use GenServer
 
@@ -102,18 +102,18 @@ defmodule LimbusRealtime.Realtime.Data.ClashingData do
   end
 
   defp fetch_data do
-    {:ok, @clashing_data}
-    # url = "https://limbus-assets.eldritchtools.com/data/clashing_data.json"
+    # {:ok, @clashing_data}
+    url = "https://limbus-assets.eldritchtools.com/data/clashing_data.json"
 
-    # case Req.get(url) do
-    #   {:ok, %{status: 200, body: body}} when is_map(body) ->
-    #     {:ok, body}
+    case Req.get(url) do
+      {:ok, %{status: 200, body: body}} when is_map(body) ->
+        {:ok, body}
 
-    #   {:ok, %{status: status}} ->
-    #     {:error, {:http_error, status}}
+      {:ok, %{status: status}} ->
+        {:error, {:http_error, status}}
 
-    #   {:error, reason} ->
-    #     {:error, reason}
-    # end
+      {:error, reason} ->
+        {:error, reason}
+    end
   end
 end
