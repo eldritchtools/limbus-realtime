@@ -110,6 +110,31 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
     }
   end
 
+  defp evaluate_conditional(%{"type" => "status-low"} = conditional, self, target, unique_statuses) do
+    total =
+      Enum.sum(
+        Enum.map(conditional["status"], fn status ->
+          case status["owner"] do
+            "unique" ->
+              unique_statuses[status["status"]] || 0
+
+            owner ->
+              side = if owner == "self", do: self, else: target
+
+              field =
+                case status["type"] do
+                  "Potency" -> :potency
+                  "Count" -> :count
+                end
+
+              side.statuses[status["status"]][field] || 0
+          end
+        end)
+      )
+
+    {conditional["target"], if(total <= conditional["limit"], do: conditional["value"], else: 0)}
+  end
+
   defp evaluate_conditional(
          %{"type" => "status-optional-condition"} = conditional,
          self,

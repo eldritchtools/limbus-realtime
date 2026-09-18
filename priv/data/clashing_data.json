@@ -1026,7 +1026,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 8
+    "points": 7
   },
   "10114": {
     "1": {
@@ -2136,7 +2136,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 5
   },
   "10207": {
     "1": {
@@ -3864,7 +3864,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 5
   },
   "10303": {
     "1": {
@@ -5186,7 +5186,7 @@
         }
       }
     ],
-    "points": 8,
+    "points": 7,
     "statuses": [
       {
         "id": "HystericGauge",
@@ -6795,7 +6795,7 @@
         }
       }
     ],
-    "points": 7,
+    "points": 8,
     "statuses": [
       {
         "id": "GazeRyoshu",
@@ -7293,6 +7293,348 @@
       }
     ]
   },
+  "10416": {
+    "1": {
+      "affinity": "envy",
+      "base": 3,
+      "coin": 4,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 1,
+          "per": 50,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "NoirSuitAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 15,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "RealisationAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Vibration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 3,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 4,
+          "per": 25,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "RealisationAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1041601",
+      "levelCorrection": 2,
+      "name": "You, Revolting Thing.",
+      "rank": 1,
+      "type": "identity"
+    },
+    "2": {
+      "affinity": "pride",
+      "base": 4,
+      "coin": 4,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 1,
+          "per": 6,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 20,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "RealisationAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Vibration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 3,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 4,
+          "per": 25,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "RealisationAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1041602",
+      "levelCorrection": 2,
+      "name": "Come and Try It On",
+      "rank": 2,
+      "type": "identity"
+    },
+    "3": {
+      "affinity": "sloth",
+      "base": 5,
+      "coin": 4,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 30,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "RealisationAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Vibration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 3,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 4,
+          "per": 25,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "RealisationAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1041603",
+      "levelCorrection": 3,
+      "name": "Triple Stamped Stitching",
+      "rank": 3,
+      "type": "identity"
+    },
+    "3-2": {
+      "affinity": "sloth",
+      "base": 4,
+      "coin": 4,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 30,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "RealisationAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Vibration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 3,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 4,
+          "per": 25,
+          "status": [
+            {
+              "owner": "unique",
+              "status": "RealisationAlly",
+              "type": "Potency"
+            }
+          ],
+          "target": "offense-level",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1041605",
+      "levelCorrection": 3,
+      "name": "Single Kick - Couture Multiple",
+      "rank": 3,
+      "type": "identity"
+    },
+    "modifiers": [
+      {
+        "condition": {
+          "owner": "unique",
+          "status": "RealisationAlly",
+          "type": "status",
+          "value": 1
+        },
+        "effect": {
+          "key": "3-2",
+          "slot": 3,
+          "type": "replace"
+        }
+      }
+    ],
+    "points": 10,
+    "statuses": [
+      {
+        "id": "NoirSuitAlly",
+        "values": [
+          0,
+          50,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "RealisationAlly",
+        "values": [
+          0,
+          0,
+          50,
+          100
+        ]
+      }
+    ]
+  },
   "10501": {
     "1": {
       "affinity": "sloth",
@@ -7687,7 +8029,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 5
   },
   "10507": {
     "1": {
@@ -9492,7 +9834,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7,
+    "points": 6,
     "statuses": [
       {
         "id": "KnowledgeExplored",
@@ -9629,7 +9971,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 5
   },
   "10610": {
     "1": {
@@ -10989,7 +11331,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 5
   },
   "10703": {
     "1": {
@@ -13646,7 +13988,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 8
+    "points": 7
   },
   "10813": {
     "1": {
@@ -14265,6 +14607,178 @@
       }
     ]
   },
+  "10816": {
+    "1": {
+      "affinity": "wrath",
+      "base": 3,
+      "coin": 4,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 1,
+          "per": 2,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 3,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "limit": 9,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "clash",
+          "type": "status-low",
+          "value": 2
+        }
+      ],
+      "iconId": "1081601",
+      "levelCorrection": 1,
+      "name": "Ahh... You Can't Hear It, Can You?",
+      "rank": 1,
+      "type": "identity"
+    },
+    "2": {
+      "affinity": "envy",
+      "base": 4,
+      "coin": 6,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 2,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "target": "coin",
+          "type": "always",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 1,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 6
+        },
+        {
+          "limit": 9,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "clash",
+          "type": "status-low",
+          "value": 2
+        }
+      ],
+      "iconId": "1081602",
+      "levelCorrection": 2,
+      "name": "Indeed, the Silence of the Voice Did Not Signify Its Absence!",
+      "rank": 2,
+      "type": "identity"
+    },
+    "3": {
+      "affinity": "lust",
+      "base": 5,
+      "coin": 3,
+      "coins": 3,
+      "conditionals": [
+        {
+          "target": "coin",
+          "type": "always",
+          "value": 3
+        },
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "limit": 9,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "clash",
+          "type": "status-low",
+          "value": 2
+        }
+      ],
+      "iconId": "1081603",
+      "levelCorrection": 3,
+      "name": "Scrape It Out, Rip It Off, and Nail It Down!",
+      "rank": 3,
+      "type": "identity"
+    },
+    "points": 9,
+    "statuses": [
+      {
+        "id": "RougeIshmaelEclose",
+        "values": [
+          0,
+          0,
+          1,
+          1
+        ]
+      }
+    ]
+  },
   "10901": {
     "1": {
       "affinity": "gluttony",
@@ -14707,7 +15221,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 5
   },
   "10909": {
     "1": {
@@ -15087,7 +15601,7 @@
         }
       }
     ],
-    "points": 5,
+    "points": 6,
     "statuses": [
       {
         "id": "BloomingThornsRodionFirst",
@@ -15619,7 +16133,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 5
   },
   "10915": {
     "1": {
@@ -16035,7 +16549,7 @@
         }
       }
     ],
-    "points": 7,
+    "points": 8,
     "statuses": [
       {
         "id": "AccelBullet",
@@ -16705,7 +17219,7 @@
         }
       }
     ],
-    "points": 6
+    "points": 7
   },
   "11010": {
     "1": {
@@ -17462,7 +17976,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 9,
+    "points": 8,
     "statuses": [
       {
         "id": "LittleFingerID",
@@ -17694,7 +18208,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 9
+    "points": 8
   },
   "11105": {
     "1": {
@@ -18005,7 +18519,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 10,
+    "points": 9,
     "statuses": [
       {
         "id": "FreischutzShotCount",
@@ -18124,7 +18638,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 5
   },
   "11109": {
     "1": {
@@ -18722,7 +19236,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6,
+    "points": 5,
     "statuses": [
       {
         "id": "Binding",
@@ -20122,7 +20636,7 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 9,
+    "points": 8,
     "statuses": [
       {
         "id": "BloodyHandGregFirst",
@@ -21004,6 +21518,52 @@
       "iconId": "1121603",
       "levelCorrection": 4,
       "name": "Dawnsplitter",
+      "rank": 3,
+      "type": "identity"
+    },
+    "3-2": {
+      "affinity": "wrath",
+      "base": 5,
+      "coin": 3,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 1,
+          "per": 15,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Combustion",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Vibration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "iconId": "1121605",
+      "levelCorrection": 4,
+      "name": "Crack of Dawn",
       "rank": 3,
       "type": "identity"
     },

@@ -2,8 +2,6 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
   alias LimbusRealtime.Realtime.Components.ClashBattle.StatusData
 
   def resolve_skill(identity, skill, round) do
-    IO.inspect(identity)
-    IO.inspect(round)
     Enum.reduce(Map.get(identity, "modifiers", []), to_string(skill), fn modifier, skill ->
       if skill_modifier_active?(modifier["condition"], identity, round) do
         apply_skill_effect(modifier["effect"], identity, skill)
@@ -91,7 +89,6 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
   end
 
   defp apply_skill_effect(%{"type" => "replace", "slot" => slot, "key" => key}, _identity, skill) do
-    IO.inspect("skill: #{skill}, slot: #{slot}, key: #{key}")
     if to_string(skill) == to_string(slot) do
       key
     else
