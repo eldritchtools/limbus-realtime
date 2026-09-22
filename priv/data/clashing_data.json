@@ -33,7 +33,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "10102": {
     "1": {
@@ -90,7 +91,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 8
+    "points": 8,
+    "type": "id"
   },
   "10103": {
     "1": {
@@ -174,7 +176,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 8
+    "points": 8,
+    "type": "id"
   },
   "10104": {
     "1": {
@@ -226,7 +229,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10105": {
     "1": {
@@ -294,7 +298,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10106": {
     "1": {
@@ -392,7 +397,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "10107": {
     "1": {
@@ -460,7 +466,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 3
+    "points": 3,
+    "type": "id"
   },
   "10108": {
     "1": {
@@ -538,7 +545,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "10109": {
     "1": {
@@ -650,7 +658,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "10110": {
     "1": {
@@ -787,7 +796,8 @@
           20
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10111": {
     "1": {
@@ -830,7 +840,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10112": {
     "1": {
@@ -914,7 +925,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "10113": {
     "1": {
@@ -1026,7 +1038,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "10114": {
     "1": {
@@ -1281,7 +1294,8 @@
           5
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10115": {
     "1": {
@@ -1509,7 +1523,8 @@
           9
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10116": {
     "1": {
@@ -1822,7 +1837,8 @@
           4
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10201": {
     "1": {
@@ -1858,7 +1874,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "10202": {
     "1": {
@@ -1910,7 +1927,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10203": {
     "1": {
@@ -1953,7 +1971,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10204": {
     "1": {
@@ -1989,7 +2008,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "10205": {
     "1": {
@@ -2068,7 +2088,8 @@
           5
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10206": {
     "1": {
@@ -2136,7 +2157,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10207": {
     "1": {
@@ -2199,7 +2221,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "10208": {
     "1": {
@@ -2283,7 +2306,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10209": {
     "1": {
@@ -2381,7 +2405,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10210": {
     "1": {
@@ -2459,7 +2484,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "10211": {
     "1": {
@@ -2623,7 +2649,8 @@
         }
       }
     ],
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "10212": {
     "1": {
@@ -2793,7 +2820,8 @@
           20
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10213": {
     "1": {
@@ -2903,7 +2931,8 @@
           4
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10214": {
     "1": {
@@ -3055,7 +3084,8 @@
           9
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10215": {
     "1": {
@@ -3511,7 +3541,8 @@
           4
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10216": {
     "1": {
@@ -3735,7 +3766,8 @@
           30
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10301": {
     "1": {
@@ -3780,7 +3812,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10302": {
     "1": {
@@ -3864,7 +3897,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10303": {
     "1": {
@@ -3909,7 +3943,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "10304": {
     "1": {
@@ -3945,7 +3980,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 3
+    "points": 3,
+    "type": "id"
   },
   "10305": {
     "1": {
@@ -4010,7 +4046,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10306": {
     "1": {
@@ -4105,7 +4142,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10307": {
     "1": {
@@ -4228,7 +4266,8 @@
           5
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10308": {
     "1": {
@@ -4312,7 +4351,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10309": {
     "1": {
@@ -4435,7 +4475,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10310": {
     "1": {
@@ -4765,7 +4806,8 @@
           30
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10311": {
     "1": {
@@ -4926,7 +4968,8 @@
           3
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10312": {
     "1": {
@@ -5197,7 +5240,8 @@
           3
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10313": {
     "1": {
@@ -5296,7 +5340,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "10314": {
     "1": {
@@ -5625,7 +5670,8 @@
           9
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10401": {
     "1": {
@@ -5661,7 +5707,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "10402": {
     "1": {
@@ -5724,7 +5771,8 @@
           3
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10403": {
     "1": {
@@ -5760,7 +5808,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10404": {
     "1": {
@@ -5796,7 +5845,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10405": {
     "1": {
@@ -5872,7 +5922,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10406": {
     "1": {
@@ -5956,7 +6007,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10407": {
     "1": {
@@ -6082,7 +6134,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10408": {
     "1": {
@@ -6173,7 +6226,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10409": {
     "1": {
@@ -6285,7 +6339,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10410": {
     "1": {
@@ -6489,7 +6544,8 @@
           20
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10411": {
     "1": {
@@ -6597,7 +6653,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "10412": {
     "1": {
@@ -6815,7 +6872,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10413": {
     "1": {
@@ -6921,7 +6979,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 8
+    "points": 8,
+    "type": "id"
   },
   "10414": {
     "1": {
@@ -7073,7 +7132,8 @@
           30
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10415": {
     "1": {
@@ -7291,7 +7351,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10416": {
     "1": {
@@ -7633,7 +7694,8 @@
           100
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10501": {
     "1": {
@@ -7669,7 +7731,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "10502": {
     "1": {
@@ -7721,7 +7784,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "10503": {
     "1": {
@@ -7789,7 +7853,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10504": {
     "1": {
@@ -7835,7 +7900,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "10505": {
     "1": {
@@ -7961,7 +8027,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10506": {
     "1": {
@@ -8029,7 +8096,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10507": {
     "1": {
@@ -8124,7 +8192,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10508": {
     "1": {
@@ -8192,7 +8261,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "10509": {
     "1": {
@@ -8374,7 +8444,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "10510": {
     "1": {
@@ -8483,7 +8554,8 @@
           3
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10511": {
     "1": {
@@ -8644,7 +8716,8 @@
           3
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10512": {
     "1": {
@@ -8811,7 +8884,8 @@
           0
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10513": {
     "1": {
@@ -9098,7 +9172,8 @@
           3
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10514": {
     "1": {
@@ -9250,7 +9325,8 @@
           3
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10515": {
     "1": {
@@ -9349,7 +9425,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "10601": {
     "1": {
@@ -9399,7 +9476,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10602": {
     "1": {
@@ -9435,7 +9513,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 3
+    "points": 3,
+    "type": "id"
   },
   "10603": {
     "1": {
@@ -9471,7 +9550,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 8
+    "points": 8,
+    "type": "id"
   },
   "10604": {
     "1": {
@@ -9539,7 +9619,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 3
+    "points": 3,
+    "type": "id"
   },
   "10605": {
     "1": {
@@ -9602,7 +9683,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "10606": {
     "1": {
@@ -9638,7 +9720,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10607": {
     "1": {
@@ -9708,7 +9791,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "10608": {
     "1": {
@@ -9845,7 +9929,8 @@
           3
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10609": {
     "1": {
@@ -9971,7 +10056,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10610": {
     "1": {
@@ -10065,7 +10151,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10611": {
     "1": {
@@ -10144,7 +10231,8 @@
           5
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10612": {
     "1": {
@@ -10270,7 +10358,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "10613": {
     "1": {
@@ -10429,7 +10518,8 @@
           9
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10614": {
     "1": {
@@ -10760,7 +10850,8 @@
           5
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10615": {
     "1": {
@@ -10954,7 +11045,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10616": {
     "1": {
@@ -11223,7 +11315,8 @@
           3
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10701": {
     "1": {
@@ -11259,7 +11352,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 3
+    "points": 3,
+    "type": "id"
   },
   "10702": {
     "1": {
@@ -11331,7 +11425,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10703": {
     "1": {
@@ -11429,7 +11524,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10704": {
     "1": {
@@ -11465,7 +11561,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10705": {
     "1": {
@@ -11519,7 +11616,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 1
+    "points": 1,
+    "type": "id"
   },
   "10706": {
     "1": {
@@ -11587,7 +11685,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10707": {
     "1": {
@@ -11623,7 +11722,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10708": {
     "1": {
@@ -11707,7 +11807,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "10709": {
     "1": {
@@ -11827,7 +11928,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10710": {
     "1": {
@@ -12100,7 +12202,8 @@
           10
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10711": {
     "1": {
@@ -12174,7 +12277,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10712": {
     "1": {
@@ -12311,7 +12415,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10713": {
     "1": {
@@ -12437,7 +12542,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "10714": {
     "1": {
@@ -12646,7 +12752,8 @@
           20
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10715": {
     "1": {
@@ -12922,7 +13029,8 @@
           30
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10716": {
     "1": {
@@ -13136,7 +13244,8 @@
           5
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10801": {
     "1": {
@@ -13202,7 +13311,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "10802": {
     "1": {
@@ -13238,7 +13348,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 8
+    "points": 8,
+    "type": "id"
   },
   "10803": {
     "1": {
@@ -13274,7 +13385,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10804": {
     "1": {
@@ -13342,7 +13454,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "10805": {
     "1": {
@@ -13378,7 +13491,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10806": {
     "1": {
@@ -13446,7 +13560,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10807": {
     "1": {
@@ -13514,7 +13629,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10808": {
     "1": {
@@ -13566,7 +13682,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10809": {
     "1": {
@@ -13639,7 +13756,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10810": {
     "1": {
@@ -13734,7 +13852,8 @@
           16
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10811": {
     "1": {
@@ -13871,7 +13990,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10812": {
     "1": {
@@ -13988,7 +14108,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "10813": {
     "1": {
@@ -14140,7 +14261,8 @@
           5
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10814": {
     "1": {
@@ -14375,7 +14497,8 @@
           15
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10815": {
     "1": {
@@ -14605,7 +14728,8 @@
           4
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10816": {
     "1": {
@@ -14777,7 +14901,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10901": {
     "1": {
@@ -14823,7 +14948,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "10902": {
     "1": {
@@ -14891,7 +15017,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "10903": {
     "1": {
@@ -14934,7 +15061,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "10904": {
     "1": {
@@ -14970,7 +15098,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 1
+    "points": 1,
+    "type": "id"
   },
   "10905": {
     "1": {
@@ -15022,7 +15151,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "10906": {
     "1": {
@@ -15058,7 +15188,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 1
+    "points": 1,
+    "type": "id"
   },
   "10907": {
     "1": {
@@ -15137,7 +15268,8 @@
           3
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10908": {
     "1": {
@@ -15221,7 +15353,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10909": {
     "1": {
@@ -15319,7 +15452,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10910": {
     "1": {
@@ -15474,7 +15608,8 @@
           30
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10911": {
     "1": {
@@ -15612,7 +15747,8 @@
           30
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "10912": {
     "1": {
@@ -15711,7 +15847,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "10913": {
     "1": {
@@ -16033,7 +16170,8 @@
         }
       }
     ],
-    "points": 9
+    "points": 9,
+    "type": "id"
   },
   "10914": {
     "1": {
@@ -16133,7 +16271,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "10915": {
     "1": {
@@ -16304,7 +16443,8 @@
         }
       }
     ],
-    "points": 9
+    "points": 9,
+    "type": "id"
   },
   "10916": {
     "1": {
@@ -16560,7 +16700,8 @@
           5
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11001": {
     "1": {
@@ -16596,7 +16737,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 1
+    "points": 1,
+    "type": "id"
   },
   "11002": {
     "1": {
@@ -16648,7 +16790,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "11003": {
     "1": {
@@ -16684,7 +16827,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 3
+    "points": 3,
+    "type": "id"
   },
   "11004": {
     "1": {
@@ -16752,7 +16896,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "11005": {
     "1": {
@@ -16788,7 +16933,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 1
+    "points": 1,
+    "type": "id"
   },
   "11006": {
     "1": {
@@ -16824,7 +16970,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 3
+    "points": 3,
+    "type": "id"
   },
   "11007": {
     "1": {
@@ -16892,7 +17039,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 1
+    "points": 1,
+    "type": "id"
   },
   "11008": {
     "1": {
@@ -17011,7 +17159,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11009": {
     "1": {
@@ -17219,7 +17368,8 @@
         }
       }
     ],
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "11010": {
     "1": {
@@ -17314,7 +17464,8 @@
           12
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11011": {
     "1": {
@@ -17469,7 +17620,8 @@
           30
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11012": {
     "1": {
@@ -17623,7 +17775,8 @@
           30
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11013": {
     "1": {
@@ -17747,7 +17900,8 @@
           3
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11014": {
     "1": {
@@ -17878,7 +18032,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 8
+    "points": 8,
+    "type": "id"
   },
   "11015": {
     "1": {
@@ -17987,7 +18142,8 @@
           20
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11101": {
     "1": {
@@ -18023,7 +18179,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "11102": {
     "1": {
@@ -18085,7 +18242,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "11103": {
     "1": {
@@ -18137,7 +18295,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "11104": {
     "1": {
@@ -18208,7 +18367,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 8
+    "points": 8,
+    "type": "id"
   },
   "11105": {
     "1": {
@@ -18276,7 +18436,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "11106": {
     "1": {
@@ -18393,7 +18554,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11107": {
     "1": {
@@ -18530,7 +18692,8 @@
           7
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11108": {
     "1": {
@@ -18638,7 +18801,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "11109": {
     "1": {
@@ -18736,7 +18900,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "11110": {
     "1": {
@@ -18828,7 +18993,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "11111": {
     "1": {
@@ -19030,7 +19196,8 @@
           30
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11112": {
     "1": {
@@ -19138,7 +19305,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "11113": {
     "1": {
@@ -19247,7 +19415,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11114": {
     "1": {
@@ -19408,7 +19577,8 @@
           16
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11115": {
     "1": {
@@ -19851,7 +20021,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11201": {
     "1": {
@@ -19887,7 +20058,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 4
+    "points": 4,
+    "type": "id"
   },
   "11202": {
     "1": {
@@ -19955,7 +20127,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 1
+    "points": 1,
+    "type": "id"
   },
   "11203": {
     "1": {
@@ -20023,7 +20196,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "11204": {
     "1": {
@@ -20085,7 +20259,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 2
+    "points": 2,
+    "type": "id"
   },
   "11205": {
     "1": {
@@ -20137,7 +20312,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 3
+    "points": 3,
+    "type": "id"
   },
   "11206": {
     "1": {
@@ -20216,7 +20392,8 @@
           18
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11207": {
     "1": {
@@ -20300,7 +20477,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "11208": {
     "1": {
@@ -20398,7 +20576,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 5
+    "points": 5,
+    "type": "id"
   },
   "11209": {
     "1": {
@@ -20510,7 +20689,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 7
+    "points": 7,
+    "type": "id"
   },
   "11210": {
     "1": {
@@ -20647,7 +20827,8 @@
           30
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11211": {
     "1": {
@@ -20745,7 +20926,8 @@
       "rank": 3,
       "type": "identity"
     },
-    "points": 6
+    "points": 6,
+    "type": "id"
   },
   "11212": {
     "1": {
@@ -20859,7 +21041,8 @@
           3
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11213": {
     "1": {
@@ -21017,7 +21200,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11214": {
     "1": {
@@ -21168,7 +21352,8 @@
           1
         ]
       }
-    ]
+    ],
+    "type": "id"
   },
   "11215": {
     "1": {
@@ -21408,7 +21593,8 @@
         }
       }
     ],
-    "points": 8
+    "points": 8,
+    "type": "id"
   },
   "11216": {
     "1": {
@@ -21594,6 +21780,3282 @@
           30
         ]
       }
-    ]
+    ],
+    "type": "id"
+  },
+  "20101": {
+    "a": {
+      "affinity": "sloth",
+      "base": 18,
+      "coin": 6,
+      "coins": 1,
+      "egoId": "20101",
+      "levelCorrection": -4,
+      "name": "Crow’s Eye View",
+      "type": "ego-a"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20102": {
+    "a": {
+      "affinity": "wrath",
+      "base": 14,
+      "coin": 12,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 4,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20102",
+      "levelCorrection": 3,
+      "name": "4th Match Flame",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 26,
+      "coin": -12,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 6,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20102",
+      "levelCorrection": 3,
+      "name": "4th Match Flame",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20103": {
+    "a": {
+      "affinity": "sloth",
+      "base": 22,
+      "coin": 4,
+      "coins": 1,
+      "egoId": "20103",
+      "levelCorrection": -2,
+      "name": "Wishing Cairn",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "sloth",
+      "base": 29,
+      "coin": -10,
+      "coins": 1,
+      "egoId": "20103",
+      "levelCorrection": -2,
+      "name": "Wishing Cairn",
+      "type": "ego-c"
+    },
+    "points": 6,
+    "type": "ego"
+  },
+  "20104": {
+    "a": {
+      "affinity": "pride",
+      "base": 20,
+      "coin": 18,
+      "coins": 1,
+      "egoId": "20104",
+      "levelCorrection": 3,
+      "name": "Dimension Shredder",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "pride",
+      "base": 42,
+      "coin": -24,
+      "coins": 1,
+      "egoId": "20104",
+      "levelCorrection": 5,
+      "name": "Dimension Shredder",
+      "type": "ego-c"
+    },
+    "points": 8,
+    "type": "ego"
+  },
+  "20105": {
+    "a": {
+      "affinity": "sloth",
+      "base": 17,
+      "coin": 15,
+      "coins": 1,
+      "conditionals": [
+        {
+          "target": "base",
+          "type": "always",
+          "value": 1
+        }
+      ],
+      "egoId": "20105",
+      "levelCorrection": -1,
+      "name": "Sunshower",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "sloth",
+      "base": 35,
+      "coin": -15,
+      "coins": 1,
+      "conditionals": [
+        {
+          "target": "base",
+          "type": "always",
+          "value": 2
+        }
+      ],
+      "egoId": "20105",
+      "levelCorrection": 3,
+      "name": "Sunshower",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "20106": {
+    "a": {
+      "affinity": "gloom",
+      "base": 15,
+      "coin": 8,
+      "coins": 1,
+      "egoId": "20106",
+      "levelCorrection": 0,
+      "name": "Bygone Days",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 22,
+      "coin": -6,
+      "coins": 1,
+      "egoId": "20106",
+      "levelCorrection": 0,
+      "name": "Bygone Days",
+      "type": "ego-c"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "20107": {
+    "a": {
+      "affinity": "pride",
+      "base": 18,
+      "coin": 6,
+      "coins": 2,
+      "egoId": "20107",
+      "levelCorrection": 5,
+      "name": "Fell Bullet",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "pride",
+      "base": 30,
+      "coin": -8,
+      "coins": 2,
+      "egoId": "20107",
+      "levelCorrection": 5,
+      "name": "Fell Bullet",
+      "type": "ego-c"
+    },
+    "points": 6,
+    "type": "ego"
+  },
+  "20108": {
+    "a": {
+      "affinity": "wrath",
+      "base": 4,
+      "coin": 3,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 1,
+          "per": 10,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20108",
+      "levelCorrection": 3,
+      "name": "Great Trichiliocosm [三千大世界]",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 12,
+      "coin": -2,
+      "coins": 4,
+      "egoId": "20108",
+      "levelCorrection": 3,
+      "name": "Great Trichiliocosm [三千大世界]",
+      "type": "ego-c"
+    },
+    "points": 1,
+    "type": "ego"
+  },
+  "20109": {
+    "a": {
+      "affinity": "gloom",
+      "base": 6,
+      "coin": 3,
+      "coins": 5,
+      "conditionals": [
+        {
+          "max": 4,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20109",
+      "levelCorrection": 4,
+      "name": "Solemn Lament",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 16,
+      "coin": -3,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 4,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20109",
+      "levelCorrection": 4,
+      "name": "Solemn Lament",
+      "type": "ego-c"
+    },
+    "points": 3,
+    "type": "ego"
+  },
+  "20201": {
+    "a": {
+      "affinity": "pride",
+      "base": 19,
+      "coin": 4,
+      "coins": 1,
+      "egoId": "20201",
+      "levelCorrection": -3,
+      "name": "Representation Emitter",
+      "type": "ego-a"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20202": {
+    "a": {
+      "affinity": "gloom",
+      "base": 16,
+      "coin": 8,
+      "coins": 1,
+      "egoId": "20202",
+      "levelCorrection": -1,
+      "name": "Fluid Sac",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 29,
+      "coin": -14,
+      "coins": 1,
+      "egoId": "20202",
+      "levelCorrection": -1,
+      "name": "Fluid Sac",
+      "type": "ego-c"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "20203": {
+    "a": {
+      "affinity": "envy",
+      "base": 16,
+      "coin": 10,
+      "coins": 1,
+      "egoId": "20203",
+      "levelCorrection": 0,
+      "name": "Hex Nail",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 20,
+      "coin": 4,
+      "coins": 1,
+      "egoId": "20203",
+      "levelCorrection": 0,
+      "name": "Hex Nail",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20204": {
+    "a": {
+      "affinity": "envy",
+      "base": 22,
+      "coin": 6,
+      "coins": 1,
+      "egoId": "20204",
+      "levelCorrection": 2,
+      "name": "Telepole",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 24,
+      "coin": 10,
+      "coins": 1,
+      "egoId": "20204",
+      "levelCorrection": 2,
+      "name": "Telepole",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "20205": {
+    "a": {
+      "affinity": "lust",
+      "base": 18,
+      "coin": 8,
+      "coins": 1,
+      "egoId": "20205",
+      "levelCorrection": 2,
+      "name": "9:2",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 28,
+      "coin": -12,
+      "coins": 1,
+      "egoId": "20205",
+      "levelCorrection": 2,
+      "name": "9:2",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20206": {
+    "a": {
+      "affinity": "sloth",
+      "base": 4,
+      "coin": 5,
+      "coins": 4,
+      "egoId": "20206",
+      "levelCorrection": 0,
+      "name": "Everlasting",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "sloth",
+      "base": 36,
+      "coin": -12,
+      "coins": 1,
+      "egoId": "20206",
+      "levelCorrection": 0,
+      "name": "Everlasting",
+      "type": "ego-c"
+    },
+    "points": 2,
+    "type": "ego"
+  },
+  "20207": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 4,
+      "coin": 3,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 7,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Burst",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "mode": "higher",
+          "speed": 3,
+          "target": "coin",
+          "type": "spd-fixed",
+          "value": 1
+        }
+      ],
+      "egoId": "20207",
+      "levelCorrection": 0,
+      "name": "Lasso",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 4,
+      "coin": 4,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 7,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Burst",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "mode": "higher",
+          "speed": 3,
+          "target": "coin",
+          "type": "spd-fixed",
+          "value": 1
+        }
+      ],
+      "egoId": "20207",
+      "levelCorrection": 0,
+      "name": "Lasso",
+      "type": "ego-c"
+    },
+    "points": 1,
+    "type": "ego"
+  },
+  "20208": {
+    "a": {
+      "affinity": "pride",
+      "base": 8,
+      "coin": 5,
+      "coins": 2,
+      "egoId": "20208",
+      "levelCorrection": 2,
+      "name": "Thoracalgia",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "pride",
+      "base": 24,
+      "coin": -8,
+      "coins": 2,
+      "egoId": "20208",
+      "levelCorrection": 2,
+      "name": "Thoracalgia",
+      "type": "ego-c"
+    },
+    "points": 2,
+    "type": "ego"
+  },
+  "20209": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 17,
+      "coin": 13,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 1,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Burst",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 3
+        }
+      ],
+      "egoId": "20209",
+      "levelCorrection": 2,
+      "name": "Command : Meltdown",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 3,
+      "coin": 4,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Burst",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Burst",
+              "type": "Count"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20209",
+      "levelCorrection": 4,
+      "name": "Command : Meltdown",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "20210": {
+    "a": {
+      "affinity": "wrath",
+      "base": 10,
+      "coin": 5,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 10,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "self",
+              "status": "Combustion",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20210",
+      "levelCorrection": 2,
+      "name": "Ardor Blossom Star",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 17,
+      "coin": -3,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 10,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "self",
+              "status": "Combustion",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20210",
+      "levelCorrection": 3,
+      "name": "Ardor Blossom Star",
+      "type": "ego-c"
+    },
+    "points": 3,
+    "type": "ego"
+  },
+  "20301": {
+    "a": {
+      "affinity": "lust",
+      "base": 12,
+      "coin": 14,
+      "coins": 1,
+      "egoId": "20301",
+      "levelCorrection": 2,
+      "name": "La Sangre de Sancho",
+      "type": "ego-a"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "20302": {
+    "a": {
+      "affinity": "gloom",
+      "base": 20,
+      "coin": 18,
+      "coins": 1,
+      "egoId": "20302",
+      "levelCorrection": 0,
+      "name": "Fluid Sac",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 42,
+      "coin": -25,
+      "coins": 1,
+      "egoId": "20302",
+      "levelCorrection": 0,
+      "name": "Fluid Sac",
+      "type": "ego-c"
+    },
+    "points": 8,
+    "type": "ego"
+  },
+  "20303": {
+    "a": {
+      "affinity": "envy",
+      "base": 18,
+      "coin": 8,
+      "coins": 1,
+      "egoId": "20303",
+      "levelCorrection": 0,
+      "name": "Telepole",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 19,
+      "coin": 10,
+      "coins": 1,
+      "egoId": "20303",
+      "levelCorrection": 0,
+      "name": "Telepole",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20304": {
+    "a": {
+      "affinity": "lust",
+      "base": 21,
+      "coin": 4,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20304",
+      "levelCorrection": 3,
+      "name": "Lifetime Stew",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 22,
+      "coin": 5,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20304",
+      "levelCorrection": 3,
+      "name": "Lifetime Stew",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "20305": {
+    "a": {
+      "affinity": "sloth",
+      "base": 18,
+      "coin": 9,
+      "coins": 1,
+      "egoId": "20305",
+      "levelCorrection": -2,
+      "name": "Wishing Cairn",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "sloth",
+      "base": 24,
+      "coin": -10,
+      "coins": 1,
+      "egoId": "20305",
+      "levelCorrection": -2,
+      "name": "Wishing Cairn",
+      "type": "ego-c"
+    },
+    "points": 6,
+    "type": "ego"
+  },
+  "20306": {
+    "a": {
+      "affinity": "envy",
+      "base": 19,
+      "coin": 8,
+      "coins": 1,
+      "egoId": "20306",
+      "levelCorrection": 3,
+      "name": "Electric Screaming",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 28,
+      "coin": -12,
+      "coins": 1,
+      "egoId": "20306",
+      "levelCorrection": 5,
+      "name": "Electric Screaming",
+      "type": "ego-c"
+    },
+    "points": 6,
+    "type": "ego"
+  },
+  "20307": {
+    "a": {
+      "affinity": "lust",
+      "base": 3,
+      "coin": 3,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 10,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20307",
+      "levelCorrection": 3,
+      "name": "Yearning - Mircalla",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 30,
+      "coin": -10,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 1,
+          "per": 10,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20307",
+      "levelCorrection": 5,
+      "name": "Yearning - Mircalla",
+      "type": "ego-c"
+    },
+    "points": 1,
+    "type": "ego"
+  },
+  "20308": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 16,
+      "coin": 4,
+      "coins": 2,
+      "egoId": "20308",
+      "levelCorrection": 3,
+      "name": "Red Sheet",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 26,
+      "coin": -10,
+      "coins": 2,
+      "egoId": "20308",
+      "levelCorrection": 5,
+      "name": "Red Sheet",
+      "type": "ego-c"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "20309": {
+    "a": {
+      "affinity": "envy",
+      "base": 16,
+      "coin": 5,
+      "coins": 2,
+      "egoId": "20309",
+      "levelCorrection": 3,
+      "name": "In the Name of Love and Hate - Major Arcana Slave!!!",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 31,
+      "coin": -12,
+      "coins": 2,
+      "egoId": "20309",
+      "levelCorrection": 5,
+      "name": "Maximized Reversed Arcana Slave - Erasure of Hatred",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20310": {
+    "a": {
+      "affinity": "envy",
+      "base": 12,
+      "coin": 12,
+      "coins": 1,
+      "egoId": "20310",
+      "levelCorrection": 2,
+      "name": "I'll Go fer Scissors. How 'Bout You?",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 4,
+      "coin": 4,
+      "coins": 3,
+      "egoId": "20310",
+      "levelCorrection": 3,
+      "name": "I'll Go fer Scissors. How 'Bout You?",
+      "type": "ego-c"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "20401": {
+    "a": {
+      "affinity": "lust",
+      "base": 18,
+      "coin": 10,
+      "coins": 1,
+      "egoId": "20401",
+      "levelCorrection": 0,
+      "name": "Forest for the Flames",
+      "type": "ego-a"
+    },
+    "points": 6,
+    "type": "ego"
+  },
+  "20402": {
+    "a": {
+      "affinity": "wrath",
+      "base": 21,
+      "coin": 16,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 1,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 2
+        }
+      ],
+      "egoId": "20402",
+      "levelCorrection": 3,
+      "name": "4th Match Flame",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 42,
+      "coin": -16,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 4,
+          "per": 1,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 4
+        }
+      ],
+      "egoId": "20402",
+      "levelCorrection": 3,
+      "name": "4th Match Flame",
+      "type": "ego-c"
+    },
+    "points": 9,
+    "type": "ego"
+  },
+  "20403": {
+    "a": {
+      "affinity": "lust",
+      "base": 18,
+      "coin": 6,
+      "coins": 1,
+      "egoId": "20403",
+      "levelCorrection": 0,
+      "name": "Red Eyes",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 26,
+      "coin": -8,
+      "coins": 1,
+      "egoId": "20403",
+      "levelCorrection": 0,
+      "name": "Red Eyes",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20404": {
+    "a": {
+      "affinity": "envy",
+      "base": 22,
+      "coin": 8,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 7,
+          "mode": "higher",
+          "per": 3,
+          "target": "coin",
+          "type": "spd-diff",
+          "value": 7
+        }
+      ],
+      "egoId": "20404",
+      "levelCorrection": 2,
+      "name": "Red Eyes (Open)",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 33,
+      "coin": -14,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 10,
+          "mode": "higher",
+          "per": 3,
+          "target": "base",
+          "type": "spd-diff",
+          "value": 10
+        }
+      ],
+      "egoId": "20404",
+      "levelCorrection": 2,
+      "name": "Red Eyes (Open)",
+      "type": "ego-c"
+    },
+    "points": 8,
+    "type": "ego"
+  },
+  "20405": {
+    "a": {
+      "affinity": "gloom",
+      "base": 15,
+      "coin": 10,
+      "coins": 1,
+      "egoId": "20405",
+      "levelCorrection": 0,
+      "name": "Soda",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 26,
+      "coin": -12,
+      "coins": 1,
+      "egoId": "20405",
+      "levelCorrection": 0,
+      "name": "Soda",
+      "type": "ego-c"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "20406": {
+    "a": {
+      "affinity": "pride",
+      "base": 18,
+      "coin": 6,
+      "coins": 1,
+      "egoId": "20406",
+      "levelCorrection": 0,
+      "name": "Blind Obsession",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "pride",
+      "base": 30,
+      "coin": -12,
+      "coins": 1,
+      "egoId": "20406",
+      "levelCorrection": 3,
+      "name": "Blind Obsession",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20407": {
+    "a": {
+      "affinity": "lust",
+      "base": 10,
+      "coin": 7,
+      "coins": 2,
+      "egoId": "20407",
+      "levelCorrection": 0,
+      "name": "Contempt, Awe",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 44,
+      "coin": -20,
+      "coins": 1,
+      "egoId": "20407",
+      "levelCorrection": 3,
+      "name": "Contempt, Awe",
+      "type": "ego-c"
+    },
+    "points": 3,
+    "type": "ego"
+  },
+  "20408": {
+    "a": {
+      "affinity": "pride",
+      "base": 8,
+      "coin": 5,
+      "coins": 2,
+      "egoId": "20408",
+      "levelCorrection": 3,
+      "name": "Thoracalgia",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "pride",
+      "base": 24,
+      "coin": -8,
+      "coins": 2,
+      "egoId": "20408",
+      "levelCorrection": 5,
+      "name": "Thoracalgia",
+      "type": "ego-c"
+    },
+    "points": 2,
+    "type": "ego"
+  },
+  "20409": {
+    "a": {
+      "affinity": "wrath",
+      "base": 6,
+      "coin": 5,
+      "coins": 3,
+      "egoId": "20409",
+      "levelCorrection": 3,
+      "name": "Great Trichiliocosm [三千大世界]",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 14,
+      "coin": -3,
+      "coins": 3,
+      "egoId": "20409",
+      "levelCorrection": 3,
+      "name": "Great Trichiliocosm [三千大世界]",
+      "type": "ego-c"
+    },
+    "points": 2,
+    "type": "ego"
+  },
+  "20501": {
+    "a": {
+      "affinity": "pride",
+      "base": 19,
+      "coin": 3,
+      "coins": 1,
+      "egoId": "20501",
+      "levelCorrection": -3,
+      "name": "Chains of Others",
+      "type": "ego-a"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "20502": {
+    "a": {
+      "affinity": "envy",
+      "base": 23,
+      "coin": 4,
+      "coins": 1,
+      "egoId": "20502",
+      "levelCorrection": 5,
+      "name": "Screwloose Wallop",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 21,
+      "coin": 8,
+      "coins": 1,
+      "egoId": "20502",
+      "levelCorrection": 5,
+      "name": "Screwloose Wallop",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "20503": {
+    "a": {
+      "affinity": "sloth",
+      "base": 26,
+      "coin": 8,
+      "coins": 1,
+      "egoId": "20503",
+      "levelCorrection": -1,
+      "name": "Pursuance",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "sloth",
+      "base": 34,
+      "coin": -8,
+      "coins": 1,
+      "egoId": "20503",
+      "levelCorrection": -1,
+      "name": "Pursuance",
+      "type": "ego-c"
+    },
+    "points": 9,
+    "type": "ego"
+  },
+  "20504": {
+    "a": {
+      "affinity": "wrath",
+      "base": 20,
+      "coin": 25,
+      "coins": 1,
+      "egoId": "20504",
+      "levelCorrection": 0,
+      "name": "Capote",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 37,
+      "coin": -15,
+      "coins": 1,
+      "egoId": "20504",
+      "levelCorrection": 3,
+      "name": "Capote",
+      "type": "ego-c"
+    },
+    "points": 10,
+    "type": "ego"
+  },
+  "20505": {
+    "a": {
+      "affinity": "wrath",
+      "base": 20,
+      "coin": 10,
+      "coins": 1,
+      "egoId": "20505",
+      "levelCorrection": 2,
+      "name": "Regret",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 30,
+      "coin": -10,
+      "coins": 1,
+      "egoId": "20505",
+      "levelCorrection": 5,
+      "name": "Regret",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "20506": {
+    "a": {
+      "affinity": "envy",
+      "base": 22,
+      "coin": 4,
+      "coins": 1,
+      "egoId": "20506",
+      "levelCorrection": 0,
+      "name": "Electric Screaming",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 28,
+      "coin": -12,
+      "coins": 1,
+      "egoId": "20506",
+      "levelCorrection": 3,
+      "name": "Electric Screaming",
+      "type": "ego-c"
+    },
+    "points": 6,
+    "type": "ego"
+  },
+  "20507": {
+    "a": {
+      "affinity": "lust",
+      "base": 5,
+      "coin": 4,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20507",
+      "levelCorrection": 0,
+      "name": "Yearning - Mircalla",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 6,
+      "coin": 4,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20507",
+      "levelCorrection": 3,
+      "name": "Yearning - Mircalla",
+      "type": "ego-c"
+    },
+    "points": 3,
+    "type": "ego"
+  },
+  "20508": {
+    "a": {
+      "affinity": "sloth",
+      "base": 4,
+      "coin": 4,
+      "coins": 4,
+      "egoId": "20508",
+      "levelCorrection": 2,
+      "name": "Crushbound Past",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "sloth",
+      "base": 30,
+      "coin": -10,
+      "coins": 1,
+      "egoId": "20508",
+      "levelCorrection": 4,
+      "name": "Crushbound Past",
+      "type": "ego-c"
+    },
+    "points": 2,
+    "type": "ego"
+  },
+  "20509": {
+    "a": {
+      "affinity": "pride",
+      "base": 12,
+      "coin": 4,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 8,
+          "per": 4,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Breath",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20509",
+      "levelCorrection": 3,
+      "name": "Shadow-vested Bladesinger [着影揮刀]",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "pride",
+      "base": 13,
+      "coin": -2,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 16,
+          "per": 4,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Breath",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 2
+        }
+      ],
+      "egoId": "20509",
+      "levelCorrection": 4,
+      "name": "Shadow-vested Bladesinger [着影揮刀]",
+      "type": "ego-c"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "20601": {
+    "a": {
+      "affinity": "gloom",
+      "base": 15,
+      "coin": 10,
+      "coins": 1,
+      "egoId": "20601",
+      "levelCorrection": 0,
+      "name": "Land of Illusion",
+      "type": "ego-a"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "20602": {
+    "a": {
+      "affinity": "lust",
+      "base": 19,
+      "coin": 9,
+      "coins": 1,
+      "egoId": "20602",
+      "levelCorrection": 0,
+      "name": "Roseate Desire",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 30,
+      "coin": -15,
+      "coins": 1,
+      "egoId": "20602",
+      "levelCorrection": 0,
+      "name": "Roseate Desire",
+      "type": "ego-c"
+    },
+    "points": 6,
+    "type": "ego"
+  },
+  "20603": {
+    "a": {
+      "affinity": "pride",
+      "base": 22,
+      "coin": 6,
+      "coins": 1,
+      "egoId": "20603",
+      "levelCorrection": 1,
+      "name": "Dimension Shredder",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "pride",
+      "base": 24,
+      "coin": 10,
+      "coins": 1,
+      "egoId": "20603",
+      "levelCorrection": 5,
+      "name": "Dimension Shredder",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "20604": {
+    "a": {
+      "affinity": "envy",
+      "base": 20,
+      "coin": 7,
+      "coins": 1,
+      "egoId": "20604",
+      "levelCorrection": -5,
+      "name": "Soda",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 25,
+      "coin": -15,
+      "coins": 1,
+      "egoId": "20604",
+      "levelCorrection": -3,
+      "name": "Soda",
+      "type": "ego-c"
+    },
+    "points": 6,
+    "type": "ego"
+  },
+  "20605": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 17,
+      "coin": 15,
+      "coins": 1,
+      "egoId": "20605",
+      "levelCorrection": 0,
+      "name": "Effervescent Corrosion",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 27,
+      "coin": -12,
+      "coins": 1,
+      "egoId": "20605",
+      "levelCorrection": 3,
+      "name": "Effervescent Corrosion",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "20606": {
+    "a": {
+      "affinity": "sloth",
+      "base": 18,
+      "coin": 8,
+      "coins": 1,
+      "egoId": "20606",
+      "levelCorrection": 0,
+      "name": "Cavernous Wailing",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "sloth",
+      "base": 26,
+      "coin": -8,
+      "coins": 1,
+      "egoId": "20606",
+      "levelCorrection": 2,
+      "name": "Cavernous Wailing",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20607": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 4,
+      "coin": 2,
+      "coins": 4,
+      "conditionals": [
+        {
+          "mode": "higher",
+          "speed": 3,
+          "target": "coin",
+          "type": "spd-fixed",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 7,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Burst",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20607",
+      "levelCorrection": 0,
+      "name": "Lasso",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 5,
+      "coin": 3,
+      "coins": 3,
+      "conditionals": [
+        {
+          "mode": "higher",
+          "speed": 3,
+          "target": "coin",
+          "type": "spd-fixed",
+          "value": 1
+        },
+        {
+          "max": 2,
+          "per": 7,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Burst",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20607",
+      "levelCorrection": 2,
+      "name": "Lasso",
+      "type": "ego-c"
+    },
+    "points": 1,
+    "type": "ego"
+  },
+  "20608": {
+    "c": {
+      "affinity": "gluttony",
+      "base": 12,
+      "coin": -2,
+      "coins": 4,
+      "egoId": "20608",
+      "levelCorrection": 5,
+      "name": "Tears of the Tarnished Blood - Inception [始]",
+      "type": "ego-c"
+    }
+  },
+  "20609": {
+    "a": {
+      "affinity": "pride",
+      "base": 10,
+      "coin": 6,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 5,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Breath",
+              "type": "Potency"
+            },
+            {
+              "owner": "self",
+              "status": "Breath",
+              "type": "Count"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20609",
+      "levelCorrection": 3,
+      "name": "To Remain Oneself [宁作吾]",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "pride",
+      "base": 4,
+      "coin": 4,
+      "coins": 3,
+      "egoId": "20609",
+      "levelCorrection": 5,
+      "name": "To Remain Oneself [宁作吾]",
+      "type": "ego-c"
+    },
+    "points": 3,
+    "type": "ego"
+  },
+  "20701": {
+    "a": {
+      "affinity": "envy",
+      "base": 15,
+      "coin": 9,
+      "coins": 1,
+      "egoId": "20701",
+      "levelCorrection": 3,
+      "name": "Bodysack",
+      "type": "ego-a"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "20702": {
+    "a": {
+      "affinity": "envy",
+      "base": 33,
+      "coin": -12,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 12,
+          "per": 5,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 3
+        }
+      ],
+      "egoId": "20702",
+      "levelCorrection": 3,
+      "name": "Telepole",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 39,
+      "coin": -21,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 15,
+          "per": 1,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Count"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 15
+        }
+      ],
+      "egoId": "20702",
+      "levelCorrection": 3,
+      "name": "Telepole",
+      "type": "ego-c"
+    },
+    "points": 10,
+    "type": "ego"
+  },
+  "20703": {
+    "a": {
+      "affinity": "gloom",
+      "base": 22,
+      "coin": 7,
+      "coins": 1,
+      "egoId": "20703",
+      "levelCorrection": 0,
+      "name": "AEDD",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 29,
+      "coin": -7,
+      "coins": 1,
+      "egoId": "20703",
+      "levelCorrection": 2,
+      "name": "AEDD",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "20704": {
+    "a": {
+      "affinity": "lust",
+      "base": 18,
+      "coin": 8,
+      "coins": 1,
+      "egoId": "20704",
+      "levelCorrection": -1,
+      "name": "Ya Śūnyatā Tad Rūpam",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 33,
+      "coin": -15,
+      "coins": 1,
+      "egoId": "20704",
+      "levelCorrection": -1,
+      "name": "Ya Śūnyatā Tad Rūpam",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20705": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 17,
+      "coin": 8,
+      "coins": 1,
+      "egoId": "20705",
+      "levelCorrection": 0,
+      "name": "Holiday",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 25,
+      "coin": -10,
+      "coins": 1,
+      "egoId": "20705",
+      "levelCorrection": 0,
+      "name": "Holiday",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20706": {
+    "a": {
+      "affinity": "gloom",
+      "base": 18,
+      "coin": 15,
+      "coins": 1,
+      "egoId": "20706",
+      "levelCorrection": 0,
+      "name": "Binds",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 35,
+      "coin": -15,
+      "coins": 1,
+      "egoId": "20706",
+      "levelCorrection": 0,
+      "name": "Binds",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "20707": {
+    "a": {
+      "affinity": "pride",
+      "base": 7,
+      "coin": 7,
+      "coins": 2,
+      "egoId": "20707",
+      "levelCorrection": 5,
+      "name": "Fell Bullet",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "pride",
+      "base": 30,
+      "coin": -12,
+      "coins": 1,
+      "egoId": "20707",
+      "levelCorrection": 0,
+      "name": "Fell Bullet",
+      "type": "ego-c"
+    },
+    "points": 2,
+    "type": "ego"
+  },
+  "20708": {
+    "a": {
+      "affinity": "sloth",
+      "base": 8,
+      "coin": 8,
+      "coins": 2,
+      "egoId": "20708",
+      "levelCorrection": 0,
+      "name": "Asymmetrical Inertia",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "sloth",
+      "base": 28,
+      "coin": -8,
+      "coins": 2,
+      "egoId": "20708",
+      "levelCorrection": 3,
+      "name": "Asymmetrical Inertia",
+      "type": "ego-c"
+    },
+    "points": 3,
+    "type": "ego"
+  },
+  "20709": {
+    "a": {
+      "affinity": "envy",
+      "base": 4,
+      "coin": 3,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        },
+        {
+          "max": 1,
+          "per": 5,
+          "status": [
+            {
+              "owner": "self",
+              "status": "Charge",
+              "type": "Potency"
+            }
+          ],
+          "target": "base",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20709",
+      "levelCorrection": 3,
+      "name": "Move-in Reg.",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 5,
+      "coin": 3,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20709",
+      "levelCorrection": 3,
+      "name": "Move-in Reg.",
+      "type": "ego-c"
+    },
+    "points": 2,
+    "type": "ego"
+  },
+  "20801": {
+    "a": {
+      "affinity": "gloom",
+      "base": 19,
+      "coin": 4,
+      "coins": 1,
+      "egoId": "20801",
+      "levelCorrection": -4,
+      "name": "Snagharpoon",
+      "type": "ego-a"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20802": {
+    "a": {
+      "affinity": "lust",
+      "base": 29,
+      "coin": -13,
+      "coins": 1,
+      "egoId": "20802",
+      "levelCorrection": 0,
+      "name": "Roseate Desire",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 19,
+      "coin": 9,
+      "coins": 1,
+      "egoId": "20802",
+      "levelCorrection": 0,
+      "name": "Roseate Desire",
+      "type": "ego-c"
+    },
+    "points": 6,
+    "type": "ego"
+  },
+  "20803": {
+    "a": {
+      "affinity": "wrath",
+      "base": 19,
+      "coin": 22,
+      "coins": 1,
+      "egoId": "20803",
+      "levelCorrection": 3,
+      "name": "Ardor Blossom Star",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 41,
+      "coin": -22,
+      "coins": 1,
+      "egoId": "20803",
+      "levelCorrection": 3,
+      "name": "Ardor Blossom Star",
+      "type": "ego-c"
+    },
+    "points": 9,
+    "type": "ego"
+  },
+  "20804": {
+    "a": {
+      "affinity": "wrath",
+      "base": 20,
+      "coin": 7,
+      "coins": 1,
+      "egoId": "20804",
+      "levelCorrection": 0,
+      "name": "Capote",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 27,
+      "coin": -7,
+      "coins": 1,
+      "egoId": "20804",
+      "levelCorrection": 3,
+      "name": "Capote",
+      "type": "ego-c"
+    },
+    "points": 6,
+    "type": "ego"
+  },
+  "20805": {
+    "a": {
+      "affinity": "pride",
+      "base": 20,
+      "coin": 15,
+      "coins": 1,
+      "egoId": "20805",
+      "levelCorrection": 0,
+      "name": "Blind Obsession",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "pride",
+      "base": 35,
+      "coin": -10,
+      "coins": 1,
+      "egoId": "20805",
+      "levelCorrection": 0,
+      "name": "Blind Obsession",
+      "type": "ego-c"
+    },
+    "points": 8,
+    "type": "ego"
+  },
+  "20806": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 3,
+      "coin": 7,
+      "coins": 2,
+      "egoId": "20806",
+      "levelCorrection": 0,
+      "name": "Wingbeat",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 39,
+      "coin": -24,
+      "coins": 1,
+      "egoId": "20806",
+      "levelCorrection": 0,
+      "name": "Wingbeat",
+      "type": "ego-c"
+    },
+    "points": 1,
+    "type": "ego"
+  },
+  "20807": {
+    "a": {
+      "affinity": "gloom",
+      "base": 17,
+      "coin": 9,
+      "coins": 1,
+      "egoId": "20807",
+      "levelCorrection": 2,
+      "name": "Bygone Days",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 28,
+      "coin": -10,
+      "coins": 1,
+      "egoId": "20807",
+      "levelCorrection": -3,
+      "name": "Bygone Days",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20808": {
+    "a": {
+      "affinity": "sloth",
+      "base": 12,
+      "coin": 5,
+      "coins": 2,
+      "egoId": "20808",
+      "levelCorrection": 1,
+      "name": "Christmas Nightmare",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "sloth",
+      "base": 18,
+      "coin": -5,
+      "coins": 3,
+      "egoId": "20808",
+      "levelCorrection": 2,
+      "name": "Christmas Nightmare",
+      "type": "ego-c"
+    },
+    "points": 3,
+    "type": "ego"
+  },
+  "20809": {
+    "a": {
+      "affinity": "gloom",
+      "base": 10,
+      "coin": 5,
+      "coins": 2,
+      "egoId": "20809",
+      "levelCorrection": 2,
+      "name": "Hundred-Footed Death Maggot [蝍蛆殺]",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 16,
+      "coin": -7,
+      "coins": 2,
+      "egoId": "20809",
+      "levelCorrection": 3,
+      "name": "Hundred-Footed Death Maggot [蝍蛆殺]",
+      "type": "ego-c"
+    },
+    "points": 3,
+    "type": "ego"
+  },
+  "20810": {
+    "a": {
+      "affinity": "gloom",
+      "base": 8,
+      "coin": 4,
+      "coins": 3,
+      "conditionals": [
+        {
+          "target": "coin",
+          "type": "always",
+          "value": 2
+        },
+        {
+          "max": 2,
+          "per": 4,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20810",
+      "levelCorrection": 3,
+      "name": "Tidal Elegy",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 13,
+      "coin": -3,
+      "coins": 4,
+      "conditionals": [
+        {
+          "max": 3,
+          "per": 5,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Sinking",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20810",
+      "levelCorrection": 5,
+      "name": "Tidal Elegy",
+      "type": "ego-c"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "20901": {
+    "a": {
+      "affinity": "pride",
+      "base": 15,
+      "coin": 13,
+      "coins": 1,
+      "egoId": "20901",
+      "levelCorrection": 0,
+      "name": "What is Cast",
+      "type": "ego-a"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "20902": {
+    "a": {
+      "affinity": "wrath",
+      "base": 38,
+      "coin": -13,
+      "coins": 1,
+      "egoId": "20902",
+      "levelCorrection": 3,
+      "name": "4th Match Flame",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 38,
+      "coin": -18,
+      "coins": 1,
+      "egoId": "20902",
+      "levelCorrection": 3,
+      "name": "4th Match Flame",
+      "type": "ego-c"
+    },
+    "points": 10,
+    "type": "ego"
+  },
+  "20903": {
+    "a": {
+      "affinity": "gloom",
+      "base": 15,
+      "coin": 15,
+      "coins": 1,
+      "egoId": "20903",
+      "levelCorrection": 1,
+      "name": "Rime Shank",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 21,
+      "coin": 6,
+      "coins": 1,
+      "egoId": "20903",
+      "levelCorrection": 1,
+      "name": "Rime Shank",
+      "type": "ego-c"
+    },
+    "points": 6,
+    "type": "ego"
+  },
+  "20904": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 20,
+      "coin": 5,
+      "coins": 1,
+      "egoId": "20904",
+      "levelCorrection": 1,
+      "name": "Effervescent Corrosion",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 27,
+      "coin": -10,
+      "coins": 1,
+      "egoId": "20904",
+      "levelCorrection": 1,
+      "name": "Effervescent Corrosion",
+      "type": "ego-c"
+    },
+    "points": 6,
+    "type": "ego"
+  },
+  "20905": {
+    "a": {
+      "affinity": "sloth",
+      "base": 26,
+      "coin": 8,
+      "coins": 1,
+      "egoId": "20905",
+      "levelCorrection": -1,
+      "name": "Pursuance",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "sloth",
+      "base": 34,
+      "coin": -12,
+      "coins": 1,
+      "egoId": "20905",
+      "levelCorrection": -1,
+      "name": "Pursuance",
+      "type": "ego-c"
+    },
+    "points": 9,
+    "type": "ego"
+  },
+  "20906": {
+    "a": {
+      "affinity": "lust",
+      "base": 21,
+      "coin": 12,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 13,
+          "per": 2,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20906",
+      "levelCorrection": 0,
+      "name": "Sanguine Desire",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 30,
+      "coin": -11,
+      "coins": 1,
+      "egoId": "20906",
+      "levelCorrection": 0,
+      "name": "Sanguine Desire",
+      "type": "ego-c"
+    },
+    "points": 10,
+    "type": "ego"
+  },
+  "20907": {
+    "a": {
+      "affinity": "envy",
+      "base": 8,
+      "coin": 8,
+      "coins": 2,
+      "egoId": "20907",
+      "levelCorrection": -3,
+      "name": "Hex Nail",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 28,
+      "coin": -6,
+      "coins": 2,
+      "egoId": "20907",
+      "levelCorrection": 0,
+      "name": "Hex Nail",
+      "type": "ego-c"
+    },
+    "points": 3,
+    "type": "ego"
+  },
+  "20908": {
+    "a": {
+      "affinity": "wrath",
+      "base": 8,
+      "coin": 8,
+      "coins": 2,
+      "egoId": "20908",
+      "levelCorrection": 3,
+      "name": "Indicant's Trial",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 8,
+      "coin": 8,
+      "coins": 2,
+      "egoId": "20908",
+      "levelCorrection": 5,
+      "name": "Indicant's Trial",
+      "type": "ego-c"
+    },
+    "points": 3,
+    "type": "ego"
+  },
+  "20909": {
+    "a": {
+      "affinity": "lust",
+      "base": 16,
+      "coin": 8,
+      "coins": 1,
+      "conditionals": [
+        {
+          "max": 2,
+          "per": 6,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "20909",
+      "levelCorrection": -1,
+      "name": "Into the Sunset",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 24,
+      "coin": -5,
+      "coins": 2,
+      "egoId": "20909",
+      "levelCorrection": 0,
+      "name": "Into the Sunset",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "21001": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 14,
+      "coin": 15,
+      "coins": 1,
+      "egoId": "21001",
+      "levelCorrection": 3,
+      "name": "Branch of Knowledge",
+      "type": "ego-a"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "21002": {
+    "a": {
+      "affinity": "wrath",
+      "base": 28,
+      "coin": -8,
+      "coins": 1,
+      "egoId": "21002",
+      "levelCorrection": 1,
+      "name": "Impending Day",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 28,
+      "coin": -8,
+      "coins": 1,
+      "egoId": "21002",
+      "levelCorrection": 1,
+      "name": "Impending Day",
+      "type": "ego-c"
+    },
+    "points": 6,
+    "type": "ego"
+  },
+  "21003": {
+    "a": {
+      "affinity": "lust",
+      "base": 24,
+      "coin": -8,
+      "coins": 1,
+      "egoId": "21003",
+      "levelCorrection": -2,
+      "name": "Lifetime Stew",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 28,
+      "coin": -12,
+      "coins": 1,
+      "egoId": "21003",
+      "levelCorrection": 1,
+      "name": "Lifetime Stew",
+      "type": "ego-c"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "21004": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 18,
+      "coin": 6,
+      "coins": 1,
+      "egoId": "21004",
+      "levelCorrection": -2,
+      "name": "Lantern",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 30,
+      "coin": -12,
+      "coins": 1,
+      "egoId": "21004",
+      "levelCorrection": 1,
+      "name": "Lantern",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "21005": {
+    "a": {
+      "affinity": "lust",
+      "base": 26,
+      "coin": -10,
+      "coins": 1,
+      "egoId": "21005",
+      "levelCorrection": 0,
+      "name": "9:2",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 33,
+      "coin": -16,
+      "coins": 1,
+      "egoId": "21005",
+      "levelCorrection": 0,
+      "name": "9:2",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "21006": {
+    "a": {
+      "affinity": "gloom",
+      "base": 16,
+      "coin": 8,
+      "coins": 1,
+      "egoId": "21006",
+      "levelCorrection": -2,
+      "name": "Cavernous Wailing",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 24,
+      "coin": -8,
+      "coins": 1,
+      "egoId": "21006",
+      "levelCorrection": 0,
+      "name": "Cavernous Wailing",
+      "type": "ego-c"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "21007": {
+    "a": {
+      "affinity": "envy",
+      "base": 9,
+      "coin": 6,
+      "coins": 2,
+      "egoId": "21007",
+      "levelCorrection": 0,
+      "name": "Hex Nail",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 25,
+      "coin": -6,
+      "coins": 2,
+      "egoId": "21007",
+      "levelCorrection": 2,
+      "name": "Hex Nail",
+      "type": "ego-c"
+    },
+    "points": 3,
+    "type": "ego"
+  },
+  "21008": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 8,
+      "coin": 6,
+      "coins": 2,
+      "egoId": "21008",
+      "levelCorrection": 0,
+      "name": "Tears of the Tarnished Blood",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 20,
+      "coin": -8,
+      "coins": 2,
+      "egoId": "21008",
+      "levelCorrection": 2,
+      "name": "Tears of the Tarnished Blood",
+      "type": "ego-c"
+    },
+    "points": 2,
+    "type": "ego"
+  },
+  "21009": {
+    "a": {
+      "affinity": "wrath",
+      "base": 6,
+      "coin": 2,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 10,
+          "per": 2,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "21009",
+      "levelCorrection": 2,
+      "name": "Harmony",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 14,
+      "coin": -2,
+      "coins": 3,
+      "conditionals": [
+        {
+          "max": 10,
+          "per": 2,
+          "status": [
+            {
+              "owner": "target",
+              "status": "Laceration",
+              "type": "Potency"
+            },
+            {
+              "owner": "target",
+              "status": "Combustion",
+              "type": "Potency"
+            }
+          ],
+          "target": "clash",
+          "type": "status",
+          "value": 1
+        }
+      ],
+      "egoId": "21009",
+      "levelCorrection": 4,
+      "name": "Harmony",
+      "type": "ego-c"
+    },
+    "points": 2,
+    "type": "ego"
+  },
+  "21101": {
+    "a": {
+      "affinity": "pride",
+      "base": 20,
+      "coin": 3,
+      "coins": 1,
+      "egoId": "21101",
+      "levelCorrection": 3,
+      "name": "To Páthos Máthos",
+      "type": "ego-a"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "21102": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 22,
+      "coin": 7,
+      "coins": 1,
+      "egoId": "21102",
+      "levelCorrection": 0,
+      "name": "Ebony Stem",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 29,
+      "coin": 7,
+      "coins": 1,
+      "egoId": "21102",
+      "levelCorrection": 0,
+      "name": "Ebony Stem",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "21103": {
+    "a": {
+      "affinity": "lust",
+      "base": 19,
+      "coin": 4,
+      "coins": 1,
+      "egoId": "21103",
+      "levelCorrection": -2,
+      "name": "Ya Śūnyatā Tad Rūpam",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 25,
+      "coin": -8,
+      "coins": 1,
+      "egoId": "21103",
+      "levelCorrection": -2,
+      "name": "Ya Śūnyatā Tad Rūpam",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "21104": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 26,
+      "coin": 7,
+      "coins": 1,
+      "egoId": "21104",
+      "levelCorrection": 2,
+      "name": "Sunshower",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 29,
+      "coin": -7,
+      "coins": 1,
+      "egoId": "21104",
+      "levelCorrection": 2,
+      "name": "Sunshower",
+      "type": "ego-c"
+    },
+    "points": 9,
+    "type": "ego"
+  },
+  "21105": {
+    "a": {
+      "affinity": "wrath",
+      "base": 20,
+      "coin": 11,
+      "coins": 1,
+      "egoId": "21105",
+      "levelCorrection": -2,
+      "name": "Holiday",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "wrath",
+      "base": 34,
+      "coin": -15,
+      "coins": 1,
+      "egoId": "21105",
+      "levelCorrection": 3,
+      "name": "Holiday",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "21106": {
+    "a": {
+      "affinity": "pride",
+      "base": 20,
+      "coin": 10,
+      "coins": 1,
+      "egoId": "21106",
+      "levelCorrection": 0,
+      "name": "Binds",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "pride",
+      "base": 32,
+      "coin": -14,
+      "coins": 1,
+      "egoId": "21106",
+      "levelCorrection": 0,
+      "name": "Binds",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "21107": {
+    "a": {
+      "affinity": "envy",
+      "base": 21,
+      "coin": 9,
+      "coins": 1,
+      "egoId": "21107",
+      "levelCorrection": 5,
+      "name": "Dimension Shredder",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 32,
+      "coin": -13,
+      "coins": 1,
+      "egoId": "21107",
+      "levelCorrection": 5,
+      "name": "Dimension Shredder",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "21108": {
+    "a": {
+      "affinity": "pride",
+      "base": 22,
+      "coin": 14,
+      "coins": 1,
+      "egoId": "21108",
+      "levelCorrection": 3,
+      "name": "Magic Bullet",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "pride",
+      "base": 40,
+      "coin": -20,
+      "coins": 1,
+      "egoId": "21108",
+      "levelCorrection": 5,
+      "name": "Magic Bullet",
+      "type": "ego-c"
+    },
+    "points": 8,
+    "type": "ego"
+  },
+  "21109": {
+    "a": {
+      "affinity": "envy",
+      "base": 12,
+      "coin": 12,
+      "coins": 1,
+      "egoId": "21109",
+      "levelCorrection": 0,
+      "name": "I'll Go fer Scissors. How 'Bout You?",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 4,
+      "coin": 4,
+      "coins": 3,
+      "egoId": "21109",
+      "levelCorrection": 3,
+      "name": "I'll Go fer Scissors. How 'Bout You?",
+      "type": "ego-c"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "21201": {
+    "a": {
+      "affinity": "sloth",
+      "base": 14,
+      "coin": 14,
+      "coins": 1,
+      "egoId": "21201",
+      "levelCorrection": -1,
+      "name": "Suddenly, One Day",
+      "type": "ego-a"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "21202": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 18,
+      "coin": 5,
+      "coins": 1,
+      "egoId": "21202",
+      "levelCorrection": -2,
+      "name": "Legerdemain",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 28,
+      "coin": -14,
+      "coins": 1,
+      "egoId": "21202",
+      "levelCorrection": -2,
+      "name": "Legerdemain",
+      "type": "ego-c"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "21203": {
+    "a": {
+      "affinity": "gluttony",
+      "base": 16,
+      "coin": 8,
+      "coins": 1,
+      "egoId": "21203",
+      "levelCorrection": -3,
+      "name": "Lantern",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gluttony",
+      "base": 19,
+      "coin": 4,
+      "coins": 1,
+      "egoId": "21203",
+      "levelCorrection": -3,
+      "name": "Lantern",
+      "type": "ego-c"
+    },
+    "points": 4,
+    "type": "ego"
+  },
+  "21204": {
+    "a": {
+      "affinity": "gloom",
+      "base": 22,
+      "coin": 5,
+      "coins": 1,
+      "egoId": "21204",
+      "levelCorrection": 0,
+      "name": "AEDD",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 24,
+      "coin": 7,
+      "coins": 1,
+      "egoId": "21204",
+      "levelCorrection": 0,
+      "name": "AEDD",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "21205": {
+    "a": {
+      "affinity": "lust",
+      "base": 20,
+      "coin": 10,
+      "coins": 1,
+      "egoId": "21205",
+      "levelCorrection": 0,
+      "name": "Garden of Thorns",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "lust",
+      "base": 30,
+      "coin": -10,
+      "coins": 1,
+      "egoId": "21205",
+      "levelCorrection": 0,
+      "name": "Garden of Thorns",
+      "type": "ego-c"
+    },
+    "points": 7,
+    "type": "ego"
+  },
+  "21206": {
+    "a": {
+      "affinity": "gloom",
+      "base": 20,
+      "coin": 4,
+      "coins": 1,
+      "egoId": "21206",
+      "levelCorrection": -3,
+      "name": "Bygone Days",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 27,
+      "coin": -8,
+      "coins": 1,
+      "egoId": "21206",
+      "levelCorrection": 3,
+      "name": "Bygone Days",
+      "type": "ego-c"
+    },
+    "points": 5,
+    "type": "ego"
+  },
+  "21207": {
+    "a": {
+      "affinity": "gloom",
+      "base": 8,
+      "coin": 2,
+      "coins": 3,
+      "egoId": "21207",
+      "levelCorrection": 2,
+      "name": "Solemn Lament",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "gloom",
+      "base": 32,
+      "coin": -8,
+      "coins": 1,
+      "egoId": "21207",
+      "levelCorrection": 0,
+      "name": "Solemn Lament",
+      "type": "ego-c"
+    },
+    "points": 1,
+    "type": "ego"
+  },
+  "21208": {
+    "a": {
+      "affinity": "sloth",
+      "base": 12,
+      "coin": 4,
+      "coins": 2,
+      "egoId": "21208",
+      "levelCorrection": 1,
+      "name": "Christmas Nightmare",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "sloth",
+      "base": 22,
+      "coin": -6,
+      "coins": 2,
+      "egoId": "21208",
+      "levelCorrection": 2,
+      "name": "Christmas Nightmare",
+      "type": "ego-c"
+    },
+    "points": 3,
+    "type": "ego"
+  },
+  "21209": {
+    "c": {
+      "affinity": "sloth",
+      "base": 20,
+      "coin": -4,
+      "coins": 4,
+      "conditionals": [
+        {
+          "target": "base",
+          "type": "always",
+          "value": 1
+        }
+      ],
+      "egoId": "21209",
+      "levelCorrection": 6,
+      "name": "Unbrilliant Glory - Flowing",
+      "type": "ego-c"
+    }
+  },
+  "21210": {
+    "a": {
+      "affinity": "envy",
+      "base": 9,
+      "coin": 6,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 3,
+          "status": [
+            {
+              "owner": "target",
+              "per": 6,
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "self",
+              "per": 1,
+              "status": "Charge",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status-individual",
+          "value": 1
+        }
+      ],
+      "egoId": "21210",
+      "levelCorrection": 3,
+      "name": "Move-in Reg.",
+      "type": "ego-a"
+    },
+    "c": {
+      "affinity": "envy",
+      "base": 7,
+      "coin": 7,
+      "coins": 2,
+      "conditionals": [
+        {
+          "max": 3,
+          "status": [
+            {
+              "owner": "target",
+              "per": 6,
+              "status": "Combustion",
+              "type": "Potency"
+            },
+            {
+              "owner": "self",
+              "per": 1,
+              "status": "Charge",
+              "type": "Potency"
+            }
+          ],
+          "target": "coin",
+          "type": "status-individual",
+          "value": 1
+        }
+      ],
+      "egoId": "21210",
+      "levelCorrection": 3,
+      "name": "Move-in Reg.",
+      "type": "ego-c"
+    },
+    "points": 3,
+    "type": "ego"
   }
 }

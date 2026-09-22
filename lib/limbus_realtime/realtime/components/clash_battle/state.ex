@@ -7,7 +7,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
             draft_order: [],
             draft_index: 0,
             picked_identities: MapSet.new(),
-            identity_data: %{},
+            picked_egos: MapSet.new(),
+            item_data: %{},
             submissions: %{},
             current_round: nil,
             round_number: 0,
@@ -24,7 +25,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
           channel_pid: pid(),
           identities: [String.t()],
           skill_counts: %{String.t() => [non_neg_integer()]} | nil,
-          draft_points: non_neg_integer()
+          draft_points: non_neg_integer(),
+          ego: String.t() | nil,
+          ego_used: boolean()
         }
 
   @type t :: %__MODULE__{
@@ -36,7 +39,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
           draft_order: [non_neg_integer()],
           draft_index: non_neg_integer(),
           picked_identities: MapSet.t(),
-          identity_data: %{String.t() => map()},
+          picked_egos: MapSet.t(),
+          item_data: %{String.t() => map()},
           submissions: %{String.t() => any()},
           current_round: map() | nil,
           round_number: non_neg_integer(),

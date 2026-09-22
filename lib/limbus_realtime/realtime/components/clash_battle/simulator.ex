@@ -1,12 +1,12 @@
 defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
   alias LimbusRealtime.Realtime.Components.ClashBattle.StatusData
 
-  def simulate_round(round, submissions, identity_data) do
+  def simulate_round(round, submissions, item_data) do
     results =
-      Map.new(submissions, fn {client_id, %{identity_id: identity_id, skill: _skill, resolved_skill: resolved_skill}} ->
-        identity = identity_data |> Map.fetch!(identity_id)
-        skill_data = identity |> Map.fetch!(to_string(resolved_skill))
-        status_data = identity |> Map.get("statuses", [])
+      Map.new(submissions, fn {client_id, %{type: _type, item_id: item_id, skill: _skill, resolved_skill: resolved_skill}} ->
+        item = item_data |> Map.fetch!(item_id)
+        skill_data = item |> Map.fetch!(to_string(resolved_skill))
+        status_data = item |> Map.get("statuses", [])
 
         {clash_value, coins} = calculate_skill_clash(skill_data, round, status_data)
         {client_id, %{clash_value: clash_value, coins: coins}}

@@ -1,10 +1,10 @@
 defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
   alias LimbusRealtime.Realtime.Components.ClashBattle.StatusData
 
-  def resolve_skill(identity, skill, round) do
-    Enum.reduce(Map.get(identity, "modifiers", []), to_string(skill), fn modifier, skill ->
-      if skill_modifier_active?(modifier["condition"], identity, round) do
-        apply_skill_effect(modifier["effect"], identity, skill)
+  def resolve_skill(item, skill, round) do
+    Enum.reduce(Map.get(item, "modifiers", []), to_string(skill), fn modifier, skill ->
+      if skill_modifier_active?(modifier["condition"], item, round) do
+        apply_skill_effect(modifier["effect"], item, skill)
       else
         skill
       end
@@ -13,10 +13,10 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
 
   defp skill_modifier_active?(
          %{"type" => "status", "status" => status, "owner" => "unique", "value" => value},
-         identity,
+         item,
          round
        ) do
-    status_data = Enum.find(identity["statuses"], fn st -> st["id"] == status end)
+    status_data = Enum.find(item["statuses"], fn st -> st["id"] == status end)
     Enum.at(status_data["values"], round.unique_statuses_tier) >= value
   end
 
@@ -28,7 +28,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
            "statusType" => status_type,
            "value" => value
          },
-         _identity,
+         _item,
          round
        ) do
     side = if owner == "self", do: round.self, else: round.target
@@ -44,12 +44,12 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
 
   defp skill_modifier_active?(
          %{"type" => "status-missing", "status" => status, "owner" => owner},
-         identity,
+         item,
          round
        ) do
     case owner do
       "unique" ->
-        status_data = Enum.find(identity["statuses"], fn st -> st["id"] == status end)
+        status_data = Enum.find(item["statuses"], fn st -> st["id"] == status end)
         status_data == nil || Enum.at(status_data["values"], round.unique_statuses_tier) == 0
 
       _ ->
@@ -61,7 +61,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
 
   defp skill_modifier_active?(
          %{"type" => "sp", "mode" => mode, "value" => value},
-         _identity,
+         _item,
          round
        ) do
     case mode do
@@ -72,7 +72,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
 
   defp skill_modifier_active?(
          %{"type" => "negative-effects", "value" => value},
-         _identity,
+         _item,
          round
        ) do
     count =
@@ -88,7 +88,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
     false
   end
 
-  defp apply_skill_effect(%{"type" => "replace", "slot" => slot, "key" => key}, _identity, skill) do
+  defp apply_skill_effect(%{"type" => "replace", "slot" => slot, "key" => key}, _item, skill) do
     if to_string(skill) == to_string(slot) do
       key
     else
@@ -105,7 +105,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
       Map.new(state.participants, fn {client_id, participant} ->
         skill_counts =
           Enum.reduce(participant.identities, participant.skill_counts, fn identity_id, skill_counts ->
-            identity = Map.fetch!(state.identity_data, identity_id)
+            identity = Map.fetch!(state.item_data, identity_id)
 
             counts =
               Enum.reduce(Map.get(identity, "modifiers", []), Map.fetch!(skill_counts, identity_id), fn modifier, counts ->

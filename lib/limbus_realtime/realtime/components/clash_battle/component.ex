@@ -38,7 +38,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
             connected: true,
             channel_pid: user.channel_pid,
             skill_counts: [],
-            draft_points: 0
+            draft_points: 0,
+            ego: nil,
+            ego_used: false
           }
 
           state =
@@ -108,7 +110,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
         build_draft_order(
           player_ids,
           state.settings["team_size"],
-          state.settings["draft_order"]
+          state.settings["draft_order"],
+          state.settings["ego_draft"]
         )
 
       state =
@@ -119,7 +122,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
             draft_order: draft_order,
             draft_index: 0,
             picked_identities: MapSet.new(),
-            identity_data: %{}
+            picked_egos: MapSet.new(),
+            item_data: %{}
         }
         |> add_draft_points(0)
 
@@ -130,33 +134,59 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     end
   end
 
-  def pick_identity(payload, _connection, state) do
+  def pick_item(payload, _connection, state) do
     with :ok <- check_phase(:draft, state),
          :ok <- check_draft_turn(payload, state),
-         {:ok, cost} <- check_identity(payload["identity_id"], payload.user.client_id, state) do
+         {:ok, type, cost} <- check_item(payload["item_id"], payload.user.client_id, state) do
       client_id = payload.user.client_id
-      identity_id = payload["identity_id"]
+      item_id = payload["item_id"]
       draft_index = state.draft_index
 
       participant = Map.fetch!(state.participants, client_id)
 
       participants =
-        put_in(
-          state.participants,
-          [client_id],
-          %{
-            participant
-            | identities: participant.identities ++ [identity_id],
-              draft_points: participant.draft_points - cost
-          }
-        )
+        case type do
+          :id ->
+            put_in(
+              state.participants,
+              [client_id],
+              %{
+                participant
+                | identities: participant.identities ++ [item_id],
+                  draft_points: participant.draft_points - cost
+              }
+            )
 
-      state = %{
-        state
-        | participants: participants,
-          picked_identities: MapSet.put(state.picked_identities, identity_id),
-          draft_index: draft_index + 1
-      }
+          :ego ->
+            put_in(
+              state.participants,
+              [client_id],
+              %{
+                participant
+                | ego: item_id,
+                  draft_points: participant.draft_points - cost
+              }
+            )
+        end
+
+      state =
+        case type do
+          :id ->
+            %{
+              state
+              | participants: participants,
+                picked_identities: MapSet.put(state.picked_identities, item_id),
+                draft_index: draft_index + 1
+            }
+
+          :ego ->
+            %{
+              state
+              | participants: participants,
+                picked_egos: MapSet.put(state.picked_egos, item_id),
+                draft_index: draft_index + 1
+            }
+        end
 
       if state.draft_index >= length(state.draft_order) do
         state = finish_draft(state)
@@ -164,7 +194,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
         {:ok, state, [:broadcast_state]}
       else
         state = state |> add_draft_points(draft_index + 1)
-        {:ok, state, [{:broadcast_draft_pick, identity_id, draft_index}]}
+        {:ok, state, [{:broadcast_draft_pick, type, item_id, draft_index}]}
       end
     else
       {:error, reason} ->
@@ -176,18 +206,31 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     points = state.settings["points_per_draft"]
 
     if points do
-      player_id = Enum.at(state.draft_order, draft_index)
+      {type, player_id} =
+        case Enum.at(state.draft_order, draft_index) do
+          "e-" <> player_id ->
+            {:ego, String.to_integer(player_id)}
+
+          player_id ->
+            {:id, player_id}
+        end
 
       {client_id, participant} =
         Enum.find(state.participants, fn {_client_id, participant} ->
           participant.player_id == player_id
         end)
 
+      to_add =
+        case type do
+          :id -> points
+          :ego -> ceil(points / 2) |> trunc()
+        end
+
       participants =
         Map.put(
           state.participants,
           client_id,
-          %{participant | draft_points: participant.draft_points + points}
+          %{participant | draft_points: participant.draft_points + to_add}
         )
 
       %{state | participants: participants}
@@ -198,7 +241,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
   def start_game(payload, _connection, state) do
     with :ok <- check_host(payload, state),
-        :ok <- check_phase(:draft_complete, state) do
+         :ok <- check_phase(:draft_complete, state) do
       state = %{
         state
         | phase: :round_select,
@@ -217,22 +260,23 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
   def select_skill(payload, _connection, state) do
     client_id = payload.user.client_id
-    identity_id = payload["identity_id"]
+    item_id = payload["item_id"]
     skill = payload["skill"]
 
     with :ok <- check_phase(:round_select, state),
          :ok <- check_participant(payload, state),
          false <- Map.has_key?(state.submissions, client_id),
-         {:ok, participant, resolved_skill} <-
+         {:ok, participant, type, resolved_skill} <-
            resolve_and_consume_skill(
              state.participants[client_id],
-             identity_id,
+             item_id,
              skill,
              state.current_round,
-             state.identity_data
+             state.item_data
            ) do
       submission = %{
-        identity_id: identity_id,
+        type: type,
+        item_id: item_id,
         skill: skill,
         resolved_skill: resolved_skill
       }
@@ -242,9 +286,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
       if map_size(state.submissions) == map_size(state.participants) do
         {:ok, resolve_round(state),
-         [{:broadcast_skill_chosen, identity_id, skill}, :broadcast_round_reveal]}
+         [{:broadcast_skill_chosen, type, item_id, skill}, :broadcast_round_reveal]}
       else
-        {:ok, state, [{:broadcast_skill_chosen, identity_id, skill}]}
+        {:ok, state, [{:broadcast_skill_chosen, type, item_id, skill}]}
       end
     else
       true ->
@@ -255,28 +299,47 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     end
   end
 
-  defp resolve_and_consume_skill(participant, identity_id, skill, round, identity_data) do
-    case participant.skill_counts[identity_id] do
-      nil ->
-        {:error, "invalid_identity"}
+  defp resolve_and_consume_skill(participant, item_id, skill, round, item_data) do
+    case item_data[item_id]["type"] do
+      "id" ->
+        case participant.skill_counts[item_id] do
+          nil ->
+            {:error, "invalid_identity"}
 
-      counts ->
-        index = skill - 1
+          counts ->
+            index = skill - 1
 
-        if Enum.at(counts, index, 0) > 0 do
-          identity = Map.fetch!(identity_data, identity_id)
-          resolved_skill = Modifiers.resolve_skill(identity, skill, round)
+            if Enum.at(counts, index, 0) > 0 do
+              identity = Map.fetch!(item_data, item_id)
+              resolved_skill = Modifiers.resolve_skill(identity, skill, round)
 
-          counts = List.update_at(counts, index, &(&1 - 1))
+              counts = List.update_at(counts, index, &(&1 - 1))
 
-          participant = %{
-            participant
-            | skill_counts: Map.put(participant.skill_counts, identity_id, counts)
-          }
+              participant = %{
+                participant
+                | skill_counts: Map.put(participant.skill_counts, item_id, counts)
+              }
 
-          {:ok, participant, resolved_skill}
-        else
-          {:error, "skill_unavailable"}
+              {:ok, participant, :id, resolved_skill}
+            else
+              {:error, "skill_unavailable"}
+            end
+        end
+
+      "ego" ->
+        cond do
+          participant.ego != item_id ->
+            {:error, "invalid_ego"}
+
+          participant.ego_used ->
+            {:error, "skill_unavailable"}
+
+          true ->
+            ego = Map.fetch!(item_data, item_id)
+            resolved_skill = Modifiers.resolve_skill(ego, skill, round)
+
+            participant = %{participant | ego_used: true}
+            {:ok, participant, :ego, resolved_skill}
         end
     end
   end
@@ -286,7 +349,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
       Simulator.simulate_round(
         state.current_round,
         state.submissions,
-        state.identity_data
+        state.item_data
       )
 
     participants =
@@ -304,7 +367,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
   def next_round(payload, _connection, state) do
     with :ok <- check_host(payload, state),
-        :ok <- check_phase(:round_reveal, state) do
+         :ok <- check_phase(:round_reveal, state) do
       if state.round_number >= state.settings["rounds"] do
         {:ok, %{state | phase: :finished}, [:broadcast_game_finished]}
       else
@@ -345,6 +408,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
              | player_id: nil,
                score: 0,
                identities: [],
+               ego: nil,
+               ego_used: false,
                connected: participant.connected
            }}
         end)
@@ -358,7 +423,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
           draft_order: [],
           draft_index: 0,
           picked_identities: MapSet.new(),
-          identity_data: %{},
+          picked_egos: MapSet.new(),
+          item_data: %{},
           round_number: 0,
           current_round: nil,
           submissions: %{},
@@ -406,9 +472,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
   defp finish_draft(state) do
     selected_ids =
-      state.participants
-      |> Map.values()
-      |> Enum.flat_map(& &1.identities)
+      state.picked_identities
+      |> MapSet.union(state.picked_egos)
+      |> MapSet.to_list()
 
     participants =
       Map.new(state.participants, fn {client_id, participant} ->
@@ -417,7 +483,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
             {identity_id, [3, 2, 1, 0]}
           end)
 
-        {client_id, %{participant | skill_counts: skill_counts, score: 0}}
+        {client_id, %{participant | skill_counts: skill_counts, ego_used: false, score: 0}}
       end)
 
     %{
@@ -427,22 +493,42 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
         draft_order: [],
         draft_index: 0,
         round_number: 0,
-        identity_data: ClashingData.get(selected_ids),
+        item_data: ClashingData.get(selected_ids),
         submissions: %{},
         current_round: nil
     }
   end
 
-  defp build_draft_order(player_ids, team_size, mode) do
-    case mode do
-      "snake" ->
-        build_snake_draft_order(player_ids, team_size)
+  defp build_draft_order(player_ids, team_size, mode, ego_draft) do
+    identity_order =
+      case mode do
+        "snake" ->
+          build_snake_draft_order(player_ids, team_size)
 
-      "random" ->
-        build_random_draft_order(player_ids, team_size)
+        "random" ->
+          build_random_draft_order(player_ids, team_size)
 
-      _ ->
-        build_cycle_draft_order(player_ids, team_size)
+        _ ->
+          build_cycle_draft_order(player_ids, team_size)
+      end
+
+    if ego_draft do
+      ego_order =
+        case mode do
+          "snake" ->
+            build_snake_draft_order(player_ids, 1, team_size)
+
+          "random" ->
+            build_random_draft_order(player_ids, 1)
+
+          _ ->
+            build_cycle_draft_order(player_ids, 1)
+        end
+        |> Enum.map(&"e-#{&1}")
+
+      identity_order ++ ego_order
+    else
+      identity_order
     end
   end
 
@@ -451,12 +537,12 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     |> List.flatten()
   end
 
-  defp build_snake_draft_order(player_ids, team_size) do
+  defp build_snake_draft_order(player_ids, team_size, offset \\ 0) do
     player_ids
     |> List.duplicate(team_size)
     |> Enum.with_index()
     |> Enum.map(fn {ids, index} ->
-      if rem(index, 2) == 0 do
+      if rem(index + offset, 2) == 0 do
         ids
       else
         Enum.reverse(ids)
@@ -470,6 +556,16 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
       Enum.shuffle(player_ids)
     end)
     |> List.flatten()
+  end
+
+  defp check_item(item_id, client_id, state) do
+    case state.draft_order |> Enum.at(state.draft_index) do
+      "e-" <> _ ->
+        check_ego(item_id, client_id, state)
+
+      _ ->
+        check_identity(item_id, client_id, state)
+    end
   end
 
   defp check_identity(identity_id, client_id, state) do
@@ -489,10 +585,48 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
         if state.settings["points_per_draft"] != 0 do
           identity = ClashingData.get([identity_id])[identity_id]
 
-          if points >= identity["points"] do
-            {:ok, identity["points"]}
-          else
-            {:error, "not_enough_points"}
+          cond do
+            identity["type"] != "id" ->
+              {:error, "invalid_identity"}
+
+            points < identity["points"] ->
+              {:error, "not_enough_points"}
+
+            true ->
+              {:ok, :id, identity["points"]}
+          end
+        else
+          {:ok, 0}
+        end
+    end
+  end
+
+  defp check_ego(ego_id, client_id, state) do
+    cond do
+      not is_binary(ego_id) ->
+        {:error, "invalid_ego"}
+
+      MapSet.member?(state.picked_egos, ego_id) ->
+        {:error, "ego_already_picked"}
+
+      not ClashingData.has_id?(ego_id) ->
+        {:error, "invalid_ego"}
+
+      true ->
+        points = state.participants[client_id].draft_points
+
+        if state.settings["points_per_draft"] != 0 do
+          ego = ClashingData.get([ego_id])[ego_id]
+
+          cond do
+            ego["type"] != "ego" ->
+              {:error, "invalid_ego"}
+
+            points < ego["points"] ->
+              {:error, "not_enough_points"}
+
+            true ->
+              {:ok, :ego, ego["points"]}
           end
         else
           {:ok, 0}
@@ -504,6 +638,10 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     current_client_id =
       state.draft_order
       |> Enum.at(state.draft_index)
+      |> then(fn
+        "e-" <> player_id -> String.to_integer(player_id)
+        player_id -> player_id
+      end)
       |> player_client_id(state)
 
     if payload.user.client_id === current_client_id do

@@ -50,21 +50,30 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
   end
 
   def execute(
-        {:broadcast_draft_pick, identity_id, draft_index},
+        {:broadcast_draft_pick, type, item_id, draft_index},
         _socket,
         _room_state,
         state
       ) do
-    player_id = Enum.at(state.draft_order, draft_index)
+    player_id =
+      case Enum.at(state.draft_order, draft_index) do
+        "e-" <> id -> String.to_integer(id)
+        id -> id
+      end
 
     payload = %{
       player_id: player_id,
-      identity_id: identity_id,
+      type: type,
+      item_id: item_id,
       draft_index: draft_index,
       draft_order: current_draft_order(state)
     }
 
-    next_player_id = Enum.at(payload.draft_order, 0)
+    next_player_id =
+      case Enum.at(payload.draft_order, 0) do
+        "e-" <> id -> String.to_integer(id)
+        id -> id
+      end
 
     Enum.each(state.participants, fn {_client_id, participant} ->
       if participant.connected do
@@ -92,21 +101,23 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
            %{
              round_number: state.round_number,
              round: state.current_round,
-             skill_counts: participant.skill_counts
+             skill_counts: participant.skill_counts,
+             ego_used: participant.ego_used
            }}
         )
       end
     end)
   end
 
-  def execute({:broadcast_skill_chosen, identity_id, skill}, socket, _room_state, state) do
+  def execute({:broadcast_skill_chosen, type, item_id, skill}, socket, _room_state, state) do
     Channel.broadcast_from!(socket, "skill_chosen_count", %{
       chosen_count: map_size(state.submissions),
       player_count: map_size(state.participants)
     })
 
     Channel.push(socket, "skill_selected", %{
-      identity_id: identity_id,
+      type: type,
+      item_id: item_id,
       skill: skill,
       chosen_count: map_size(state.submissions),
       player_count: map_size(state.participants)
@@ -168,6 +179,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           is_host: client_id == state.host_client_id,
           participants: build_participants(state),
           skill_counts: participant.skill_counts,
+          ego_used: participant.ego_used,
           settings: %{rounds: state.settings["rounds"]}
         }
 
@@ -180,6 +192,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           current_round: state.current_round,
           round_number: state.round_number,
           skill_counts: participant.skill_counts,
+          ego_used: participant.ego_used,
           settings: %{rounds: state.settings["rounds"]}
         }
 
@@ -192,6 +205,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           current_round: state.current_round,
           round_number: state.round_number,
           skill_counts: participant.skill_counts,
+          ego_used: participant.ego_used,
           results: state.results,
           settings: %{rounds: state.settings["rounds"]}
         }
@@ -213,7 +227,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
         player_id: participant.player_id,
         display_name: participant.display_name,
         score: participant.score,
-        identities: participant.identities
+        identities: participant.identities,
+        ego: participant.ego
       }
     end)
     |> Enum.sort_by(& &1.player_id)
