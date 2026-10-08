@@ -1,5 +1,5 @@
 defmodule LimbusRealtimeWeb.RoomChannel do
-  use Phoenix.Channel
+  use Phoenix.Channel, log_join: false
 
   alias LimbusRealtime.Realtime.Room
   alias LimbusRealtime.Realtime.Rooms

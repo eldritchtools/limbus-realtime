@@ -1,5 +1,5 @@
 defmodule LimbusRealtimeWeb.UserSocket do
-  use Phoenix.Socket
+  use Phoenix.Socket, log: false
 
   channel "room:*", LimbusRealtimeWeb.RoomChannel
   channel "chat:*", LimbusRealtimeWeb.ChatChannel
