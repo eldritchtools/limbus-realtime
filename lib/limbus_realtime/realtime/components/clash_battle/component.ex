@@ -596,7 +596,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
               {:ok, :id, identity["points"]}
           end
         else
-          {:ok, 0}
+          {:ok, :id, 0}
         end
     end
   end
@@ -629,7 +629,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
               {:ok, :ego, ego["points"]}
           end
         else
-          {:ok, 0}
+          {:ok, :ego, 0}
         end
     end
   end

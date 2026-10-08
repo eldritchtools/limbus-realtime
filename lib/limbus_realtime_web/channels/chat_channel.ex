@@ -33,19 +33,25 @@ defmodule LimbusRealtimeWeb.ChatChannel do
 
   @impl true
   def terminate(_reason, socket) do
-    case Room.handle_component_action(
-           room_id(socket),
-           :chat,
-           :terminate,
-           %{user: socket.assigns.user},
-           socket
-         ) do
-      {:ok, effects, room_state} ->
-        Effects.execute(effects, socket, room_state, room_state.components.chat)
+    case socket.assigns[:user] do
+      nil ->
         :ok
 
-      {:error, reason} ->
-        {:error, %{reason: reason}}
+      user ->
+        case Room.handle_component_action(
+              room_id(socket),
+              :chat,
+              :terminate,
+              %{user: user},
+              socket
+            ) do
+          {:ok, effects, room_state} ->
+            Effects.execute(effects, socket, room_state, room_state.components.chat)
+            :ok
+
+          {:error, _reason} ->
+            :ok
+        end
     end
   end
 

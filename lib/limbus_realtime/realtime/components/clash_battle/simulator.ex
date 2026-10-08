@@ -1,3 +1,5 @@
+require Logger
+
 defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
   alias LimbusRealtime.Realtime.Components.ClashBattle.StatusData
 
@@ -8,7 +10,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
         skill_data = item |> Map.fetch!(to_string(resolved_skill))
         status_data = item |> Map.get("statuses", [])
 
-        {clash_value, coins} = calculate_skill_clash(skill_data, round, status_data)
+        {clash_value, coins} = calculate_skill_clash(skill_data, round, status_data, item_id, resolved_skill)
         {client_id, %{clash_value: clash_value, coins: coins}}
       end)
 
@@ -19,26 +21,36 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
     end)
   end
 
-  defp calculate_skill_clash(skill, round, status_data) do
-    unique_statuses =
-      status_data
-      |> Enum.map(fn status -> {status["id"], Enum.at(status["values"], round.unique_statuses_tier)} end)
-      |> Enum.into(%{})
+  defp calculate_skill_clash(skill, round, status_data, item_id, resolved_skill) do
+    try do
+      unique_statuses =
+        status_data
+        |> Enum.map(fn status -> {status["id"], Enum.at(status["values"], round.unique_statuses_tier)} end)
+        |> Enum.into(%{})
 
-    modifiers =
-      (skill["conditionals"] || [])
-      |> Enum.map(&evaluate_conditional(&1, round.self, round.target, unique_statuses))
+      modifiers =
+        (skill["conditionals"] || [])
+        |> Enum.map(&evaluate_conditional(&1, round.self, round.target, unique_statuses))
 
-    base = skill["base"] + modifier_sum(modifiers, "base")
-    coin = skill["coin"] + modifier_sum(modifiers, "coin")
-    clash = modifier_sum(modifiers, "clash")
+      base = skill["base"] + modifier_sum(modifiers, "base")
+      coin = skill["coin"] + modifier_sum(modifiers, "coin")
+      clash = modifier_sum(modifiers, "clash")
 
-    coins = Enum.map(1..skill["coins"], fn _ -> :rand.uniform(100) <= 50 + round.self.sp end)
+      coins = Enum.map(1..skill["coins"], fn _ -> :rand.uniform(100) <= 50 + round.self.sp end)
 
-    offense = modifier_sum(modifiers, "offense-level")
+      offense = modifier_sum(modifiers, "offense-level")
 
-    clash_value = base + clash + div((skill["levelCorrection"] + offense), 3) + Enum.count(coins, & &1) * coin
-    {clash_value, coins}
+      clash_value = base + clash + div((skill["levelCorrection"] + offense), 3) + Enum.count(coins, & &1) * coin
+      {clash_value, coins}
+    rescue
+      error ->
+        Logger.error(
+          "Failed to calculate skill clash for item #{item_id}, skill #{resolved_skill}: " <>
+            Exception.format(:error, error, __STACKTRACE__)
+        )
+
+        {0, []}
+    end
   end
 
   defp modifier_sum(modifiers, target) do

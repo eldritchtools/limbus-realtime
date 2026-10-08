@@ -28,7 +28,17 @@ defmodule LimbusRealtimeWeb.Endpoint do
   end
 
   plug Plug.RequestId
-  plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
+
+  plug Plug.Telemetry,
+  event_prefix: [:phoenix, :endpoint],
+  log: {__MODULE__, :log_level, []}
+
+  def log_level(%{method: "GET", request_path: path})
+      when path in ["/api/presence", "/api/health"] do
+    false
+  end
+
+  def log_level(_conn), do: :info
 
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
