@@ -10,5 +10,6 @@ defmodule LimbusRealtimeWeb.Router do
 
     get "/health", HealthController, :index
     get "/presence", PresenceController, :index
+    get "/rooms", PublicRoomsController, :index
   end
 end

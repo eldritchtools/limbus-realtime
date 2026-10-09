@@ -32,6 +32,10 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
     Channel.broadcast!(socket, "settings", %{settings: settings})
   end
 
+  def execute({:broadcast_public_status, status}, socket, _room_state, _component_state) do
+    Channel.broadcast!(socket, "public_status", %{status: status})
+  end
+
   def execute(:broadcast_draft_started, _socket, _room_state, state) do
     Enum.each(state.participants, fn {_client_id, participant} ->
       if participant.connected do
@@ -42,7 +46,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
              player_id: participant.player_id,
              draft_points: participant.draft_points,
              draft_order: current_draft_order(state),
-             participants: build_participants(state)
+             participants: build_participants(state),
+             blacklist: MapSet.to_list(state.blacklisted_identities)
            }}
         )
       end
@@ -71,6 +76,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
 
     next_player_id =
       case Enum.at(payload.draft_order, 0) do
+        :blacklist -> nil
         "e-" <> id -> String.to_integer(id)
         id -> id
       end
@@ -87,6 +93,49 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
         send(
           participant.channel_pid,
           {:push_message, "draft_pick", payload}
+        )
+      end
+    end)
+  end
+
+  def execute(:broadcast_blacklist_state, socket, _room_state, state) do
+    Channel.broadcast_from!(socket, "blacklist_state", %{
+      chosen_count: map_size(state.blacklist_votes),
+      player_count: map_size(state.participants)
+    })
+
+    Channel.push(socket, "blacklist_selected", %{
+      chosen_count: map_size(state.blacklist_votes),
+      player_count: map_size(state.participants)
+    })
+  end
+
+  def execute({:broadcast_blacklist_resolved, draft_index}, _socket, _room_state, state) do
+    payload = %{
+      blacklist: MapSet.to_list(state.blacklisted_identities),
+      draft_index: draft_index,
+      draft_order: current_draft_order(state)
+    }
+
+    next_player_id =
+      case Enum.at(payload.draft_order, 0) do
+        :blacklist -> nil
+        "e-" <> id -> String.to_integer(id)
+        id -> id
+      end
+
+    Enum.each(state.participants, fn {_client_id, participant} ->
+      if participant.connected do
+        payload =
+          if participant.player_id == next_player_id do
+            Map.put(payload, :draft_points, participant.draft_points)
+          else
+            payload
+          end
+
+        send(
+          participant.channel_pid,
+          {:push_message, "blacklist_resolved", payload}
         )
       end
     end)
@@ -155,6 +204,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           phase: state.phase,
           player_id: nil,
           is_host: client_id == state.host_client_id,
+          is_public: state.public,
           settings: state.settings,
           participants:
             state.participants
@@ -162,14 +212,27 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
         }
 
       :draft ->
+        draft_order = current_draft_order(state)
+
         %{
           phase: state.phase,
           player_id: participant.player_id,
           draft_points: participant.draft_points,
           is_host: client_id == state.host_client_id,
           participants: build_participants(state),
-          draft_order: current_draft_order(state),
-          settings: %{rounds: state.settings["rounds"]}
+          draft_order: draft_order,
+          settings: %{rounds: state.settings["rounds"]},
+          chosen_count:
+            case Enum.at(draft_order, 0) do
+              :blacklist -> map_size(state.blacklist_votes)
+              _ -> 0
+            end,
+          picked:
+            case Enum.at(draft_order, 0) do
+              :blacklist -> Map.has_key?(state.blacklist_votes, client_id)
+              _ -> false
+            end,
+          blacklist: MapSet.to_list(state.blacklisted_identities)
         }
 
       :draft_complete ->
@@ -193,7 +256,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           round_number: state.round_number,
           skill_counts: participant.skill_counts,
           ego_used: participant.ego_used,
-          settings: %{rounds: state.settings["rounds"]}
+          settings: %{rounds: state.settings["rounds"]},
+          chosen_count: map_size(state.submissions),
+          picked: Map.has_key?(state.submissions, client_id)
         }
 
       :round_reveal ->

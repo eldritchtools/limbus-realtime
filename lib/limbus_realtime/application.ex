@@ -17,8 +17,10 @@ defmodule LimbusRealtime.Application do
       LimbusRealtimeWeb.Endpoint,
       {Registry, keys: :unique, name: LimbusRealtime.RoomRegistry},
       {DynamicSupervisor, strategy: :one_for_one, name: LimbusRealtime.RoomSupervisor},
+      {LimbusRealtime.Realtime.PublicRoomRegistry, []},
       {LimbusRealtime.RateLimit, [clean_period: :timer.minutes(10)]},
-      LimbusRealtime.Realtime.Data.ClashingData
+      LimbusRealtime.Realtime.Data.ClashingData,
+      LimbusRealtime.MemoryLogger
     ]
 
     # See https://elixir.hexdocs.pm/Supervisor.html

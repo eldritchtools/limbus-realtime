@@ -1,6 +1,7 @@
 defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
   defstruct phase: :setup,
             host_client_id: nil,
+            public: false,
             participants: %{},
             player_order: [],
             settings: %{},
@@ -12,7 +13,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
             submissions: %{},
             current_round: nil,
             round_number: 0,
-            results: %{}
+            results: %{},
+            blacklist_votes: %{},
+            blacklisted_identities: MapSet.new()
 
   @type phase :: :setup | :draft | :draft_complete | :round_select | :round_reveal | :finished
 
@@ -33,6 +36,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
   @type t :: %__MODULE__{
           phase: phase(),
           host_client_id: String.t() | nil,
+          public: boolean(),
           participants: %{String.t() => participant()},
           player_order: [String.t()],
           settings: %{String.t() => any()},
@@ -44,6 +48,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
           submissions: %{String.t() => any()},
           current_round: map() | nil,
           round_number: non_neg_integer(),
-          results: %{String.t() => any()}
+          results: %{String.t() => any()},
+          blacklist_votes: %{String.t() => String.t()},
+          blacklisted_identities: MapSet.t()
         }
 end

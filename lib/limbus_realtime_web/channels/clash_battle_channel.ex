@@ -7,6 +7,8 @@ defmodule LimbusRealtimeWeb.ClashBattleChannel do
   @events %{
     "change_setting" => :change_settings,
     "change_settings" => :change_settings,
+    "open_to_public" => :open_to_public,
+    "close_to_public" => :close_to_public,
     "start_draft" => :start_draft,
     "pick_item" => :pick_item,
     "start_game" => :start_game,

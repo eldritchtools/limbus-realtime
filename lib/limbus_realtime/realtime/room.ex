@@ -16,22 +16,27 @@ defmodule LimbusRealtime.Realtime.Room do
   end
 
   def join(room_id, connection) do
-    GenServer.call(via(room_id), {:join, connection})
+    with_room(room_id, fn pid ->
+      GenServer.call(pid, {:join, connection})
+    end)
   end
 
   def leave(room_id, connection_id) do
-    GenServer.call(via(room_id), {:leave, connection_id})
+    with_room(room_id, fn pid ->
+      GenServer.call(pid, {:leave, connection_id})
+    end)
   end
 
   def member?(room_id, connection_id) do
-    GenServer.call(via(room_id), {:member?, connection_id})
+    with_room(room_id, fn pid ->
+      GenServer.call(pid, {:member?, connection_id})
+    end)
   end
 
   def handle_component_action(room_id, component, action, payload, socket) do
-    GenServer.call(
-      via(room_id),
-      {:handle_component_action, component, action, payload, socket}
-    )
+    with_room(room_id, fn pid ->
+      GenServer.call(pid, {:handle_component_action, component, action, payload, socket})
+    end)
   end
 
   def get_component_state(room_id, component) do

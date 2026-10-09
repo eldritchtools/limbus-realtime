@@ -49,8 +49,20 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
             |> put_in([Access.key!(:participants), participant.id], participant)
             |> Map.update!(:player_order, &(&1 ++ [participant.id]))
 
+          players = map_size(state.participants)
+
+          {state, effect} =
+            if players >= @max_players do
+              :ok = LimbusRealtime.Realtime.PublicRoomRegistry.close(fetch_room_id())
+              {%{state | public: false}, [{:broadcast_public_status, false}]}
+            else
+              :ok = LimbusRealtime.Realtime.PublicRoomRegistry.update(fetch_room_id(), players)
+              {state, []}
+            end
+
           {:ok, state,
-           [{:send_state, participant.id}, {:broadcast_joined, participant.display_name}]}
+           [{:send_state, participant.id}, {:broadcast_joined, participant.display_name}] ++
+             effect}
       end
     end
   end
@@ -89,9 +101,42 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     end
   end
 
+  def open_to_public(payload, _connection, state) do
+    with :ok <- check_host(payload, state),
+         :ok <- check_phase(:setup, state),
+         true <- map_size(state.participants) < @max_players,
+         room_id <- fetch_room_id() do
+      :ok =
+        LimbusRealtime.Realtime.PublicRoomRegistry.open(
+          room_id,
+          public_room_type(),
+          state.participants[state.host_client_id].display_name,
+          map_size(state.participants),
+          @max_players
+        )
+
+      {:ok, %{state | public: true}, [{:broadcast_public_status, true}]}
+    else
+      false -> {:error, "room_full"}
+      {:error, reason} -> {:error, reason}
+    end
+  end
+
+  def close_to_public(payload, _connection, state) do
+    with :ok <- check_host(payload, state),
+         :ok <- check_phase(:setup, state),
+         room_id <- fetch_room_id() do
+      :ok = LimbusRealtime.Realtime.PublicRoomRegistry.close(room_id)
+
+      {:ok, %{state | public: false}, [{:broadcast_public_status, false}]}
+    end
+  end
+
   def start_draft(payload, _connection, state) do
     with :ok <- check_host(payload, state),
          :ok <- check_phase(:setup, state) do
+      :ok = LimbusRealtime.Realtime.PublicRoomRegistry.close(fetch_room_id())
+
       participants =
         state.player_order
         |> Enum.with_index(1)
@@ -111,19 +156,22 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
           player_ids,
           state.settings["team_size"],
           state.settings["draft_order"],
-          state.settings["ego_draft"]
+          state.settings["ego_draft"],
+          state.settings["blacklisting"]
         )
 
       state =
         %{
           state
           | phase: :draft,
+            public: false,
             participants: participants,
             draft_order: draft_order,
             draft_index: 0,
             picked_identities: MapSet.new(),
             picked_egos: MapSet.new(),
-            item_data: %{}
+            item_data: %{},
+            blacklisted_identities: MapSet.new()
         }
         |> add_draft_points(0)
 
@@ -135,6 +183,83 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
   end
 
   def pick_item(payload, _connection, state) do
+    case Enum.at(state.draft_order, state.draft_index) do
+      :blacklist ->
+        vote_blacklist(payload, state)
+
+      _ ->
+        pick_draft_item(payload, state)
+    end
+  end
+
+  defp vote_blacklist(payload, state) do
+    client_id = payload.user.client_id
+    item_id = payload["item_id"]
+
+    with :ok <- check_phase(:draft, state),
+         :ok <- check_participant(payload, state),
+         false <- Map.has_key?(state.blacklist_votes, client_id),
+         true <- check_identity_blacklist(item_id) do
+      votes = Map.put(state.blacklist_votes, client_id, item_id)
+      state = %{state | blacklist_votes: votes}
+
+      if map_size(votes) == map_size(state.participants) do
+        resolve_blacklist(state)
+      else
+        {:ok, state, [:broadcast_blacklist_state]}
+      end
+    else
+      true ->
+        {:error, "already_voted"}
+
+      {:error, reason} ->
+        {:error, reason}
+    end
+  end
+
+  defp check_identity_blacklist(identity_id) do
+    cond do
+      identity_id == nil ->
+        true
+
+      not is_binary(identity_id) ->
+        {:error, "invalid_identity"}
+
+      not ClashingData.has_id?(identity_id) ->
+        {:error, "invalid_identity"}
+
+      true ->
+        true
+    end
+  end
+
+  defp resolve_blacklist(state) do
+    newly_blacklisted =
+      state.blacklist_votes
+      |> Map.values()
+      |> Enum.reject(fn
+        nil -> true
+        identity_id -> MapSet.member?(state.picked_identities, identity_id)
+      end)
+      |> MapSet.new()
+
+    blacklisted_identities =
+      MapSet.union(state.blacklisted_identities, newly_blacklisted)
+
+    draft_index = state.draft_index + 1
+
+    state = %{
+      state
+      | blacklisted_identities: blacklisted_identities,
+        blacklist_votes: %{},
+        draft_index: draft_index
+    }
+
+    state = state |> add_draft_points(draft_index)
+    {:ok, state, [{:broadcast_blacklist_resolved, draft_index}]}
+  end
+
+  defp pick_draft_item(payload, state) do
     with :ok <- check_phase(:draft, state),
          :ok <- check_draft_turn(payload, state),
          {:ok, type, cost} <- check_item(payload["item_id"], payload.user.client_id, state) do
@@ -205,7 +330,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
   defp add_draft_points(state, draft_index) do
     points = state.settings["points_per_draft"]
 
-    if points do
+    if points > 0 and Enum.at(state.draft_order, draft_index) != :blacklist do
       {type, player_id} =
         case Enum.at(state.draft_order, draft_index) do
           "e-" <> player_id ->
@@ -247,7 +372,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
         | phase: :round_select,
           round_number: 1,
           submissions: %{},
-          results: %{}
+          results: %{},
+          blacklisted_identities: MapSet.new()
       }
 
       state = start_round(state)
@@ -345,11 +471,17 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
   end
 
   defp resolve_round(state) do
+    teams =
+      Map.new(state.participants, fn {client_id, participant} ->
+        {client_id, participant.identities}
+      end)
+
     results =
       Simulator.simulate_round(
         state.current_round,
         state.submissions,
-        state.item_data
+        state.item_data,
+        teams
       )
 
     participants =
@@ -454,7 +586,20 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
                   player_order: List.delete(state.player_order, client_id)
               }
 
-              {state, [{:broadcast_left, participant.display_name}]}
+              players = map_size(participants)
+
+              {state, effect} =
+                if players == 0 do
+                  :ok = LimbusRealtime.Realtime.PublicRoomRegistry.close(fetch_room_id())
+                  {%{state | public: false}, [{:broadcast_public_status, false}]}
+                else
+                  :ok =
+                    LimbusRealtime.Realtime.PublicRoomRegistry.update(fetch_room_id(), players)
+
+                  {state, []}
+                end
+
+              {state, [{:broadcast_left, participant.display_name}] ++ effect}
           end
 
         _ ->
@@ -499,7 +644,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     }
   end
 
-  defp build_draft_order(player_ids, team_size, mode, ego_draft) do
+  defp build_draft_order(player_ids, team_size, mode, ego_draft, blacklisting) do
     identity_order =
       case mode do
         "snake" ->
@@ -510,6 +655,16 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
         _ ->
           build_cycle_draft_order(player_ids, team_size)
+      end
+
+    identity_order =
+      if blacklisting do
+        identity_order
+        |> Enum.chunk_every(length(player_ids) * 2)
+        |> Enum.intersperse([:blacklist])
+        |> List.flatten()
+      else
+        identity_order
       end
 
     if ego_draft do
@@ -575,6 +730,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
       MapSet.member?(state.picked_identities, identity_id) ->
         {:error, "identity_already_picked"}
+
+      MapSet.member?(state.blacklisted_identities, identity_id) ->
+        {:error, "identity_blacklisted"}
 
       not ClashingData.has_id?(identity_id) ->
         {:error, "invalid_identity"}
@@ -679,5 +837,16 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     else
       {:error, "not_a_participant"}
     end
+  end
+
+  defp fetch_room_id do
+    case Registry.keys(LimbusRealtime.RoomRegistry, self()) do
+      [room_id] -> room_id
+      _ -> nil
+    end
+  end
+
+  defp public_room_type do
+    :clash_battle
   end
 end
