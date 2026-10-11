@@ -5,7 +5,7 @@ defmodule LimbusRealtimeWeb.PublicRoomsController do
 
   @room_types %{
     "clash_battle" => :clash_battle,
-    "battle_royale" => :battle_royale
+    "clash_battle_royale" => :clash_battle_royale
   }
 
   def index(conn, params) do

@@ -5,7 +5,10 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
   alias LimbusRealtime.Realtime.Components.ClashBattle.Modifiers
   alias LimbusRealtime.Realtime.Data.ClashingData
 
-  @max_players 8
+  @max_players %{
+    standard: 8,
+    battle_royale: 200
+  }
 
   def initial_state do
     %State{}
@@ -25,7 +28,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
         state.phase != :setup ->
           {:error, "game_in_progress"}
 
-        map_size(state.participants) >= @max_players ->
+        map_size(state.participants) >= @max_players[state.mode] ->
           {:error, "room_full"}
 
         true ->
@@ -45,14 +48,14 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
           state =
             state
-            |> assign_host(user.client_id, payload["settings"])
+            |> assign_host(user.client_id, payload["mode"], payload["settings"])
             |> put_in([Access.key!(:participants), participant.id], participant)
             |> Map.update!(:player_order, &(&1 ++ [participant.id]))
 
           players = map_size(state.participants)
 
           {state, effect} =
-            if players >= @max_players do
+            if players >= @max_players[state.mode] do
               :ok = LimbusRealtime.Realtime.PublicRoomRegistry.close(fetch_room_id())
               {%{state | public: false}, [{:broadcast_public_status, false}]}
             else
@@ -67,11 +70,20 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     end
   end
 
-  defp assign_host(%State{host_client_id: nil} = state, client_id, initial_settings) do
-    %{state | host_client_id: client_id, settings: initial_settings || %{}}
+  defp assign_host(%State{host_client_id: nil} = state, client_id, mode, initial_settings) do
+    %{
+      state
+      | host_client_id: client_id,
+        mode:
+          case mode do
+            "battleRoyale" -> :battle_royale
+            _ -> :standard
+          end,
+        settings: initial_settings || %{}
+    }
   end
 
-  defp assign_host(state, _, _), do: state
+  defp assign_host(state, _, _, _), do: state
 
   defp validate_user(user) do
     cond do
@@ -104,15 +116,15 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
   def open_to_public(payload, _connection, state) do
     with :ok <- check_host(payload, state),
          :ok <- check_phase(:setup, state),
-         true <- map_size(state.participants) < @max_players,
+         true <- map_size(state.participants) < @max_players[state.mode],
          room_id <- fetch_room_id() do
       :ok =
         LimbusRealtime.Realtime.PublicRoomRegistry.open(
           room_id,
-          public_room_type(),
+          public_room_type(state),
           state.participants[state.host_client_id].display_name,
           map_size(state.participants),
-          @max_players
+          @max_players[state.mode]
         )
 
       {:ok, %{state | public: true}, [{:broadcast_public_status, true}]}
@@ -152,13 +164,18 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
         |> Enum.map(&participants[&1].player_id)
 
       draft_order =
-        build_draft_order(
-          player_ids,
-          state.settings["team_size"],
-          state.settings["draft_order"],
-          state.settings["ego_draft"],
-          state.settings["blacklisting"]
-        )
+        if state.mode == :battle_royale do
+          List.duplicate(:identity, state.settings["team_size"]) ++
+            if state.settings["ego_draft"], do: [:ego], else: []
+        else
+          build_draft_order(
+            player_ids,
+            state.settings["team_size"],
+            state.settings["draft_order"],
+            state.settings["ego_draft"],
+            state.settings["blacklisting"]
+          )
+        end
 
       state =
         %{
@@ -260,6 +277,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
   end
 
   defp pick_draft_item(payload, state) do
+    IO.inspect("pick draft item")
     with :ok <- check_phase(:draft, state),
          :ok <- check_draft_turn(payload, state),
          {:ok, type, cost} <- check_item(payload["item_id"], payload.user.client_id, state) do
@@ -300,26 +318,61 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
             %{
               state
               | participants: participants,
-                picked_identities: MapSet.put(state.picked_identities, item_id),
-                draft_index: draft_index + 1
+                picked_identities: MapSet.put(state.picked_identities, item_id)
             }
 
           :ego ->
             %{
               state
               | participants: participants,
-                picked_egos: MapSet.put(state.picked_egos, item_id),
-                draft_index: draft_index + 1
+                picked_egos: MapSet.put(state.picked_egos, item_id)
             }
         end
 
-      if state.draft_index >= length(state.draft_order) do
-        state = finish_draft(state)
+      IO.inspect(state.mode)
 
-        {:ok, state, [:broadcast_state]}
+      if state.mode == :battle_royale do
+        submitted_count =
+          Enum.count(state.participants, fn {_id, p} ->
+            case Enum.at(state.draft_order, draft_index) do
+              :identity -> length(p.identities) > draft_index
+              :ego -> not is_nil(p.ego)
+            end
+          end)
+
+        IO.inspect(submitted_count)
+
+        if submitted_count == map_size(state.participants) do
+          state = %{state | draft_index: draft_index + 1}
+
+          if state.draft_index >= length(state.draft_order) do
+            {:ok, finish_draft(state), [:broadcast_state]}
+          else
+            state = add_draft_points(state, state.draft_index)
+
+            {:ok, state, [{:broadcast_draft_round_complete, draft_index}]}
+          end
+        else
+          effects = [{:send_draft_successful, type, item_id}]
+
+          effects =
+            if rem(submitted_count, 10) == 0 do
+              [{:send_draft_progress, submitted_count} | effects]
+            else
+              effects
+            end
+
+          {:ok, state, effects}
+        end
       else
-        state = state |> add_draft_points(draft_index + 1)
-        {:ok, state, [{:broadcast_draft_pick, type, item_id, draft_index}]}
+        state = %{state | draft_index: draft_index + 1}
+
+        if state.draft_index >= length(state.draft_order) do
+          {:ok, finish_draft(state), [:broadcast_state]}
+        else
+          state = add_draft_points(state, state.draft_index)
+          {:ok, state, [{:broadcast_draft_pick, type, item_id, draft_index}]}
+        end
       end
     else
       {:error, reason} ->
@@ -327,41 +380,139 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     end
   end
 
+  def force_advance_draft(payload, _connection, state) do
+    with :ok <- check_phase(:draft, state),
+         :ok <- check_host(payload, state),
+         :ok <- check_battle_royale(state) do
+      draft_index = state.draft_index
+      draft_type = Enum.at(state.draft_order, draft_index)
+
+      participants =
+        Map.new(state.participants, fn {client_id, participant} ->
+          participant =
+            case draft_type do
+              :identity when length(participant.identities) == draft_index ->
+                %{participant | identities: participant.identities ++ [nil]}
+
+              _ ->
+                participant
+            end
+
+          {client_id, participant}
+        end)
+
+      state = %{state | participants: participants, draft_index: draft_index + 1}
+
+      state =
+        if draft_index + 1 >= length(state.draft_order) do
+          finish_draft(state)
+        else
+          add_draft_points(state, draft_index + 1)
+        end
+
+      effects =
+        if state.phase == :draft_complete do
+          [:broadcast_state]
+        else
+          [{:broadcast_draft_round_complete, draft_index}]
+        end
+
+      {:ok, state, effects}
+    else
+      {:error, reason} ->
+        {:error, reason}
+    end
+  end
+
+  defp check_battle_royale(%State{mode: :battle_royale}), do: :ok
+  defp check_battle_royale(_state), do: {:error, "invalid_mode"}
+
   defp add_draft_points(state, draft_index) do
     points = state.settings["points_per_draft"]
 
-    if points > 0 and Enum.at(state.draft_order, draft_index) != :blacklist do
-      {type, player_id} =
-        case Enum.at(state.draft_order, draft_index) do
-          "e-" <> player_id ->
-            {:ego, String.to_integer(player_id)}
+    cond do
+      points <= 0 ->
+        state
 
-          player_id ->
-            {:id, player_id}
-        end
+      state.mode == :battle_royale ->
+        draft_type = Enum.at(state.draft_order, draft_index)
 
-      {client_id, participant} =
-        Enum.find(state.participants, fn {_client_id, participant} ->
-          participant.player_id == player_id
+        to_add =
+          case draft_type do
+            :identity -> points
+            :ego -> ceil(points / 2) |> trunc()
+            _ -> 0
+          end
+
+        update_in(state.participants, fn participants ->
+          Map.new(participants, fn {id, participant} ->
+            {id, %{participant | draft_points: participant.draft_points + to_add}}
+          end)
         end)
 
-      to_add =
-        case type do
-          :id -> points
-          :ego -> ceil(points / 2) |> trunc()
-        end
+      Enum.at(state.draft_order, draft_index) != :blacklist ->
+        {type, player_id} =
+          case Enum.at(state.draft_order, draft_index) do
+            "e-" <> player_id ->
+              {:ego, String.to_integer(player_id)}
 
-      participants =
-        Map.put(
-          state.participants,
-          client_id,
-          %{participant | draft_points: participant.draft_points + to_add}
-        )
+            player_id ->
+              {:id, player_id}
+          end
 
-      %{state | participants: participants}
-    else
-      state
+        {client_id, participant} =
+          Enum.find(state.participants, fn {_client_id, participant} ->
+            participant.player_id == player_id
+          end)
+
+        to_add =
+          case type do
+            :id -> points
+            :ego -> ceil(points / 2) |> trunc()
+          end
+
+        participants =
+          Map.put(
+            state.participants,
+            client_id,
+            %{participant | draft_points: participant.draft_points + to_add}
+          )
+
+        %{state | participants: participants}
+
+      true ->
+        state
     end
+  end
+
+  defp finish_draft(state) do
+    selected_ids =
+      state.picked_identities
+      |> MapSet.union(state.picked_egos)
+      |> MapSet.to_list()
+
+    participants =
+      Map.new(state.participants, fn {client_id, participant} ->
+        identities = Enum.reject(participant.identities, &is_nil/1)
+
+        skill_counts = Map.new(identities, fn identity_id ->
+            {identity_id, [3, 2, 1, 0]}
+          end)
+
+        {client_id, %{participant | identities: identities, skill_counts: skill_counts, ego_used: false, score: 0}}
+      end)
+
+    %{
+      state
+      | phase: :draft_complete,
+        participants: participants,
+        draft_order: [],
+        draft_index: 0,
+        round_number: 0,
+        item_data: ClashingData.get(selected_ids),
+        submissions: %{},
+        current_round: nil
+    }
   end
 
   def start_game(payload, _connection, state) do
@@ -409,12 +560,22 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
       state = put_in(state.participants[client_id], participant)
       state = put_in(state.submissions[client_id], submission)
+      submitted_count = map_size(state.submissions)
 
-      if map_size(state.submissions) == map_size(state.participants) do
-        {:ok, resolve_round(state),
-         [{:broadcast_skill_chosen, type, item_id, skill}, :broadcast_round_reveal]}
+      effects = [{:broadcast_skill_chosen, type, item_id, skill}]
+
+      if submitted_count == map_size(state.participants) do
+        {:ok, resolve_round(state), [:broadcast_round_reveal | effects]}
       else
-        {:ok, state, [{:broadcast_skill_chosen, type, item_id, skill}]}
+        if state.mode == :battle_royale do
+          if rem(submitted_count, 10) == 0 do
+            {:ok, state, [{:send_round_progress, submitted_count} | effects]}
+          else
+            {:ok, state, effects}
+          end
+        else
+          {:ok, state, effects}
+        end
       end
     else
       true ->
@@ -470,10 +631,21 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     end
   end
 
+  def force_advance_round(payload, _connection, state) do
+    with :ok <- check_host(payload, state),
+         :ok <- check_phase(:round_select, state),
+         true <- map_size(state.submissions) > 0 do
+      {:ok, resolve_round(state), [:broadcast_round_reveal]}
+    else
+      false -> {:error, "no_submissions"}
+      {:error, reason} -> {:error, reason}
+    end
+  end
+
   defp resolve_round(state) do
     teams =
       Map.new(state.participants, fn {client_id, participant} ->
-        {client_id, participant.identities}
+        {client_id, {participant.identities, participant.ego}}
       end)
 
     results =
@@ -483,10 +655,17 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
         state.item_data,
         teams
       )
+      |> distribute_points(state)
 
     participants =
       Map.new(state.participants, fn {client_id, participant} ->
-        {client_id, %{participant | score: participant.score + results[client_id].points}}
+        case Map.get(results, client_id) do
+          %{points: points} ->
+            {client_id, %{participant | score: participant.score + points}}
+
+          _ ->
+            {client_id, participant}
+        end
       end)
 
     results =
@@ -495,6 +674,37 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
       end)
 
     %{state | phase: :round_reveal, participants: participants, results: results}
+  end
+
+  defp distribute_points(results, %{mode: :standard}) do
+    highest = results |> Map.values() |> Enum.map(& &1.clash_value) |> Enum.max()
+
+    Map.new(results, fn {client_id, result} ->
+      {client_id, Map.put(result, :points, if(result.clash_value == highest, do: 1, else: 0))}
+    end)
+  end
+
+  defp distribute_points(results, %{mode: :battle_royale, settings: %{"scoring" => "value"}}) do
+    Map.new(results, fn {client_id, result} ->
+      {client_id, Map.put(result, :points, result.clash_value)}
+    end)
+  end
+
+  defp distribute_points(results, state = %{mode: :battle_royale}) do
+    results
+    |> Enum.group_by(fn {_client_id, result} -> result.clash_value end)
+    |> Enum.sort_by(fn {clash_value, _players} -> clash_value end, :desc)
+    |> Enum.reduce({%{}, 1}, fn {_clash_value, players}, {scored, rank} ->
+      points = map_size(state.participants) - rank + 1
+
+      scored =
+        Enum.reduce(players, scored, fn {client_id, result}, acc ->
+          Map.put(acc, client_id, Map.put(result, :points, points))
+        end)
+
+      {scored, rank + length(players)}
+    end)
+    |> elem(0)
   end
 
   def next_round(payload, _connection, state) do
@@ -615,35 +825,6 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     {:ok, state, effects}
   end
 
-  defp finish_draft(state) do
-    selected_ids =
-      state.picked_identities
-      |> MapSet.union(state.picked_egos)
-      |> MapSet.to_list()
-
-    participants =
-      Map.new(state.participants, fn {client_id, participant} ->
-        skill_counts =
-          Map.new(participant.identities, fn identity_id ->
-            {identity_id, [3, 2, 1, 0]}
-          end)
-
-        {client_id, %{participant | skill_counts: skill_counts, ego_used: false, score: 0}}
-      end)
-
-    %{
-      state
-      | phase: :draft_complete,
-        participants: participants,
-        draft_order: [],
-        draft_index: 0,
-        round_number: 0,
-        item_data: ClashingData.get(selected_ids),
-        submissions: %{},
-        current_round: nil
-    }
-  end
-
   defp build_draft_order(player_ids, team_size, mode, ego_draft, blacklisting) do
     identity_order =
       case mode do
@@ -714,8 +895,14 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
   end
 
   defp check_item(item_id, client_id, state) do
-    case state.draft_order |> Enum.at(state.draft_index) do
-      "e-" <> _ ->
+    case {state.mode, Enum.at(state.draft_order, state.draft_index)} do
+      {:battle_royale, :identity} ->
+        check_identity(item_id, client_id, state)
+
+      {:battle_royale, :ego} ->
+        check_ego(item_id, client_id, state)
+
+      {_, "e-" <> _} ->
         check_ego(item_id, client_id, state)
 
       _ ->
@@ -728,7 +915,12 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
       not is_binary(identity_id) ->
         {:error, "invalid_identity"}
 
-      MapSet.member?(state.picked_identities, identity_id) ->
+      state.mode != :battle_royale and
+          MapSet.member?(state.picked_identities, identity_id) ->
+        {:error, "identity_already_picked"}
+
+      state.mode == :battle_royale and
+          Enum.member?(state.participants[client_id].identities, identity_id) ->
         {:error, "identity_already_picked"}
 
       MapSet.member?(state.blacklisted_identities, identity_id) ->
@@ -764,7 +956,12 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
       not is_binary(ego_id) ->
         {:error, "invalid_ego"}
 
-      MapSet.member?(state.picked_egos, ego_id) ->
+      state.mode != :battle_royale and
+          MapSet.member?(state.picked_egos, ego_id) ->
+        {:error, "ego_already_picked"}
+
+      state.mode == :battle_royale and
+          state.participants[client_id].ego == ego_id ->
         {:error, "ego_already_picked"}
 
       not ClashingData.has_id?(ego_id) ->
@@ -793,19 +990,31 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
   end
 
   defp check_draft_turn(payload, state) do
-    current_client_id =
-      state.draft_order
-      |> Enum.at(state.draft_index)
-      |> then(fn
-        "e-" <> player_id -> String.to_integer(player_id)
-        player_id -> player_id
-      end)
-      |> player_client_id(state)
+    if state.mode == :battle_royale do
+      participant = state.participants[payload.user.client_id]
 
-    if payload.user.client_id === current_client_id do
-      :ok
+      already_submitted =
+        case Enum.at(state.draft_order, state.draft_index) do
+          :identity -> length(participant.identities) > state.draft_index
+          :ego -> not is_nil(participant.ego)
+        end
+
+      if already_submitted, do: {:error, "already_submitted"}, else: :ok
     else
-      {:error, "not_your_turn"}
+      current_client_id =
+        state.draft_order
+        |> Enum.at(state.draft_index)
+        |> then(fn
+          "e-" <> player_id -> String.to_integer(player_id)
+          player_id -> player_id
+        end)
+        |> player_client_id(state)
+
+      if payload.user.client_id === current_client_id do
+        :ok
+      else
+        {:error, "not_your_turn"}
+      end
     end
   end
 
@@ -846,7 +1055,10 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
     end
   end
 
-  defp public_room_type do
-    :clash_battle
+  defp public_room_type(state) do
+    case state.mode do
+      :standard -> :clash_battle
+      :battle_royale -> :clash_battle_royale
+    end
   end
 end

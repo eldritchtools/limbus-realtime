@@ -11,8 +11,10 @@ defmodule LimbusRealtimeWeb.ClashBattleChannel do
     "close_to_public" => :close_to_public,
     "start_draft" => :start_draft,
     "pick_item" => :pick_item,
+    "force_advance_draft" => :force_advance_draft,
     "start_game" => :start_game,
     "select_skill" => :select_skill,
+    "force_advance_round" => :force_advance_round,
     "next_round" => :next_round,
     "return_to_setup" => :return_to_setup
   }
@@ -61,6 +63,7 @@ defmodule LimbusRealtimeWeb.ClashBattleChannel do
 
   @impl true
   def handle_in(event, payload, socket) do
+    IO.inspect({event, payload}, label: "CHANNEL EVENT")
     case @events[event] do
       nil ->
         {:reply, {:error, %{reason: "unknown_event"}}, socket}
@@ -86,6 +89,7 @@ defmodule LimbusRealtimeWeb.ClashBattleChannel do
   defp handle_action(event, payload, socket) do
     payload = Map.put(payload, :user, socket.assigns.user)
 
+    IO.inspect(payload, label: "#{event}")
     case Room.handle_component_action(
            room_id(socket),
            :clash_battle,

@@ -855,6 +855,12 @@
       "L Corp.",
       "Lobotomy Corp. Headquarters"
     ],
+    "keywordModifiers": [
+      {
+        "ego": "20109",
+        "keyword": "Tremor"
+      }
+    ],
     "keywords": [
       "Sinking"
     ],
@@ -6230,6 +6236,7 @@
       "Charge",
       "Tremor"
     ],
+    "modifierDesc": "Gains a bonus skill use every 5 rounds.",
     "modifiers": [
       {
         "condition": {
@@ -9028,6 +9035,12 @@
     "factions": [
       "Blade Lineage",
       "Syndicate"
+    ],
+    "keywordModifiers": [
+      {
+        "ego": "20509",
+        "keyword": "Bleed"
+      }
     ],
     "keywords": [
       "Poise"

@@ -4,30 +4,23 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
   alias LimbusRealtime.Realtime.Components.ClashBattle.StatusData
 
   def simulate_round(round, submissions, item_data, teams) do
-    results =
-      Map.new(
-        submissions,
-        fn {client_id,
-            %{type: _type, item_id: item_id, skill: _skill, resolved_skill: resolved_skill}} ->
-          item = item_data |> Map.fetch!(item_id)
-          skill_data = item |> Map.fetch!(to_string(resolved_skill))
-          status_data = item |> Map.get("statuses", [])
+    Map.new(
+      submissions,
+      fn {client_id,
+          %{type: _type, item_id: item_id, skill: _skill, resolved_skill: resolved_skill}} ->
+        item = item_data |> Map.fetch!(item_id)
+        skill_data = item |> Map.fetch!(to_string(resolved_skill))
+        status_data = item |> Map.get("statuses", [])
 
-          {clash_value, coins} =
-            calculate_skill_clash(skill_data, round, status_data, item_id, resolved_skill)
+        {clash_value, coins} =
+          calculate_skill_clash(skill_data, round, status_data, item_id, resolved_skill)
 
-          team_bonus = calculate_team_bonus(item_id, teams[client_id], round, item_data)
+        team_bonus = calculate_team_bonus(item_id, teams[client_id], round, item_data)
 
-          {client_id,
-           %{clash_value: clash_value + team_bonus, coins: coins, team_bonus: team_bonus}}
-        end
-      )
-
-    highest = results |> Map.values() |> Enum.map(& &1.clash_value) |> Enum.max()
-
-    Map.new(results, fn {client_id, result} ->
-      {client_id, Map.put(result, :points, if(result.clash_value == highest, do: 1, else: 0))}
-    end)
+        {client_id,
+         %{clash_value: clash_value + team_bonus, coins: coins, team_bonus: team_bonus}}
+      end
+    )
   end
 
   defp calculate_skill_clash(skill, round, status_data, item_id, resolved_skill) do
@@ -393,11 +386,11 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
     {conditional["target"], value}
   end
 
-  defp calculate_team_bonus(item_id, team_ids, round, item_data) do
+  defp calculate_team_bonus(item_id, {team_ids, ego_id}, round, item_data) do
     item = Map.fetch!(item_data, item_id)
 
     factions = Map.get(item, "factions", [])
-    keywords = Map.get(item, "keywords", [])
+    keywords = evaluate_keywords(item, ego_id)
 
     teammates =
       team_ids
@@ -411,9 +404,15 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
 
     keyword_matches =
       Enum.count(teammates, fn teammate ->
-        Enum.any?(keywords, &(&1 in Map.get(teammate, "keywords", [])))
+        Enum.any?(keywords, &(&1 in evaluate_keywords(teammate, ego_id)))
       end)
 
     faction_matches * round.faction_bonus + keyword_matches * round.keyword_bonus
+  end
+
+  defp evaluate_keywords(teammate, ego_id) do
+    Map.get(teammate, "keywords", []) ++
+      for %{"keyword" => keyword, "ego" => required_ego} <- Map.get(teammate, "keywordModifiers", []),
+          required_ego == ego_id, do: keyword
   end
 end

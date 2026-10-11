@@ -34,7 +34,7 @@ defmodule LimbusRealtimeWeb.Endpoint do
   log: {__MODULE__, :log_level, []}
 
   def log_level(%{method: "GET", request_path: path})
-      when path in ["/api/presence", "/api/health"] do
+      when path in ["/api/presence", "/api/rooms", "/api/health"] do
     false
   end
 

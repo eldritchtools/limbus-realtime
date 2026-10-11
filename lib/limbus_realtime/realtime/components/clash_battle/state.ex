@@ -1,5 +1,6 @@
 defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
-  defstruct phase: :setup,
+  defstruct mode: :standard,
+            phase: :setup,
             host_client_id: nil,
             public: false,
             participants: %{},
@@ -17,6 +18,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
             blacklist_votes: %{},
             blacklisted_identities: MapSet.new()
 
+  @type mode :: :standard | :battle_royale
   @type phase :: :setup | :draft | :draft_complete | :round_select | :round_reveal | :finished
 
   @type participant :: %{
@@ -26,7 +28,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
           score: non_neg_integer(),
           connected: boolean(),
           channel_pid: pid(),
-          identities: [String.t()],
+          identities: [String.t() | nil],
           skill_counts: %{String.t() => [non_neg_integer()]} | nil,
           draft_points: non_neg_integer(),
           ego: String.t() | nil,
@@ -34,13 +36,14 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
         }
 
   @type t :: %__MODULE__{
+          mode: mode(),
           phase: phase(),
           host_client_id: String.t() | nil,
           public: boolean(),
           participants: %{String.t() => participant()},
           player_order: [String.t()],
           settings: %{String.t() => any()},
-          draft_order: [non_neg_integer()],
+          draft_order: [any()],
           draft_index: non_neg_integer(),
           picked_identities: MapSet.t(),
           picked_egos: MapSet.t(),
