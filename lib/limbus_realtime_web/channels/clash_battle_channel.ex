@@ -63,7 +63,6 @@ defmodule LimbusRealtimeWeb.ClashBattleChannel do
 
   @impl true
   def handle_in(event, payload, socket) do
-    IO.inspect({event, payload}, label: "CHANNEL EVENT")
     case @events[event] do
       nil ->
         {:reply, {:error, %{reason: "unknown_event"}}, socket}
@@ -89,7 +88,6 @@ defmodule LimbusRealtimeWeb.ClashBattleChannel do
   defp handle_action(event, payload, socket) do
     payload = Map.put(payload, :user, socket.assigns.user)
 
-    IO.inspect(payload, label: "#{event}")
     case Room.handle_component_action(
            room_id(socket),
            :clash_battle,

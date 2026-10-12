@@ -277,7 +277,6 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
   end
 
   defp pick_draft_item(payload, state) do
-    IO.inspect("pick draft item")
     with :ok <- check_phase(:draft, state),
          :ok <- check_draft_turn(payload, state),
          {:ok, type, cost} <- check_item(payload["item_id"], payload.user.client_id, state) do
@@ -329,8 +328,6 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
             }
         end
 
-      IO.inspect(state.mode)
-
       if state.mode == :battle_royale do
         submitted_count =
           Enum.count(state.participants, fn {_id, p} ->
@@ -339,8 +336,6 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
               :ego -> not is_nil(p.ego)
             end
           end)
-
-        IO.inspect(submitted_count)
 
         if submitted_count == map_size(state.participants) do
           state = %{state | draft_index: draft_index + 1}

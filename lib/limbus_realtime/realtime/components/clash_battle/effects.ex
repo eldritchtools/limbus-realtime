@@ -188,7 +188,6 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
   end
 
   def execute({:send_draft_successful, type, item_id}, socket, _room_state, _state) do
-    IO.inspect("draft successful effect")
     Channel.push(socket, "draft_successful", %{
       type: type,
       item_id: item_id
