@@ -299,7 +299,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           is_host: client_id == state.host_client_id,
           participants: build_participants(state),
           draft_order: draft_order,
-          settings: %{rounds: state.settings["rounds"]},
+          settings: %{rounds: state.settings["rounds"], points_per_draft: state.settings["points_per_draft"]},
           chosen_count:
               case Enum.at(draft_order, 0) do
                 :blacklist -> map_size(state.blacklist_votes)

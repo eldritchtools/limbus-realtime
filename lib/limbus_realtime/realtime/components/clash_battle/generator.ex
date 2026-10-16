@@ -17,11 +17,11 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Generator do
     min + round(r * (max - min))
   end
 
-  defp random_low(min, max, scale \\ 3) do
+  defp random_low(min, max, scale \\ 2) do
     random_skewed(min, max, scale, :low)
   end
 
-  defp random_high(min, max, scale \\ 3) do
+  defp random_high(min, max, scale \\ 2) do
     random_skewed(min, max, scale, :high)
   end
 

@@ -2,7 +2,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
   alias LimbusRealtime.Realtime.Components.ClashBattle.StatusData
 
   def resolve_skill(item, skill, round) do
-    Enum.reduce(Map.get(item, "modifiers", []), to_string(skill), fn modifier, skill ->
+    Enum.reduce(Map.get(item, "modifiers", []) |> Enum.reverse(), to_string(skill), fn modifier, skill ->
       if skill_modifier_active?(modifier["condition"], item, round) do
         apply_skill_effect(modifier["effect"], item, skill)
       else

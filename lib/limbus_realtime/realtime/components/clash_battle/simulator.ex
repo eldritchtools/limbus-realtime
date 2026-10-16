@@ -195,6 +195,41 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
   end
 
   defp evaluate_conditional(
+         %{"type" => "status-with-required-cond"} = conditional,
+         self,
+         target,
+         unique_statuses
+       ) do
+    if Map.get(unique_statuses, conditional["statusCond"], 0) > 0 do
+      total =
+        Enum.sum(
+          Enum.map(conditional["status"], fn status ->
+            case status["owner"] do
+              "unique" ->
+                unique_statuses[status["status"]] || 0
+
+              owner ->
+                side = if owner == "self", do: self, else: target
+
+                field =
+                  case status["type"] do
+                    "Potency" -> :potency
+                    "Count" -> :count
+                  end
+
+                side.statuses[status["status"]][field] || 0
+            end
+          end)
+        )
+
+      {conditional["target"],
+       min(div(total, conditional["per"]) * conditional["value"], conditional["max"])}
+    else
+      {conditional["target"], 0}
+    end
+  end
+
+  defp evaluate_conditional(
          %{"type" => "negative-statuses"} = conditional,
          _self,
          target,
@@ -412,7 +447,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
 
   defp evaluate_keywords(teammate, ego_id) do
     Map.get(teammate, "keywords", []) ++
-      for %{"keyword" => keyword, "ego" => required_ego} <- Map.get(teammate, "keywordModifiers", []),
-          required_ego == ego_id, do: keyword
+      for %{"keyword" => keyword, "ego" => required_ego} <-
+            Map.get(teammate, "keywordModifiers", []),
+          required_ego == ego_id,
+          do: keyword
   end
 end
