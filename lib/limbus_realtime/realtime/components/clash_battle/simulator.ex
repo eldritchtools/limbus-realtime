@@ -362,11 +362,11 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
          _target,
          _unique_statuses
        ) do
-    charge = self.statuses["Charge"] || %{"count" => 0}
-    charge_count = Map.get(charge, "count", 0)
+    charge = self.statuses["Charge"] || %{count: 0}
+    charge_count = Map.get(charge, :count, 0)
 
     missing_count = max(conditional["targetCount"] - charge_count, 0)
-    required_hp = missing_count * conditional["hpPerCount"]
+    required_hp = missing_count * conditional["hpPerCount"] * 100
     valid = charge_count >= conditional["minCount"] and self.hp >= required_hp
 
     {conditional["target"], if(valid, do: conditional["value"], else: 0)}

@@ -7,7 +7,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
   @max_players %{
     standard: 8,
-    battle_royale: 200
+    battle_royale: 100
   }
 
   def initial_state do
@@ -146,7 +146,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
   def start_draft(payload, _connection, state) do
     with :ok <- check_host(payload, state),
-         :ok <- check_phase(:setup, state) do
+         :ok <- check_phase(:setup, state),
+         :ok <- check_players(state) do
       :ok = LimbusRealtime.Realtime.PublicRoomRegistry.close(fetch_room_id())
 
       participants =
@@ -490,11 +491,19 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
       Map.new(state.participants, fn {client_id, participant} ->
         identities = Enum.reject(participant.identities, &is_nil/1)
 
-        skill_counts = Map.new(identities, fn identity_id ->
+        skill_counts =
+          Map.new(identities, fn identity_id ->
             {identity_id, [3, 2, 1, 0]}
           end)
 
-        {client_id, %{participant | identities: identities, skill_counts: skill_counts, ego_used: false, score: 0}}
+        {client_id,
+         %{
+           participant
+           | identities: identities,
+             skill_counts: skill_counts,
+             ego_used: false,
+             score: 0
+         }}
       end)
 
     %{
@@ -1042,6 +1051,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
       {:error, "not_a_participant"}
     end
   end
+
+  defp check_players(%{player_order: []}), do: {:error, "No players in the room"}
+  defp check_players(_state), do: :ok
 
   defp fetch_room_id do
     case Registry.keys(LimbusRealtime.RoomRegistry, self()) do
