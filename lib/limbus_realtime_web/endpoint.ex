@@ -30,10 +30,15 @@ defmodule LimbusRealtimeWeb.Endpoint do
   plug Plug.RequestId
 
   plug Plug.Telemetry,
-  event_prefix: [:phoenix, :endpoint],
-  log: {__MODULE__, :log_level, []}
+    event_prefix: [:phoenix, :endpoint],
+    log: {__MODULE__, :log_level, []}
 
-  def log_level(%{method: "GET", request_path: path})
+  def log_level(%{method: "GET", request_path: path, status: nil})
+      when path in ["/api/presence", "/api/rooms", "/api/health"] do
+    false
+  end
+
+  def log_level(%{method: "GET", request_path: path, status: 200})
       when path in ["/api/presence", "/api/rooms", "/api/health"] do
     false
   end
