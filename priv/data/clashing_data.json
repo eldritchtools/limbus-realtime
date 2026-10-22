@@ -106,7 +106,7 @@
     "keywords": [
       "Rupture"
     ],
-    "points": 8,
+    "points": 6,
     "type": "id"
   },
   "10103": {
@@ -198,7 +198,7 @@
     "keywords": [
       "Poise"
     ],
-    "points": 8,
+    "points": 7,
     "type": "id"
   },
   "10104": {
@@ -257,7 +257,7 @@
     "keywords": [
       "Sinking"
     ],
-    "points": 4,
+    "points": 5,
     "type": "id"
   },
   "10105": {
@@ -927,7 +927,7 @@
     "keywords": [
       "Rupture"
     ],
-    "points": 4,
+    "points": 3,
     "type": "id"
   },
   "10112": {
@@ -1949,7 +1949,7 @@
         }
       }
     ],
-    "points": 10,
+    "points": 9,
     "statuses": [
       {
         "id": "DimensionRift",
@@ -2123,7 +2123,7 @@
       "Poise",
       "Rupture"
     ],
-    "points": 5,
+    "points": 6,
     "type": "id"
   },
   "10204": {
@@ -2399,7 +2399,7 @@
     "keywords": [
       "Tremor"
     ],
-    "points": 6,
+    "points": 5,
     "type": "id"
   },
   "10208": {
@@ -3147,7 +3147,7 @@
       "Bleed",
       "Poise"
     ],
-    "points": 7,
+    "points": 6,
     "statuses": [
       {
         "id": "AimForTheGoal",
@@ -3308,7 +3308,7 @@
       "Poise",
       "Sinking"
     ],
-    "points": 9,
+    "points": 8,
     "statuses": [
       {
         "id": "BlessingOfIndexPrescriptAlly",
@@ -3776,7 +3776,7 @@
         }
       }
     ],
-    "points": 10,
+    "points": 9,
     "statuses": [
       {
         "id": "FasciaPersonality",
@@ -4074,7 +4074,7 @@
     "keywords": [
       "Bleed"
     ],
-    "points": 4,
+    "points": 3,
     "type": "id"
   },
   "10302": {
@@ -4219,7 +4219,7 @@
     "keywords": [
       "Poise"
     ],
-    "points": 6,
+    "points": 7,
     "type": "id"
   },
   "10304": {
@@ -4323,7 +4323,7 @@
       "Cinq Association",
       "Fixer"
     ],
-    "points": 5,
+    "points": 6,
     "statuses": [
       {
         "id": "DuelDeclaration_DonQuixote",
@@ -4661,7 +4661,7 @@
     "keywords": [
       "Poise"
     ],
-    "points": 4,
+    "points": 3,
     "type": "id"
   },
   "10309": {
@@ -5289,7 +5289,7 @@
       "Burn",
       "Poise"
     ],
-    "points": 8,
+    "points": 7,
     "statuses": [
       {
         "id": "DianxueDonQuixote",
@@ -5571,7 +5571,7 @@
         }
       }
     ],
-    "points": 7,
+    "points": 8,
     "statuses": [
       {
         "id": "HystericGauge",
@@ -6236,14 +6236,11 @@
       "Charge",
       "Tremor"
     ],
-    "modifierDesc": "Gains a bonus skill use every 5 rounds.",
+    "modifierDesc": "Bonus skill uses gained on rounds 5, 15, 30, 50, and so on.",
     "modifiers": [
       {
         "condition": {
-          "owner": "unique",
-          "status": "NoirShieldUpDonQuixote",
-          "statusType": "Potency",
-          "type": "rounds",
+          "type": "rounds-increasing",
           "value": 5
         },
         "effect": {
@@ -6252,7 +6249,7 @@
         }
       }
     ],
-    "points": 9,
+    "points": 10,
     "statuses": [
       {
         "id": "NoirNailDonQuixote",
@@ -6468,7 +6465,7 @@
     "keywords": [
       "Bleed"
     ],
-    "points": 4,
+    "points": 3,
     "type": "id"
   },
   "10405": {
@@ -6551,7 +6548,7 @@
     "keywords": [
       "Charge"
     ],
-    "points": 4,
+    "points": 5,
     "type": "id"
   },
   "10406": {
@@ -6779,7 +6776,7 @@
     "keywords": [
       "Burn"
     ],
-    "points": 5,
+    "points": 4,
     "type": "id"
   },
   "10408": {
@@ -6868,7 +6865,7 @@
     "keywords": [
       "Poise"
     ],
-    "points": 7,
+    "points": 6,
     "statuses": [
       {
         "id": "MarkOfButler",
@@ -6999,7 +6996,7 @@
     "keywords": [
       "Tremor"
     ],
-    "points": 5,
+    "points": 4,
     "type": "id"
   },
   "10410": {
@@ -7671,7 +7668,7 @@
       "Poise",
       "Rupture"
     ],
-    "points": 8,
+    "points": 7,
     "type": "id"
   },
   "10414": {
@@ -8039,12 +8036,12 @@
       "Burn",
       "Poise"
     ],
-    "modifierDesc": "Gains a bonus skill use every 6 rounds.",
+    "modifierDesc": "Bonus skill uses gained on rounds 5, 15, 30, 50, and so on.",
     "modifiers": [
       {
         "condition": {
-          "type": "rounds",
-          "value": 6
+          "type": "rounds-increasing",
+          "value": 5
         },
         "effect": {
           "slot": 4,
@@ -8519,7 +8516,7 @@
     "keywords": [
       "Burn"
     ],
-    "points": 2,
+    "points": 3,
     "type": "id"
   },
   "10503": {
@@ -8595,7 +8592,7 @@
       "Charge",
       "Rupture"
     ],
-    "points": 4,
+    "points": 3,
     "type": "id"
   },
   "10504": {
@@ -8649,7 +8646,7 @@
     "keywords": [
       "Bleed"
     ],
-    "points": 2,
+    "points": 3,
     "type": "id"
   },
   "10505": {
@@ -8784,7 +8781,7 @@
       "Charge",
       "Tremor"
     ],
-    "points": 5,
+    "points": 4,
     "type": "id"
   },
   "10506": {
@@ -8952,7 +8949,7 @@
     "keywords": [
       "Bleed"
     ],
-    "points": 3,
+    "points": 2,
     "statuses": [
       {
         "id": "RetaliationBook",
@@ -9045,7 +9042,7 @@
     "keywords": [
       "Poise"
     ],
-    "points": 7,
+    "points": 8,
     "type": "id"
   },
   "10509": {
@@ -9235,7 +9232,7 @@
     "keywords": [
       "Rupture"
     ],
-    "points": 7,
+    "points": 6,
     "type": "id"
   },
   "10510": {
@@ -9679,7 +9676,7 @@
         }
       }
     ],
-    "points": 8,
+    "points": 7,
     "statuses": [
       {
         "id": "BulletPropellantSpecialAlly",
@@ -10147,7 +10144,7 @@
       "Bleed",
       "Burn"
     ],
-    "points": 8,
+    "points": 7,
     "statuses": [
       {
         "id": "MeursaultWorkerBee",
@@ -10328,7 +10325,7 @@
       "Rupture",
       "Sinking"
     ],
-    "points": 4,
+    "points": 5,
     "type": "id"
   },
   "10602": {
@@ -10417,7 +10414,7 @@
     "keywords": [
       "Bleed"
     ],
-    "points": 8,
+    "points": 9,
     "type": "id"
   },
   "10604": {
@@ -10493,7 +10490,7 @@
     "keywords": [
       "Burn"
     ],
-    "points": 3,
+    "points": 4,
     "type": "id"
   },
   "10605": {
@@ -10563,7 +10560,7 @@
     "keywords": [
       "Rupture"
     ],
-    "points": 7,
+    "points": 6,
     "type": "id"
   },
   "10606": {
@@ -10965,7 +10962,7 @@
     "keywords": [
       "Tremor"
     ],
-    "points": 5,
+    "points": 6,
     "type": "id"
   },
   "10610": {
@@ -11143,7 +11140,7 @@
     "keywords": [
       "Poise"
     ],
-    "points": 6,
+    "points": 7,
     "statuses": [
       {
         "id": "Bullet",
@@ -11288,7 +11285,7 @@
       "Charge",
       "Sinking"
     ],
-    "points": 7,
+    "points": 9,
     "type": "id"
   },
   "10613": {
@@ -12326,7 +12323,7 @@
     "keywords": [
       "Tremor"
     ],
-    "points": 3,
+    "points": 4,
     "type": "id"
   },
   "10702": {
@@ -12557,7 +12554,7 @@
     "keywords": [
       "Bleed"
     ],
-    "points": 4,
+    "points": 3,
     "type": "id"
   },
   "10705": {
@@ -12696,7 +12693,7 @@
     "keywords": [
       "Rupture"
     ],
-    "points": 5,
+    "points": 4,
     "type": "id"
   },
   "10707": {
@@ -12740,7 +12737,7 @@
       "Bleed",
       "Poise"
     ],
-    "points": 4,
+    "points": 3,
     "type": "id"
   },
   "10708": {
@@ -13458,7 +13455,7 @@
     "keywords": [
       "Bleed"
     ],
-    "points": 7,
+    "points": 6,
     "statuses": [
       {
         "id": "BlackCloudBlade",
@@ -14075,11 +14072,11 @@
       "Bleed",
       "Burn"
     ],
-    "modifierDesc": "Gains a bonus skill use every 5 rounds.",
+    "modifierDesc": "Bonus skill uses gained on rounds 5, 15, 30, 50, and so on.",
     "modifiers": [
       {
         "condition": {
-          "type": "rounds",
+          "type": "rounds-increasing",
           "value": 5
         },
         "effect": {
@@ -14407,7 +14404,7 @@
     "keywords": [
       "Tremor"
     ],
-    "points": 6,
+    "points": 7,
     "type": "id"
   },
   "10802": {
@@ -14693,7 +14690,7 @@
     "keywords": [
       "Burn"
     ],
-    "points": 5,
+    "points": 4,
     "type": "id"
   },
   "10807": {
@@ -14915,7 +14912,7 @@
       "Poise",
       "Sinking"
     ],
-    "points": 4,
+    "points": 3,
     "type": "id"
   },
   "10810": {
@@ -15152,7 +15149,7 @@
     "keywords": [
       "Bleed"
     ],
-    "points": 7,
+    "points": 6,
     "statuses": [
       {
         "id": "BlackCloudBlade",
@@ -15290,7 +15287,7 @@
       "Poise",
       "Rupture"
     ],
-    "points": 7,
+    "points": 8,
     "type": "id"
   },
   "10813": {
@@ -15441,7 +15438,7 @@
       "Sinking",
       "Tremor"
     ],
-    "points": 10,
+    "points": 9,
     "statuses": [
       {
         "id": "HanafudaCombo",
@@ -16174,7 +16171,7 @@
     "keywords": [
       "Bleed"
     ],
-    "points": 2,
+    "points": 1,
     "type": "id"
   },
   "10902": {
@@ -16299,7 +16296,7 @@
       "LCC",
       "Limbus Company"
     ],
-    "points": 2,
+    "points": 3,
     "type": "id"
   },
   "10904": {
@@ -16524,7 +16521,7 @@
     "keywords": [
       "Sinking"
     ],
-    "points": 2,
+    "points": 3,
     "statuses": [
       {
         "id": "KnowledgeExplored",
@@ -16732,7 +16729,7 @@
     "keywords": [
       "Tremor"
     ],
-    "points": 5,
+    "points": 4,
     "type": "id"
   },
   "10910": {
@@ -17032,7 +17029,7 @@
         }
       }
     ],
-    "points": 6,
+    "points": 5,
     "statuses": [
       {
         "id": "BloomingThornsRodionFirst",
@@ -17484,7 +17481,7 @@
         }
       }
     ],
-    "points": 9,
+    "points": 8,
     "type": "id"
   },
   "10914": {
@@ -17774,7 +17771,7 @@
         }
       }
     ],
-    "points": 9,
+    "points": 8,
     "type": "id"
   },
   "10916": {
@@ -18007,7 +18004,7 @@
       "Burn",
       "Tremor"
     ],
-    "modifierDesc": "S2 replaced when no {st:AccelBullet}. Gains a bonus skill use every 6 rounds.",
+    "modifierDesc": "S2 replaced when no {st:AccelBullet}. Bonus skill uses gained on rounds 5, 15, 30, 50, and so on.",
     "modifiers": [
       {
         "condition": {
@@ -18024,8 +18021,8 @@
       },
       {
         "condition": {
-          "type": "rounds",
-          "value": 6
+          "type": "rounds-increasing",
+          "value": 5
         },
         "effect": {
           "slot": 4,
@@ -18033,7 +18030,7 @@
         }
       }
     ],
-    "points": 8,
+    "points": 9,
     "statuses": [
       {
         "id": "AccelBullet",
@@ -18278,7 +18275,7 @@
       "Bleed",
       "Poise"
     ],
-    "points": 5,
+    "points": 7,
     "type": "id"
   },
   "11003": {
@@ -18322,7 +18319,7 @@
     "keywords": [
       "Tremor"
     ],
-    "points": 3,
+    "points": 5,
     "type": "id"
   },
   "11004": {
@@ -18400,7 +18397,7 @@
       "Poise",
       "Sinking"
     ],
-    "points": 2,
+    "points": 4,
     "type": "id"
   },
   "11005": {
@@ -18445,7 +18442,7 @@
       "Bleed",
       "Burn"
     ],
-    "points": 1,
+    "points": 2,
     "type": "id"
   },
   "11006": {
@@ -18565,7 +18562,7 @@
     "keywords": [
       "Tremor"
     ],
-    "points": 1,
+    "points": 2,
     "type": "id"
   },
   "11008": {
@@ -18908,7 +18905,7 @@
         }
       }
     ],
-    "points": 7,
+    "points": 8,
     "type": "id"
   },
   "11010": {
@@ -19316,7 +19313,7 @@
     "keywords": [
       "Bleed"
     ],
-    "points": 7,
+    "points": 6,
     "statuses": [
       {
         "id": "RetaliationBook",
@@ -19717,7 +19714,7 @@
       "Bleed",
       "Poise"
     ],
-    "points": 8,
+    "points": 9,
     "statuses": [
       {
         "id": "LittleFingerID",
@@ -20196,7 +20193,7 @@
         }
       }
     ],
-    "points": 7,
+    "points": 8,
     "statuses": [
       {
         "id": "TransformSinclair",
@@ -20270,7 +20267,7 @@
     "keywords": [
       "Rupture"
     ],
-    "points": 2,
+    "points": 5,
     "type": "id"
   },
   "11102": {
@@ -20478,7 +20475,7 @@
     "keywords": [
       "Rupture"
     ],
-    "points": 8,
+    "points": 7,
     "type": "id"
   },
   "11105": {
@@ -20554,7 +20551,7 @@
     "keywords": [
       "Tremor"
     ],
-    "points": 6,
+    "points": 5,
     "type": "id"
   },
   "11106": {
@@ -20668,7 +20665,7 @@
     "keywords": [
       "Poise"
     ],
-    "points": 7,
+    "points": 8,
     "statuses": [
       {
         "id": "DuelDeclaration_Outis",
@@ -20814,7 +20811,7 @@
     "keywords": [
       "Burn"
     ],
-    "points": 9,
+    "points": 10,
     "statuses": [
       {
         "id": "FreischutzShotCount",
@@ -21341,7 +21338,7 @@
     "keywords": [
       "Bleed"
     ],
-    "points": 9,
+    "points": 8,
     "statuses": [
       {
         "id": "LineCutting",
@@ -21583,7 +21580,7 @@
     "keywords": [
       "Tremor"
     ],
-    "points": 5,
+    "points": 6,
     "statuses": [
       {
         "id": "Binding",
@@ -22180,7 +22177,7 @@
         }
       }
     ],
-    "points": 9,
+    "points": 8,
     "statuses": [
       {
         "id": "RetaliationBook",
@@ -22414,7 +22411,7 @@
     "keywords": [
       "Rupture"
     ],
-    "points": 5,
+    "points": 4,
     "type": "id"
   },
   "11204": {
@@ -22620,7 +22617,7 @@
       "Fixer",
       "Zwei Association"
     ],
-    "points": 4,
+    "points": 5,
     "statuses": [
       {
         "id": "DefenseUp",
@@ -22949,7 +22946,7 @@
     "keywords": [
       "Sinking"
     ],
-    "points": 7,
+    "points": 6,
     "type": "id"
   },
   "11210": {
@@ -23315,7 +23312,7 @@
       "Poise",
       "Rupture"
     ],
-    "points": 7,
+    "points": 8,
     "statuses": [
       {
         "id": "SnakeStance",

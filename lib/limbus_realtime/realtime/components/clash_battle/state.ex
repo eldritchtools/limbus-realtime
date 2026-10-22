@@ -4,6 +4,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
             host_client_id: nil,
             public: false,
             participants: %{},
+            spectators: %{},
             player_order: [],
             settings: %{},
             draft_order: [],
@@ -35,12 +36,18 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
           ego_used: boolean()
         }
 
+  @type spectator :: %{
+          id: String.t(),
+          channel_pid: pid()
+        }
+
   @type t :: %__MODULE__{
           mode: mode(),
           phase: phase(),
           host_client_id: String.t() | nil,
           public: boolean(),
           participants: %{String.t() => participant()},
+          spectators: %{String.t() => spectator()},
           player_order: [String.t()],
           settings: %{String.t() => any()},
           draft_order: [any()],

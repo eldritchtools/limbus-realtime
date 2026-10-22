@@ -2,7 +2,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
   alias LimbusRealtime.Realtime.Components.ClashBattle.StatusData
 
   def resolve_skill(item, skill, round) do
-    Enum.reduce(Map.get(item, "modifiers", []) |> Enum.reverse(), to_string(skill), fn modifier, skill ->
+    Enum.reduce(Map.get(item, "modifiers", []) |> Enum.reverse(), to_string(skill), fn modifier,
+                                                                                       skill ->
       if skill_modifier_active?(modifier["condition"], item, round) do
         apply_skill_effect(modifier["effect"], item, skill)
       else
@@ -104,17 +105,22 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
     participants =
       Map.new(state.participants, fn {client_id, participant} ->
         skill_counts =
-          Enum.reduce(participant.identities, participant.skill_counts, fn identity_id, skill_counts ->
+          Enum.reduce(participant.identities, participant.skill_counts, fn identity_id,
+                                                                           skill_counts ->
             identity = Map.fetch!(state.item_data, identity_id)
 
             counts =
-              Enum.reduce(Map.get(identity, "modifiers", []), Map.fetch!(skill_counts, identity_id), fn modifier, counts ->
-                if round_modifier_active?(modifier["condition"], round_number) do
-                  apply_round_effect(modifier["effect"], counts)
-                else
-                  counts
+              Enum.reduce(
+                Map.get(identity, "modifiers", []),
+                Map.fetch!(skill_counts, identity_id),
+                fn modifier, counts ->
+                  if round_modifier_active?(modifier["condition"], round_number) do
+                    apply_round_effect(modifier["effect"], counts)
+                  else
+                    counts
+                  end
                 end
-              end)
+              )
 
             Map.put(skill_counts, identity_id, counts)
           end)
@@ -133,6 +139,10 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
     round_number == value
   end
 
+  defp round_modifier_active?(%{"type" => "rounds-increasing", "value" => value}, round_number) do
+    triangular_multiple?(round_number, value, 1, 2)
+  end
+
   defp round_modifier_active?(_, _) do
     false
   end
@@ -147,5 +157,15 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
 
   defp apply_round_effect(_, skill_counts) do
     skill_counts
+  end
+
+  defp triangular_multiple?(round_number, value, n, increment) do
+    multiple = value * n
+
+    cond do
+      multiple == round_number -> true
+      multiple > round_number -> false
+      true -> triangular_multiple?(round_number, value, n + increment, increment + 1)
+    end
   end
 end

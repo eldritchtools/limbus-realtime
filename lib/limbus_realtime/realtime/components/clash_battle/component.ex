@@ -25,8 +25,19 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
           {:ok, state, [{:send_state, user.client_id}]}
 
+        state.phase == :finished ->
+          {:error, "game_finished"}
+
         state.phase != :setup ->
-          {:error, "game_in_progress"}
+          spectator = %{
+            id: user.client_id,
+            channel_pid: user.channel_pid
+          }
+
+          state =
+            put_in(state.spectators[user.client_id], spectator)
+
+          {:ok, state, [{:send_state, user.client_id}]}
 
         map_size(state.participants) >= @max_players[state.mode] ->
           {:error, "room_full"}
@@ -378,50 +389,72 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
   def force_advance_draft(payload, _connection, state) do
     with :ok <- check_phase(:draft, state),
-         :ok <- check_host(payload, state),
-         :ok <- check_battle_royale(state) do
-      draft_index = state.draft_index
-      draft_type = Enum.at(state.draft_order, draft_index)
-
-      participants =
-        Map.new(state.participants, fn {client_id, participant} ->
-          participant =
-            case draft_type do
-              :identity when length(participant.identities) == draft_index ->
-                %{participant | identities: participant.identities ++ [nil]}
-
-              _ ->
-                participant
-            end
-
-          {client_id, participant}
-        end)
-
-      state = %{state | participants: participants, draft_index: draft_index + 1}
-
-      state =
-        if draft_index + 1 >= length(state.draft_order) do
-          finish_draft(state)
-        else
-          add_draft_points(state, draft_index + 1)
-        end
-
-      effects =
-        if state.phase == :draft_complete do
-          [:broadcast_state]
-        else
-          [{:broadcast_draft_round_complete, draft_index}]
-        end
-
-      {:ok, state, effects}
+         :ok <- check_host(payload, state) do
+      if state.mode == :battle_royale do
+        force_advance_battle_royale_draft(state)
+      else
+        force_advance_standard_draft(state)
+      end
     else
       {:error, reason} ->
         {:error, reason}
     end
   end
 
-  defp check_battle_royale(%State{mode: :battle_royale}), do: :ok
-  defp check_battle_royale(_state), do: {:error, "invalid_mode"}
+  defp force_advance_standard_draft(state) do
+    case Enum.at(state.draft_order, state.draft_index) do
+      :blacklist ->
+        resolve_blacklist(state)
+
+      _ ->
+        draft_index = state.draft_index
+        state = %{state | draft_index: draft_index + 1}
+
+        if draft_index + 1 >= length(state.draft_order) do
+          {:ok, finish_draft(state), [:broadcast_state]}
+        else
+          state = add_draft_points(state, state.draft_index)
+          {:ok, state, [{:broadcast_draft_pick_skipped, draft_index}]}
+        end
+    end
+  end
+
+  def force_advance_battle_royale_draft(state) do
+    draft_index = state.draft_index
+    draft_type = Enum.at(state.draft_order, draft_index)
+
+    participants =
+      Map.new(state.participants, fn {client_id, participant} ->
+        participant =
+          case draft_type do
+            :identity when length(participant.identities) == draft_index ->
+              %{participant | identities: participant.identities ++ [nil]}
+
+            _ ->
+              participant
+          end
+
+        {client_id, participant}
+      end)
+
+    state = %{state | participants: participants, draft_index: draft_index + 1}
+
+    state =
+      if draft_index + 1 >= length(state.draft_order) do
+        finish_draft(state)
+      else
+        add_draft_points(state, draft_index + 1)
+      end
+
+    effects =
+      if state.phase == :draft_complete do
+        [:broadcast_state]
+      else
+        [{:broadcast_draft_round_complete, draft_index}]
+      end
+
+    {:ok, state, effects}
+  end
 
   defp add_draft_points(state, draft_index) do
     points = state.settings["points_per_draft"]
@@ -786,6 +819,14 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
   def terminate(payload, _connection, state) do
     client_id = payload.user.client_id
 
+    if Map.has_key?(state.spectators, client_id) do
+      {:ok, %{state | spectators: Map.delete(state.spectators, client_id)}, []}
+    else
+      terminate_participant(client_id, state)
+    end
+  end
+
+  def terminate_participant(client_id, state) do
     {state, effects} =
       case state.phase do
         x when x in [:setup, :finished] ->

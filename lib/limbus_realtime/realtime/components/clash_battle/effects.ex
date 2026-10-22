@@ -18,6 +18,13 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
         )
       end
     end)
+
+    Enum.each(state.spectators, fn {_client_id, spectator} ->
+      send(
+        spectator.channel_pid,
+        {:push_state, build_snapshot(state, spectator.id)}
+      )
+    end)
   end
 
   def execute({:broadcast_joined, display_name}, socket, _room_state, _component_state) do
@@ -96,6 +103,62 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
         )
       end
     end)
+
+    Enum.each(state.spectators, fn {_client_id, spectator} ->
+      send(
+        spectator.channel_pid,
+        {:push_message, "draft_pick", payload}
+      )
+    end)
+  end
+
+  def execute(
+        {:broadcast_draft_pick_skipped, draft_index},
+        _socket,
+        _room_state,
+        state
+      ) do
+    player_id =
+      case Enum.at(state.draft_order, draft_index) do
+        "e-" <> id -> String.to_integer(id)
+        id -> id
+      end
+
+    payload = %{
+      player_id: player_id,
+      draft_index: draft_index,
+      draft_order: current_draft_order(state)
+    }
+
+    next_player_id =
+      case Enum.at(payload.draft_order, 0) do
+        :blacklist -> nil
+        "e-" <> id -> String.to_integer(id)
+        id -> id
+      end
+
+    Enum.each(state.participants, fn {_client_id, participant} ->
+      if participant.connected do
+        payload =
+          if participant.player_id == next_player_id do
+            Map.put(payload, :draft_points, participant.draft_points)
+          else
+            payload
+          end
+
+        send(
+          participant.channel_pid,
+          {:push_message, "draft_pick_skipped", payload}
+        )
+      end
+    end)
+
+    Enum.each(state.spectators, fn {_client_id, spectator} ->
+      send(
+        spectator.channel_pid,
+        {:push_message, "draft_pick_skipped", payload}
+      )
+    end)
   end
 
   def execute(:broadcast_blacklist_state, socket, _room_state, state) do
@@ -139,6 +202,13 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
         )
       end
     end)
+
+    Enum.each(state.spectators, fn {_client_id, spectator} ->
+      send(
+        spectator.channel_pid,
+        {:push_message, "blacklist_resolved", payload}
+      )
+    end)
   end
 
   def execute({:broadcast_draft_round_complete, draft_index}, _socket, _room_state, state) do
@@ -167,6 +237,13 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           {:push_message, "draft_round_complete", payload}
         )
       end
+    end)
+
+    Enum.each(state.spectators, fn {_client_id, spectator} ->
+      send(
+        spectator.channel_pid,
+        {:push_message, "draft_round_complete", payload}
+      )
     end)
   end
 
@@ -208,6 +285,17 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
            }}
         )
       end
+    end)
+
+    Enum.each(state.spectators, fn {_client_id, spectator} ->
+      send(
+        spectator.channel_pid,
+        {:push_message, "round",
+         %{
+           round_number: state.round_number,
+           round: state.current_round
+         }}
+      )
     end)
   end
 
@@ -272,7 +360,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
   end
 
   defp build_snapshot(state, client_id) do
-    participant = Map.fetch!(state.participants, client_id)
+    spectator? = not Map.has_key?(state.participants, client_id)
+    participant = state.participants[client_id]
 
     case state.phase do
       :setup ->
@@ -281,6 +370,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           phase: state.phase,
           player_id: nil,
           is_host: client_id == state.host_client_id,
+          is_spectator: spectator?,
           is_public: state.public,
           settings: state.settings,
           participants:
@@ -294,9 +384,10 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
         %{
           mode: state.mode,
           phase: state.phase,
-          player_id: participant.player_id,
-          draft_points: participant.draft_points,
+          player_id: participant && participant.player_id,
+          draft_points: participant && participant.draft_points,
           is_host: client_id == state.host_client_id,
+          is_spectator: spectator?,
           participants: build_participants(state),
           draft_order: draft_order,
           settings: %{
@@ -312,18 +403,15 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
               _ -> 0
             end,
           picked:
-            case state.mode do
-              :battle_royale ->
-                case Enum.at(draft_order, 0) do
-                  :identity -> length(participant.identities) > state.draft_index
-                  :ego -> participant.ego != nil
-                end
-
-              _ ->
-                case Enum.at(draft_order, 0) do
-                  :blacklist -> Map.has_key?(state.blacklist_votes, client_id)
-                  _ -> false
-                end
+            if spectator? do
+              false
+            else
+              case Enum.at(draft_order, 0) do
+                :identity -> length(participant.identities) > state.draft_index
+                :ego -> participant.ego != nil
+                :blacklist -> Map.has_key?(state.blacklist_votes, client_id)
+                _ -> false
+              end
             end,
           blacklist: MapSet.to_list(state.blacklisted_identities)
         }
@@ -332,11 +420,12 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
         %{
           mode: state.mode,
           phase: state.phase,
-          player_id: participant.player_id,
+          player_id: participant && participant.player_id,
           is_host: client_id == state.host_client_id,
+          is_spectator: spectator?,
           participants: build_participants(state),
-          skill_counts: participant.skill_counts,
-          ego_used: participant.ego_used,
+          skill_counts: participant && participant.skill_counts,
+          ego_used: participant && participant.ego_used,
           settings: %{rounds: state.settings["rounds"]}
         }
 
@@ -344,29 +433,31 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
         %{
           mode: state.mode,
           phase: state.phase,
-          player_id: participant.player_id,
+          player_id: participant && participant.player_id,
           is_host: client_id == state.host_client_id,
+          is_spectator: spectator?,
           participants: build_participants(state),
           current_round: state.current_round,
           round_number: state.round_number,
-          skill_counts: participant.skill_counts,
-          ego_used: participant.ego_used,
+          skill_counts: participant && participant.skill_counts,
+          ego_used: participant && participant.ego_used,
           settings: %{rounds: state.settings["rounds"]},
           chosen_count: map_size(state.submissions),
-          picked: Map.has_key?(state.submissions, client_id)
+          picked: not spectator? && Map.has_key?(state.submissions, client_id)
         }
 
       :round_reveal ->
         %{
           mode: state.mode,
           phase: state.phase,
-          player_id: participant.player_id,
+          player_id: participant && participant.player_id,
           is_host: client_id == state.host_client_id,
+          is_spectator: spectator?,
           participants: build_participants(state),
           current_round: state.current_round,
           round_number: state.round_number,
-          skill_counts: participant.skill_counts,
-          ego_used: participant.ego_used,
+          skill_counts: participant && participant.skill_counts,
+          ego_used: participant && participant.ego_used,
           results: state.results,
           settings: %{rounds: state.settings["rounds"]}
         }
@@ -375,8 +466,9 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
         %{
           mode: state.mode,
           phase: state.phase,
-          player_id: participant.player_id,
+          player_id: participant && participant.player_id,
           is_host: client_id == state.host_client_id,
+          is_spectator: spectator?,
           participants: build_participants(state)
         }
     end
