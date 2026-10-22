@@ -299,12 +299,18 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
           is_host: client_id == state.host_client_id,
           participants: build_participants(state),
           draft_order: draft_order,
-          settings: %{rounds: state.settings["rounds"], points_per_draft: state.settings["points_per_draft"]},
+          settings: %{
+            rounds: state.settings["rounds"],
+            points_per_draft: state.settings["points_per_draft"],
+            team_size: state.settings["team_size"],
+            ego_draft: state.settings["ego_draft"],
+            sp_bias: state.settings["sp_bias"]
+          },
           chosen_count:
-              case Enum.at(draft_order, 0) do
-                :blacklist -> map_size(state.blacklist_votes)
-                _ -> 0
-              end,
+            case Enum.at(draft_order, 0) do
+              :blacklist -> map_size(state.blacklist_votes)
+              _ -> 0
+            end,
           picked:
             case state.mode do
               :battle_royale ->
