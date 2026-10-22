@@ -395,7 +395,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Effects do
             points_per_draft: state.settings["points_per_draft"],
             team_size: state.settings["team_size"],
             ego_draft: state.settings["ego_draft"],
-            sp_bias: state.settings["sp_bias"]
+            sp_bias: state.settings["sp_bias"],
+            sp: state.settings["sp"]
           },
           chosen_count:
             case Enum.at(draft_order, 0) do
