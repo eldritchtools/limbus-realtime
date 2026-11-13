@@ -33,7 +33,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.State do
           skill_counts: %{String.t() => [non_neg_integer()]} | nil,
           draft_points: non_neg_integer(),
           ego: String.t() | nil,
-          ego_used: boolean()
+          ego_used: boolean(),
+          bonus_skill_triggered: MapSet.t(String.t())
         }
 
   @type spectator :: %{

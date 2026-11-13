@@ -1,10 +1,10 @@
 defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
   alias LimbusRealtime.Realtime.Components.ClashBattle.StatusData
 
-  def resolve_skill(item, skill, round) do
+  def resolve_skill(item, skill, round, opts \\ %{}) do
     Enum.reduce(Map.get(item, "modifiers", []) |> Enum.reverse(), to_string(skill), fn modifier,
                                                                                        skill ->
-      if skill_modifier_active?(modifier["condition"], item, round) do
+      if skill_modifier_active?(modifier["condition"], item, round, opts) do
         apply_skill_effect(modifier["effect"], item, skill)
       else
         skill
@@ -15,7 +15,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
   defp skill_modifier_active?(
          %{"type" => "status", "status" => status, "owner" => "unique", "value" => value},
          item,
-         round
+         round,
+         _opts
        ) do
     status_data = Enum.find(item["statuses"], fn st -> st["id"] == status end)
     Enum.at(status_data["values"], round.unique_statuses_tier) >= value
@@ -30,7 +31,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
            "value" => value
          },
          _item,
-         round
+         round,
+         _opts
        ) do
     side = if owner == "self", do: round.self, else: round.target
 
@@ -46,7 +48,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
   defp skill_modifier_active?(
          %{"type" => "status-missing", "status" => status, "owner" => owner},
          item,
-         round
+         round,
+         _opts
        ) do
     case owner do
       "unique" ->
@@ -63,7 +66,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
   defp skill_modifier_active?(
          %{"type" => "sp", "mode" => mode, "value" => value},
          _item,
-         round
+         round,
+         _opts
        ) do
     case mode do
       "higher" -> round.self.sp > value
@@ -74,7 +78,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
   defp skill_modifier_active?(
          %{"type" => "negative-effects", "value" => value},
          _item,
-         round
+         round,
+         _opts
        ) do
     count =
       StatusData.all()
@@ -85,7 +90,11 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
     count >= value
   end
 
-  defp skill_modifier_active?(_, _, _) do
+  defp skill_modifier_active?(%{"type" => "skills-left", "value" => value}, _item, _round, opts) do
+    Map.has_key?(opts, :counts) and opts.counts |> Enum.take(3) |> Enum.sum() == value
+  end
+
+  defp skill_modifier_active?(_, _, _, _) do
     false
   end
 
@@ -104,46 +113,58 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Modifiers do
   def apply_round_start(state, round_number) do
     participants =
       Map.new(state.participants, fn {client_id, participant} ->
-        skill_counts =
-          Enum.reduce(participant.identities, participant.skill_counts, fn identity_id,
-                                                                           skill_counts ->
-            identity = Map.fetch!(state.item_data, identity_id)
+        {skill_counts, bonus_skill_triggered} =
+          Enum.reduce(
+            participant.identities,
+            {participant.skill_counts, participant.bonus_skill_triggered},
+            fn identity_id, {skill_counts, bonus_skill_triggered} ->
+              identity = Map.fetch!(state.item_data, identity_id)
 
-            counts =
-              Enum.reduce(
-                Map.get(identity, "modifiers", []),
-                Map.fetch!(skill_counts, identity_id),
-                fn modifier, counts ->
-                  if round_modifier_active?(modifier["condition"], round_number) do
-                    apply_round_effect(modifier["effect"], counts)
-                  else
-                    counts
+              {counts, triggered} =
+                Enum.reduce(
+                  Map.get(identity, "modifiers", []),
+                  {Map.fetch!(skill_counts, identity_id), bonus_skill_triggered},
+                  fn modifier, {counts, triggered} ->
+                    if not MapSet.member?(triggered, identity_id) and
+                         round_modifier_active?(modifier["condition"], round_number, counts) do
+                      {
+                        apply_round_effect(modifier["effect"], counts),
+                        MapSet.put(triggered, identity_id)
+                      }
+                    else
+                      {counts, triggered}
+                    end
                   end
-                end
-              )
+                )
 
-            Map.put(skill_counts, identity_id, counts)
-          end)
+              {Map.put(skill_counts, identity_id, counts), triggered}
+            end
+          )
 
-        {client_id, %{participant | skill_counts: skill_counts}}
+        {client_id,
+         %{participant | skill_counts: skill_counts, bonus_skill_triggered: bonus_skill_triggered}}
       end)
 
     %{state | participants: participants}
   end
 
-  defp round_modifier_active?(%{"type" => "rounds", "value" => value}, round_number) do
+  defp round_modifier_active?(%{"type" => "rounds", "value" => value}, round_number, _) do
     rem(round_number, value) == 0
   end
 
-  defp round_modifier_active?(%{"type" => "rounds-once", "value" => value}, round_number) do
+  defp round_modifier_active?(%{"type" => "rounds-once", "value" => value}, round_number, _) do
     round_number == value
   end
 
-  defp round_modifier_active?(%{"type" => "rounds-increasing", "value" => value}, round_number) do
+  defp round_modifier_active?(%{"type" => "rounds-increasing", "value" => value}, round_number, _) do
     triangular_multiple?(round_number, value, 1, 2)
   end
 
-  defp round_modifier_active?(_, _) do
+  defp round_modifier_active?(%{"type" => "skills-left", "value" => value}, _, skill_counts) do
+    Enum.sum(skill_counts) == value
+  end
+
+  defp round_modifier_active?(_, _, _) do
     false
   end
 

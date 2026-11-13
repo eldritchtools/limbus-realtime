@@ -13,7 +13,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
         status_data = item |> Map.get("statuses", [])
 
         {clash_value, coins} =
-          calculate_skill_clash(skill_data, round, status_data, item_id, resolved_skill)
+          calculate_skill_clash(skill_data, round, status_data, item_id, resolved_skill, teams[client_id])
 
         team_bonus = calculate_team_bonus(item_id, teams[client_id], round, item_data)
 
@@ -23,7 +23,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
     )
   end
 
-  defp calculate_skill_clash(skill, round, status_data, item_id, resolved_skill) do
+  defp calculate_skill_clash(skill, round, status_data, item_id, resolved_skill, team) do
     try do
       unique_statuses =
         status_data
@@ -34,7 +34,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
 
       modifiers =
         (skill["conditionals"] || [])
-        |> Enum.map(&evaluate_conditional(&1, round.self, round.target, unique_statuses))
+        |> Enum.map(&evaluate_conditional(&1, round.self, round.target, unique_statuses, %{team: team}))
 
       base = skill["base"] + modifier_sum(modifiers, "base")
       coin = skill["coin"] + modifier_sum(modifiers, "coin")
@@ -66,7 +66,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
     |> Enum.sum()
   end
 
-  defp evaluate_conditional(%{"type" => "status"} = conditional, self, target, unique_statuses) do
+  defp evaluate_conditional(%{"type" => "status"} = conditional, self, target, unique_statuses, _) do
     total =
       Enum.sum(
         Enum.map(conditional["status"], fn status ->
@@ -96,7 +96,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
          %{"type" => "status-individual"} = conditional,
          self,
          target,
-         unique_statuses
+         unique_statuses,
+         _
        ) do
     total =
       Enum.sum(
@@ -132,7 +133,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
          %{"type" => "status-low"} = conditional,
          self,
          target,
-         unique_statuses
+         unique_statuses,
+         _
        ) do
     total =
       Enum.sum(
@@ -162,7 +164,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
          %{"type" => "status-optional-condition"} = conditional,
          self,
          target,
-         unique_statuses
+         unique_statuses,
+         _
        ) do
     total =
       Enum.sum(
@@ -198,7 +201,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
          %{"type" => "status-with-required-cond"} = conditional,
          self,
          target,
-         unique_statuses
+         unique_statuses,
+         _
        ) do
     if Map.get(unique_statuses, conditional["statusCond"], 0) > 0 do
       total =
@@ -233,7 +237,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
          %{"type" => "negative-statuses"} = conditional,
          _self,
          target,
-         _unique_statuses
+         _unique_statuses,
+         _
        ) do
     count =
       StatusData.all()
@@ -250,7 +255,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
     {conditional["target"], value}
   end
 
-  defp evaluate_conditional(%{"type" => "always"} = conditional, _self, _target, _unique_statuses) do
+  defp evaluate_conditional(%{"type" => "always"} = conditional, _self, _target, _unique_statuses, _) do
     {conditional["target"], conditional["value"]}
   end
 
@@ -258,7 +263,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
          %{"type" => "missing-hp"} = conditional,
          self,
          target,
-         _unique_statuses
+         _unique_statuses,
+         _
        ) do
     side = if conditional["owner"] == "self", do: self, else: target
     missing_hp = 100 - side.hp
@@ -272,7 +278,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
     }
   end
 
-  defp evaluate_conditional(%{"type" => "have-hp"} = conditional, self, target, _unique_statuses) do
+  defp evaluate_conditional(%{"type" => "have-hp"} = conditional, self, target, _unique_statuses, _) do
     side = if conditional["owner"] == "self", do: self, else: target
 
     {
@@ -288,7 +294,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
          %{"type" => "spd-fixed"} = conditional,
          self,
          _target,
-         _unique_statuses
+         _unique_statuses,
+         _
        ) do
     valid =
       case conditional["mode"] do
@@ -299,7 +306,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
     {conditional["target"], if(valid, do: conditional["value"], else: 0)}
   end
 
-  defp evaluate_conditional(%{"type" => "spd-diff"} = conditional, self, target, _unique_statuses) do
+  defp evaluate_conditional(%{"type" => "spd-diff"} = conditional, self, target, _unique_statuses, _) do
     difference =
       case conditional["mode"] do
         "higher" -> self.speed - target.speed
@@ -320,7 +327,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
          %{"type" => "spd-fixed-or-diff-or-status"} = conditional,
          self,
          target,
-         unique_statuses
+         unique_statuses,
+         _
        ) do
     valid =
       case conditional["mode"] do
@@ -342,7 +350,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
          %{"type" => "rupture-15-3"} = conditional,
          _self,
          target,
-         _unique_statuses
+         _unique_statuses,
+         _
        ) do
     rupture = Map.get(target.statuses, "Burst", %{potency: 0, count: 0})
 
@@ -360,7 +369,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
          %{"type" => "charge-consume-hp"} = conditional,
          self,
          _target,
-         _unique_statuses
+         _unique_statuses,
+         _
        ) do
     charge = self.statuses["Charge"] || %{count: 0}
     charge_count = Map.get(charge, :count, 0)
@@ -376,7 +386,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
          %{"type" => "charge-check-potency"} = conditional,
          self,
          _target,
-         _unique_statuses
+         _unique_statuses,
+         _
        ) do
     charge = self.statuses["Charge"] || %{potency: 0, count: 0}
     charge_potency = Map.get(charge, :potency, 0)
@@ -389,7 +400,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
     {conditional["target"], if(valid, do: conditional["value"], else: 0)}
   end
 
-  defp evaluate_conditional(%{"type" => "sp-fixed"} = conditional, self, target, _unique_statuses) do
+  defp evaluate_conditional(%{"type" => "sp-fixed"} = conditional, self, target, _unique_statuses, _) do
     side = if conditional["owner"] == "self", do: self, else: target
 
     valid =
@@ -401,7 +412,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
     {conditional["target"], if(valid, do: conditional["value"], else: 0)}
   end
 
-  defp evaluate_conditional(%{"type" => "sp-rate"} = conditional, self, target, _unique_statuses) do
+  defp evaluate_conditional(%{"type" => "sp-rate"} = conditional, self, target, _unique_statuses, _) do
     side = if conditional["owner"] == "self", do: self, else: target
     sp = side.sp
     per = conditional["per"]
@@ -419,6 +430,16 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Simulator do
       end
 
     {conditional["target"], value}
+  end
+
+  defp evaluate_conditional(%{"type" => "status-and-id-drafted"} = conditional, self, target, unique_statuses, %{team: team} = opts) do
+    {ids, _} = team
+
+    if Enum.member?(ids, to_string(conditional["id"])) do
+      evaluate_conditional(%{conditional | "type" => "status"}, self, target, unique_statuses, opts)
+    else
+      {conditional["target"], 0}
+    end
   end
 
   defp calculate_team_bonus(item_id, {team_ids, ego_id}, round, item_data) do

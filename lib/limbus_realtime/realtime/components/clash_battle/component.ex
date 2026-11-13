@@ -54,7 +54,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
             skill_counts: [],
             draft_points: 0,
             ego: nil,
-            ego_used: false
+            ego_used: false,
+            bonus_skill_triggered: MapSet.new()
           }
 
           state =
@@ -535,7 +536,8 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
            | identities: identities,
              skill_counts: skill_counts,
              ego_used: false,
-             score: 0
+             score: 0,
+             bonus_skill_triggered: MapSet.new()
          }}
       end)
 
@@ -635,7 +637,7 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
             if Enum.at(counts, index, 0) > 0 do
               identity = Map.fetch!(item_data, item_id)
-              resolved_skill = Modifiers.resolve_skill(identity, skill, round)
+              resolved_skill = Modifiers.resolve_skill(identity, skill, round, %{counts: counts})
 
               counts = List.update_at(counts, index, &(&1 - 1))
 
@@ -976,22 +978,20 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
       true ->
         points = state.participants[client_id].draft_points
+        identity = ClashingData.get([identity_id])[identity_id]
 
-        if state.settings["points_per_draft"] != 0 do
-          identity = ClashingData.get([identity_id])[identity_id]
+        cond do
+          identity["type"] != "id" ->
+            {:error, "invalid_identity"}
 
-          cond do
-            identity["type"] != "id" ->
-              {:error, "invalid_identity"}
+          state.settings["points_per_draft"] == 0 ->
+            {:ok, :id, 0}
 
-            points < identity["points"] ->
-              {:error, "not_enough_points"}
+          points < identity["points"] ->
+            {:error, "not_enough_points"}
 
-            true ->
-              {:ok, :id, identity["points"]}
-          end
-        else
-          {:ok, :id, 0}
+          true ->
+            {:ok, :id, identity["points"]}
         end
     end
   end
@@ -1014,22 +1014,20 @@ defmodule LimbusRealtime.Realtime.Components.ClashBattle.Component do
 
       true ->
         points = state.participants[client_id].draft_points
+        ego = ClashingData.get([ego_id])[ego_id]
 
-        if state.settings["points_per_draft"] != 0 do
-          ego = ClashingData.get([ego_id])[ego_id]
+        cond do
+          ego["type"] != "ego" ->
+            {:error, "invalid_ego"}
 
-          cond do
-            ego["type"] != "ego" ->
-              {:error, "invalid_ego"}
+          state.settings["points_per_draft"] == 0 ->
+            {:ok, :ego, 0}
 
-            points < ego["points"] ->
-              {:error, "not_enough_points"}
+          points < ego["points"] ->
+            {:error, "not_enough_points"}
 
-            true ->
-              {:ok, :ego, ego["points"]}
-          end
-        else
-          {:ok, :ego, 0}
+          true ->
+            {:ok, :ego, ego["points"]}
         end
     end
   end
